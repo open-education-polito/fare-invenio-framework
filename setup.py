@@ -30,7 +30,7 @@ setup(
     license='MIT',
     author='Open Education Polito',
     author_email='fare@polito.it',
-    url='https://github.com/openeducation.polito.it/fare-dev',
+    url='https://github.com/open-education-polito/fare-invenio',
     packages=packages,
     zip_safe=False,
     include_package_data=True,

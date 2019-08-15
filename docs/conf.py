@@ -124,7 +124,7 @@ html_theme_options = {
     'github_banner': True,
     'show_powered_by': False,
     'extra_nav_links': {
-        'fare@GitHub': 'https://github.com/openeducation.polito.it/fare-dev',
+        'fare@GitHub': 'https://github.com/open-education-polito/fare-invenio',
         'fare@PyPI': 'https://pypi.python.org/pypi/fare/',
     }
 }
