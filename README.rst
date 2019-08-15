@@ -8,14 +8,14 @@
  fare
 ======
 
-.. image:: https://img.shields.io/travis/openeducation.polito.it/fare-dev.svg
-        :target: https://travis-ci.org/openeducation.polito.it/fare-dev
+.. image:: https://img.shields.io/travis/openeducation.polito.it/fare-invenio.svg
+        :target: https://travis-ci.org/openeducation.polito.it/fare-invenio
 
-.. image:: https://img.shields.io/coveralls/openeducation.polito.it/fare-dev.svg
-        :target: https://coveralls.io/r/openeducation.polito.it/fare-dev
+.. image:: https://img.shields.io/coveralls/openeducation.polito.it/fare-invenio.svg
+        :target: https://coveralls.io/r/openeducation.polito.it/fare-invenio
 
-.. image:: https://img.shields.io/github/license/openeducation.polito.it/fare-dev.svg
-        :target: https://github.com/openeducation.polito.it/fare-dev/blob/master/LICENSE
+.. image:: https://img.shields.io/github/license/openeducation.polito.it/fare-invenio.svg
+        :target: https://github.com/openeducation.polito.it/fare-invenio/blob/master/LICENSE
 
 Free Architecture for Remote Education
 
