@@ -63,6 +63,3 @@ target/
 
 # Vim swapfiles
 .*.sw?
-
-# Config files
-fare/config.py
