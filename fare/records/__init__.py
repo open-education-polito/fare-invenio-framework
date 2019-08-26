@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-.
 #
 # Copyright (C) 2019 Open Education Polito.
 #
@@ -6,7 +6,7 @@
 # terms of the MIT License; see LICENSE file for more details.
 
 
-"""Free Architecture for Remote Education"""
+"""Free Architecture for Remote Education."""
 
 from __future__ import absolute_import, print_function
 
