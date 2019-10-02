@@ -30,13 +30,16 @@ def create():
         contributors = [dict(name=form.contributor_name.data)]
         # set the owner as the current logged in user
         owner = int(current_user.get_id())
+	    # set the file of the record
+        content = form.file_content.data
         # create the record
         create_record(
           dict(
             title=form.title.data,
             contributors=contributors,
             owner=owner,
-          )
+          ),
+          content
         )
         # redirect to the success page
         return redirect(url_for('file_management.success'))
