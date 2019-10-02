@@ -42,6 +42,9 @@ setup(
         'invenio_base.apps': [
             'fare_records = fare.records:fare',
         ],
+	'flask.commands': [
+    	    'locations = fare.records.cli:locations',
+	],
         'invenio_base.blueprints': [
             'fare = fare.theme.views:blueprint',
             'fare_records = fare.records.views:blueprint',
