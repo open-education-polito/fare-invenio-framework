@@ -1,0 +1,14 @@
+{%- extends config.BASE_TEMPLATE %}
+
+{% block page_body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger">
+          <b>Cannot add role to user.</b>
+        </div>
+        <a href="{{ url_for('grant_staff.grant') }}" class="btn btn-warning">Grant more staff permissions</a>
+      </div>
+    </div>
+  </div>
+{% endblock page_body %}

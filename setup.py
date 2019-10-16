@@ -46,6 +46,7 @@ setup(
         'invenio_base.blueprints': [
             'fare = fare.theme.views:blueprint',
             'fare_records = fare.records.views:blueprint',
+             'fare_grant_staff = fare.grant_staff.views:blueprint',
         ],
         'invenio_assets.webpack': [
             'fare_theme = fare.theme.webpack:theme',
