@@ -4,13 +4,14 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, redirect, render_template, url_for
 from flask_login import login_required
-from flask_security import current_user
+from flask_security import current_user, roles_accepted
 
 from .forms import RecordForm
 from .api import create_record
 
 
-# define a new Flask Blueprint that is register under the url path /file_management
+# define a new Flask Blueprint that is register
+# under the url path /file_management
 blueprint = Blueprint(
     'file_management',
     __name__,
@@ -19,8 +20,10 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
+
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
+@roles_accepted('admin', 'staff')
 def create():
     """The create view."""
     form = RecordForm()
@@ -30,7 +33,7 @@ def create():
         contributors = [dict(name=form.contributor_name.data)]
         # set the owner as the current logged in user
         owner = int(current_user.get_id())
-	    # set the file of the record
+        # set the file of the record
         content = form.file_content.data
         # create the record
         create_record(
