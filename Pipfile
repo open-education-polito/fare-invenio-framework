@@ -29,7 +29,7 @@ pytest-pep8 = ">=1.0.6"
 pytest-random-order = ">=0.5.4"
 pytest-runner = ">=3.0.0,<5"
 # FIXME: Remove this once this issue is resolved https://github.com/pypa/pipenv/issues/3865.
-docutils = "==0.15"
+docutils = "==0.15.2"
 
 [requires]
 python_version = "3.6"
