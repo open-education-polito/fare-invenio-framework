@@ -37,21 +37,21 @@ If you are a staff member, you can review the material and let it be visible by 
 # How to contribute
 
 This project runs Invenio vx.x (insert structure of the project).
-To make run our instance of Invenio follow the installation ![https://invenio.readthedocs.io/en/latest/quickstart/quickstart.html] (here)
+To make run our instance of Invenio follow the installation [here] (https://invenio.readthedocs.io/en/latest/quickstart/quickstart.html)
 
 ## Community
 (insert contact of a possible comunity, like gitter or slack)
 
 ## Code of conduct
-!['https://www.contributor-covenant.org/'](Code of conduct)
+[Code of conduct](https://www.contributor-covenant.org/)
 
 ## Reporting a bug and asking help
 
-If you found a bug plese report it !['https://github.com/open-education-polito/fare-invenio'] (here) opening an issue.
+If you found a bug plese report it [here] (https://github.com/open-education-polito/fare-invenio) opening an issue.
 Searching help? (contatti per chi chiede aiuto)
 
 ## Semantic Versioning
-!['https://semver.org/'](Here) the semantic versioning we use
+[Here](https://semver.org/) the semantic versioning we use
 
 # Maintenance
 
