@@ -89,9 +89,6 @@ You can now start the development web server and the background worker for your 
 * Running on https://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
-## Community
-(insert contact of a possible comunity, like gitter or slack)
-
 ## Code of conduct
 [Code of conduct](https://www.contributor-covenant.org/)
 
