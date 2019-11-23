@@ -13,9 +13,6 @@ Free Architecture for Remote Education
 Further documentation will be available on
 > https://fare.readthedocs.io/ #TODO
 
-# Please note
-This version works only with `python 3.6.x`
-
 - [Get Started](#get-started)
 - [How to contribute](#how-to-contribute)
 - [Maintenance](#Maintenance)
@@ -56,6 +53,9 @@ Searching help? (contatti per chi chiede aiuto)
 # Maintenance
 
 Code actually maintained by (add contacts of maintainers)
+
+# Please note
+This version works only with `python 3.6.x`
 
 # License
 
