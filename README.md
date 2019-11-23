@@ -95,7 +95,7 @@ You can now start the development web server and the background worker for your 
 ## Reporting a bug and asking help
 
 If you found a bug plese report it [here](https://github.com/open-education-polito/fare-invenio) opening an issue.
-Searching help? (contatti per chi chiede aiuto)
+Searching [help](https://github.com/open-education-polito/fare-invenio)?
 
 ## Semantic Versioning
 [Here](https://semver.org/) the semantic versioning we use
