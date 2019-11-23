@@ -109,4 +109,4 @@ This version works only with `python 3.6.x`
 
 # License
 
-This code is licensed under a GNU Affero General Public License, v3. See the LICENSE.md file for extended info, and the license files inside each module's repository.
+This code is licensed under a MIT License, v3. See the LICENSE.md file for extended info, and the license files inside each module's repository.
