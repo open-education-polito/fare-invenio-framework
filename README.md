@@ -20,7 +20,7 @@ Further documentation will be available on
 
 # Get Started
 
-This is the main codebase for FARE. FARE is an e-learning web platform. Inside FARE you can found a lot of educational material, download it or you can upload some.
+This is the main codebase for FARE. FARE is an e-learning web platform. Inside FARE you can find a lot of educational material, download it or you can upload some.
 
 ## Searching material
 To search the desired material you just have to type what you are looking for in the search bar
@@ -60,4 +60,3 @@ This version works only with `python 3.6.x`
 # License
 
 This code is licensed under a GNU Affero General Public License, v3. See the LICENSE.md file for extended info, and the license files inside each module's repository.
-
