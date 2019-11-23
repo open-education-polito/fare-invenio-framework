@@ -36,6 +36,59 @@ If you are a staff member, you can review the material and let it be visible by 
 This project runs Invenio vx.x (insert structure of the project).
 To make run our instance of Invenio follow the installation [here](https://invenio.readthedocs.io/en/latest/quickstart/quickstart.html)
 
+## Prerequisites
+
+To be able to develop and run out instance you will need the following installed and configured on your system:
+
+* [Docker v1.18+](https://docs.docker.com/install/) and [Docker Compose v1.23+](https://docs.docker.com/compose/install/)
+* [NodeJS v6.x+ and NPM v4.x+](https://nodejs.org/en/download/package-manager/)
+* [Enough virtual memory](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-cli-run-prod-mode) for Elasticsearch (when running in Docker), if running Linux/MacOS you'll have to bump your `vm.max_map_count` as described in [Elasticsearch docs](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html)
+* [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/)
+* [Pipenv](https://pipenv.readthedocs.io/en/latest/)
+
+## Installation
+
+First, fire up the database, Elasticsearch, Redis and RabbitMQ:
+
+```
+$ cd my-site/
+$ docker-compose up -d
+Creating mysite_cache_1 ... done
+Creating mysite_db_1    ... done
+Creating mysite_es_1    ... done
+Creating mysite_mq_1    ... done
+```
+
+Next, activate the virtualenv of the new project by running:
+
+```
+$ pipenv shell
+```
+
+Finally, install all dependencies, build the JS/CSS assets, create the database tables and create the Elasticsearch indices by running the bootstrap and setup scripts:
+
+```
+(my-site)$ ./scripts/bootstrap
+(my-site)$ ./scripts/setup
+```
+
+Remeber to install also the `invenio-records-files` module:
+
+```
+(my-site)$ pip install invenio-records-files
+```
+
+## Run
+
+You can now start the development web server and the background worker for your new instance:
+
+```
+(my-site)$ ./scripts/server
+* Environment: development
+* Debug mode: on
+* Running on https://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
+
 ## Community
 (insert contact of a possible comunity, like gitter or slack)
 
