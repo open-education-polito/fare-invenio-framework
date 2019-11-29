@@ -43,7 +43,9 @@
     <ul class="list-group">
       {{ record_content(record) }}
     </ul>
-        {% if current_user.has_role('admin') or current_user.id==record.owner %}
+        {% if current_user.has_role('admin') or
+            current_user.has_role('staff') or
+            current_user.id==record.owner %}
 	<form action="{{ url_for('file_management.delete') }}" method="GET">
 		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
 		<input type="submit" value="Delete" />
