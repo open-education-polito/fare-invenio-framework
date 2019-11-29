@@ -12,7 +12,6 @@ from flask import request
 
 from .models import MyRecord
 from invenio_files_rest.models import Bucket, ObjectVersion
-from invenio_access.utils import get_identity
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -59,7 +58,6 @@ def delete():
     """The delete view."""
 
     form = DeleteForm()
-    usradm = False
 
     # storing the bucket uuid
     if request.method == 'GET':
@@ -78,13 +76,12 @@ def delete():
     # creating MyRecord object, extention of invenio_records_files.Record
     record = MyRecord.get_record(key)
 
-    # check if the user has is admin
-    for usrn in get_identity(current_user).provides:
-        if(usrn.method == 'role' and usrn.value == 'admin'):
-            usradm = True
-
-    # check if the user is the owner of the record or if is admin
-    if (not current_user.id == record['owner']) and (not usradm):
+    # check if the user is the owner of the record or if is admin or staff
+    if(
+            (not current_user.id == record['owner']) and
+            (not current_user.has_role('admin')) and
+            (not current_user.has_role('staff'))
+    ):
         abort(403)
 
     if form.validate_on_submit():
