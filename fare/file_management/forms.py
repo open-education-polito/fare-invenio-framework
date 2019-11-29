@@ -12,7 +12,7 @@ class RecordForm(FlaskForm):
     """file_management form."""
 
     file_content = FileField(
-    	'File of the record', validators=[FileRequired()]
+        'File of the record', validators=[FileRequired()]
     )
     title = StringField(
         'Title', [validators.DataRequired()]
@@ -20,3 +20,9 @@ class RecordForm(FlaskForm):
     contributor_name = StringField(
         'Name of the contributor', [validators.DataRequired()]
     )
+
+
+class DeleteForm(FlaskForm):
+    """ form to delete files """
+
+    file_bucket = StringField('Id of the bucket', [validators.DataRequired()])
