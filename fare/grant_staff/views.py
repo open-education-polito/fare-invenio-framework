@@ -68,11 +68,11 @@ def success():
 @login_required
 def cannot_add_role():
     """The cannot add role view."""
-    return render_template('grant_staff/cannot_add_role.html')
+    return render_template('grant_staff/cannot_add_role.html'), 409
 
 
 @blueprint.route("/user_not_found")
 @login_required
 def user_not_found():
     """The user not found view."""
-    return render_template('grant_staff/user_not_found.html')
+    return render_template('grant_staff/user_not_found.html'), 404
