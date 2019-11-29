@@ -26,7 +26,6 @@ blueprint = Blueprint(
 
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
-@roles_accepted('admin', 'staff')
 def create():
     """The create view."""
     form = RecordForm()
