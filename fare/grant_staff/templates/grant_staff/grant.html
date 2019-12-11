@@ -19,7 +19,7 @@
         <h2>Grant Staff permission</h2>
       </div>
       <div class="col-md-offset-3 col-md-6 well">
-        <form action="{{ url_for('grant_staff.grant') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('grant_staff.grant') }}" method="POST">
             <div class="form-group {{ 'has-error' if form.email.errors }}">
               <label for="email">{{ form.email.label }}</label>
               {{ form.email(class_="form-control")|safe }}

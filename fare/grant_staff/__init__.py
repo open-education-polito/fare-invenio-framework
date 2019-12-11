@@ -1,1 +1,1 @@
-"""grant_staff module"""
+"""grant_staff module."""
