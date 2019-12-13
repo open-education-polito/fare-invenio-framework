@@ -25,6 +25,22 @@
       "type": "string",
       "format": "date-time"
     },
+    "school_order": {
+      "description": "School order of the record.",
+      "type": "string"
+    },
+    "discipline": {
+      "description": "School Discipline of the record.",
+      "type": "string"
+    },
+    "argument": {
+      "description": "Argument of the discipline.",
+      "type": "string"
+    },
+    "description": {
+      "description": "A short description of the content of the record.",
+      "type": "string"
+    },
     "contributors": {
       "description": "Contributors in order of importance.",
       "minItems": 1,
@@ -87,6 +103,10 @@
   "required": [
     "id",
     "contributors",
-    "title"
+    "title",
+    "school_order",
+    "discipline",
+    "argument",
+    "description"
   ]
 }

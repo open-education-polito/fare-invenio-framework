@@ -30,6 +30,26 @@
               {{ form.contributor_name(class_="form-control")|safe }}
               {{ errors(form.contributor_name) }}
             </div>
+            <div class="form-group {{ 'has-error' if form.school_order.errors }}">
+              <label for="school_order">{{ form.school_order.label }}</label>
+              {{ form.school_order(class_="form-control")|safe }}
+              {{ errors(form.school_order) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.discipline.errors }}">
+              <label for="discipline">{{ form.discipline.label }}</label>
+              {{ form.discipline(class_="form-control")|safe }}
+              {{ errors(form.discipline) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.argument.errors }}">
+              <label for="argument">{{ form.argument.label }}</label>
+              {{ form.argument(class_="form-control")|safe }}
+              {{ errors(form.argument) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.description.errors }}">
+              <label for="description">{{ form.description.label }}</label>
+              {{ form.description(class_="form-control")|safe }}
+              {{ errors(form.description) }}
+            </div>
 	    <div class="form-group {{ 'has-error' if form.file_content.errors }}">
               <label for="file_content">{{ form.file_content.label }}</label>
               {{ form.file_content(class_="form-control")|safe }}

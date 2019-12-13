@@ -3,7 +3,7 @@
 from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, validators, TextAreaField
 
 from flask_wtf.file import FileField, FileRequired
 
@@ -19,6 +19,18 @@ class RecordForm(FlaskForm):
     )
     contributor_name = StringField(
         'Name of the contributor', [validators.DataRequired()]
+    )
+    school_order = StringField(
+        'School order', [validators.DataRequired()]
+    )
+    discipline = StringField(
+        'Discipline', [validators.DataRequired()]
+    )
+    argument = StringField(
+        'Argument', [validators.DataRequired()]
+    )
+    description = TextAreaField(
+        'Description', [validators.DataRequired()]
     )
 
 

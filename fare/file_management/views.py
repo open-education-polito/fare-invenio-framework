@@ -35,6 +35,14 @@ def create():
         contributors = [dict(name=form.contributor_name.data)]
         # set the owner as the current logged in user
         owner = int(current_user.get_id())
+        # set the school order
+        school_order = form.school_order.data
+        # set the discipline
+        discipline = form.discipline.data
+        # set the argument
+        argument = form.argument.data
+        # set the description
+        description = form.description.data
         # set the file of the record
         content = form.file_content.data
         # create the record
@@ -43,6 +51,10 @@ def create():
             title=form.title.data,
             contributors=contributors,
             owner=owner,
+            school_order=school_order,
+            discipline=discipline,
+            argument=argument,
+            description=description,
           ),
           content
         )
