@@ -44,6 +44,7 @@ class MetadataSchemaV1(StrictKeysMixin):
     discipline = SanitizedUnicode(required=True)
     argument = SanitizedUnicode(required=True)
     description = SanitizedUnicode(required=True)
+    revisioned = fields.Boolean(required=True)
 
 
 class RecordSchemaV1(StrictKeysMixin):

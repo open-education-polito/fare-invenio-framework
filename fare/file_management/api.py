@@ -29,12 +29,37 @@ def create_record(data, file_content):
         current_pidstore.minters['recid'](rec_uuid, data)
         # create record and the associated bucket
         created_record = Record.create(data, id_=rec_uuid)
+        '''
         # index the record
         RecordIndexer().index(created_record)
+        '''
         # store the file and link it to the metadata
         created_record.files[str(rec_uuid)] = file_content
 
     db.session.commit()
+
+
+def index_record(record_id):
+    """Index a record.
+
+    :param record_id: The record id.
+    """
+    with db.session.begin_nested():
+
+        # retrieve the record
+        created_record = MyRecord.get_record(record_id)
+        # index the record
+        RecordIndexer().index(created_record)
+
+    db.session.commit()
+
+
+def list_unrevisioned_records():
+    """Return the list of lall records that are not revisioned.
+    """
+
+    # retrieve and return the records
+    return 
 
 
 def delete_record(fileinstance_id, version_id, key, record):

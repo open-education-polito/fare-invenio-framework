@@ -7,7 +7,7 @@ from flask_login import login_required
 from flask_security import current_user, roles_accepted
 
 from .forms import RecordForm, DeleteForm
-from .api import create_record, delete_record
+from .api import create_record, delete_record, index_record, list_unrevisioned_records
 from flask import request
 
 from .models import MyRecord
@@ -45,7 +45,7 @@ def create():
         description = form.description.data
         # set the file of the record
         content = form.file_content.data
-        # create the record
+        # create the record and set the revisioned field to false
         create_record(
           dict(
             title=form.title.data,
@@ -55,12 +55,36 @@ def create():
             discipline=discipline,
             argument=argument,
             description=description,
+            revisioned=False,
           ),
           content
         )
         # redirect to the success page
         return redirect(url_for('file_management.success'))
     return render_template('file_management/create.html', form=form)
+
+
+@blueprint.route('/revision/', methods=('GET'))
+@login_required
+def revision_list():
+
+    # retrieve the unrevisioned records
+    records = list_unrevisioned_records()
+
+    return
+
+
+'''
+@blueprint.route('/revision/<id>', methods=('GET', 'POST'))
+@login_required
+def revision():
+
+    # change the revision field
+    record = 
+    # index the record
+    index_record(record_id)
+    return
+'''
 
 
 @blueprint.route('/delete/', methods=('GET', 'POST'))

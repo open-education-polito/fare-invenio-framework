@@ -41,6 +41,10 @@
       "description": "A short description of the content of the record.",
       "type": "string"
     },
+    "revisioned": {
+      "description": "A boolean that indicate if the recore was revisioned of not.",
+      "type": "boolean"
+    },
     "contributors": {
       "description": "Contributors in order of importance.",
       "minItems": 1,
