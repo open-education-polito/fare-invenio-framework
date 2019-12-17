@@ -151,3 +151,13 @@ OAISERVER_ID_PREFIX = 'oai:fare.polito.it:'
 
 #: Switches off incept of redirects by Flask-DebugToolbar.
 DEBUG_TB_INTERCEPT_REDIRECTS = False
+
+FIXTURES_FILES_LOCATION = 'data/'
+"""Location where uploaded files are saved. If not an absolute path it is
+   relative to instance path.
+"""
+
+FIXTURES_ARCHIVE_LOCATION = 'archive/'
+"""Location where uploaded files are archived. If not an absolute path it is
+   relative to instance path.
+"""
