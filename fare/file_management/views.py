@@ -64,7 +64,7 @@ def create():
     return render_template('file_management/create.html', form=form)
 
 
-@blueprint.route('/revision/', methods=('GET'))
+@blueprint.route('/revision/', methods=('GET',))
 @login_required
 def revision_list():
 
