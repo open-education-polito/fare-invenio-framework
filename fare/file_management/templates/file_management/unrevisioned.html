@@ -1,0 +1,30 @@
+{% extends 'invenio_search_ui/search.html' %}
+    
+{% set title = 'Revision records' %}
+
+{%- block body_inner -%}
+    <invenio-search
+     search-endpoint="api/records"
+     search-extra-params="{'type': 'article'}"
+     search-hidden-params="{'status': 'published'}"
+     search-headers="{'Accept': 'application/json'}"
+    >
+    {{super()}}
+    </invenio-search>
+{%- endblock body_inner -%}
+
+
+{%- block search_error -%}
+    <invenio-search-error
+     template="{{ url_for('.static', filename='templates/error.html') }}"
+     message="{{ _('Search failed.') }}">
+    </invenio-search-error>
+{%- endblock search_error -%}
+
+
+{%- block search_results %}
+    <invenio-search-results
+     template="{{ url_for('.static', filename='templates/results.html') }}">
+    </invenio-search-results>
+{%- endblock search_results %}
+

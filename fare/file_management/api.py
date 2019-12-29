@@ -15,6 +15,9 @@ from invenio_files_rest.models import Bucket, FileInstance, ObjectVersion
 import shutil
 from invenio_pidstore.models import PersistentIdentifier
 
+from invenio_search.api import RecordsSearch, DefaultFilter
+from elasticsearch_dsl import Q
+from elasticsearch_dsl.query import Bool
 
 def create_record(data, file_content):
     """Create a record.
@@ -23,6 +26,7 @@ def create_record(data, file_content):
     :param file_content: The file to store.
     """
     with db.session.begin_nested():
+
         # create uuid
         rec_uuid = uuid.uuid4()
         # create PID
@@ -40,7 +44,7 @@ def create_record(data, file_content):
 
 
 def index_record(record_id):
-    """Index a record.
+    """Index a record and mark it as revisioned.
 
     :param record_id: The record id.
     """
@@ -48,10 +52,32 @@ def index_record(record_id):
 
         # retrieve the record
         created_record = MyRecord.get_record(record_id)
+        # mark the record as revisioned
+        created_record.revisioned = True
         # index the record
         RecordIndexer().index(created_record)
 
     db.session.commit()
+
+
+class RevisionSearch(RecordsSearch):
+    """Define default filter for search unrevisioned record."""
+
+    class Meta:
+        """Configuration for search."""
+
+        # default_filter = DefaultFilter('revisioned:True')
+        # default_filter = Q(True, field='record.revisioned')
+        index = '_all'
+        fields = ('*', )
+        facets = {}
+
+
+    def __init__(self, **kwargs):
+        super(RevisionSearch, self).__init__(**kwargs)
+        self.query = Q(
+            Bool(filter=[Q('term', revisioned=False)])
+        )
 
 
 def list_unrevisioned_records():
@@ -59,7 +85,10 @@ def list_unrevisioned_records():
     """
 
     # retrieve and return the records
-    return 
+    search = RevisionSearch()
+    response = search.execute()
+    
+    return response.to_dict()
 
 
 def delete_record(fileinstance_id, version_id, key, record):
