@@ -4,14 +4,11 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, redirect, render_template, url_for
 from flask_login import login_required
-from flask_security import current_user
 
 from .forms import StaffForm
-from flask import current_app
-from werkzeug.local import LocalProxy
+from .api import grant_staff_permission
 from flask_security import roles_accepted
 
-_datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
 
 # define a new Flask Blueprint that is register under
 # the url path /file_management
@@ -33,24 +30,18 @@ def grant():
 
     # if the form is submitted and valid
     if form.validate_on_submit():
-        # store the form information and define the role to grant
+        # store the form information
         user = form.email.data
-        role = "staff"
 
-        user, role = _datastore._prepare_role_modify_args(user, role)
+        status = grant_staff_permission(user)
 
         # check if the user exist
-        if user is None:
+        if status == 404:
             return redirect(url_for('grant_staff.user_not_found'))
         # if successfull print it in the terminal with green color
-        if _datastore.add_role_to_user(user, role):
-            print('\x1b[0;32;40m' + 'Role "' + str(role) + '" added '
-                  'to user "' + str(user) + '" successfully.' + '\x1b[0m')
-        else:
+        if status == 409:
             # Cannot add role to user
             return redirect(url_for('grant_staff.cannot_add_role'))
-        # commit the changes to the database
-        _datastore.commit()
 
         # redirect to the success page
         return redirect(url_for('grant_staff.success'))
