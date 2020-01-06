@@ -25,15 +25,15 @@
       "type": "string",
       "format": "date-time"
     },
-    "school_order": {
+    "educationLevel": {
       "description": "School order of the record.",
       "type": "string"
     },
-    "discipline": {
+    "subject": {
       "description": "School Discipline of the record.",
       "type": "string"
     },
-    "argument": {
+    "coverage": {
       "description": "Argument of the discipline.",
       "type": "string"
     },
@@ -108,9 +108,9 @@
     "id",
     "contributors",
     "title",
-    "school_order",
-    "discipline",
-    "argument",
+    "educationLevel",
+    "subject",
+    "coverage",
     "description"
   ]
 }

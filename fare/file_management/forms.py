@@ -20,14 +20,14 @@ class RecordForm(FlaskForm):
     contributor_name = StringField(
         'Name of the contributor', [validators.DataRequired()]
     )
-    school_order = StringField(
-        'School order', [validators.DataRequired()]
+    educationLevel = StringField(
+        'Education level', [validators.DataRequired()]
     )
-    discipline = StringField(
-        'Discipline', [validators.DataRequired()]
+    subject = StringField(
+        'Subject', [validators.DataRequired()]
     )
-    argument = StringField(
-        'Argument', [validators.DataRequired()]
+    coverage = StringField(
+        'Coverage', [validators.DataRequired()]
     )
     description = TextAreaField(
         'Description', [validators.DataRequired()]

@@ -40,9 +40,9 @@ class MetadataSchemaV1(StrictKeysMixin):
     keywords = fields.List(SanitizedUnicode(), many=True)
     publication_date = DateString()
     contributors = Nested(ContributorSchemaV1, many=True, required=True)
-    school_order = SanitizedUnicode(required=True)
-    discipline = SanitizedUnicode(required=True)
-    argument = SanitizedUnicode(required=True)
+    educationLevel = SanitizedUnicode(required=True)
+    subject = SanitizedUnicode(required=True)
+    coverage = SanitizedUnicode(required=True)
     description = SanitizedUnicode(required=True)
     revisioned = fields.Boolean(required=True)
 
