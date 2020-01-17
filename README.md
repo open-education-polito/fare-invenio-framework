@@ -77,7 +77,7 @@ Next, activate the virtualenv of the new project by running:
 $ pipenv shell
 ```
 
-*Note:* because of the version of the `invenio-records-files` module that is not an official release, before execute the next point add the following line in the `/scripts/bootstrap` file, after the `pipenv sync --dev` line
+**Note:** because of the version of the `invenio-records-files` module that is not an official release, before execute the next point add the following line in the `/scripts/bootstrap` file, after the `pipenv sync --dev` line
 
 ```
 pipenv run pip install --upgrade invenio-files-rest
