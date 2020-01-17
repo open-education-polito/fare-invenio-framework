@@ -37,11 +37,11 @@ def create():
         # set the owner as the current logged in user
         owner = int(current_user.get_id())
         # set the school order
-        school_order = form.school_order.data
+        educationLevel = form.educationLevel.data
         # set the discipline
-        discipline = form.discipline.data
+        subject = form.subject.data
         # set the argument
-        argument = form.argument.data
+        coverage = form.coverage.data
         # set the description
         description = form.description.data
         # set the file of the record
@@ -52,9 +52,9 @@ def create():
             title=form.title.data,
             contributors=contributors,
             owner=owner,
-            school_order=school_order,
-            discipline=discipline,
-            argument=argument,
+            educationLevel=educationLevel,
+            subject=subject,
+            coverage=coverage,
             description=description,
             revisioned=False,
           ),
