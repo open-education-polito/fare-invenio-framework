@@ -10,8 +10,6 @@ addons:
     update: true
     sources:
       - google-chrome
-    packages:
-      - dpkg
 
 dist: xenial # Chrome driver fails if not trusty dist
 
@@ -51,8 +49,12 @@ before_install:
   # Start docker services
   - "docker-compose up -d"
   # Chrome webdriver for Selenium
-  - "PATH=$PATH:$HOME/webdrivers"
-  - "if [ ${E2E} == 'yes' ] && [ ! -f $HOME/webdrivers/chromedriver ]; then wget https://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip -P $HOME/webdrivers; unzip -d $HOME/webdrivers $HOME/webdrivers/chromedriver_linux64.zip; fi"
+  - CHROME_MAIN_VERSION=`google-chrome-stable --version | sed -E 's/(^Google Chrome |\.[0-9]+ )//g'`
+  - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAIN_VERSION"`
+  - curl "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
+  - unzip chromedriver_linux64.zip -d ~/bin
+  #- "PATH=$PATH:$HOME/webdrivers"
+  #- "if [ ${E2E} == 'yes' ] && [ ! -f $HOME/webdrivers/chromedriver ]; then wget https://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip -P $HOME/webdrivers; unzip -d $HOME/webdrivers $HOME/webdrivers/chromedriver_linux64.zip; fi"
   - "export CHROME_BIN=chromium-browser"
   - "nvm install 6; nvm use 6"
   - "travis_retry pip install --upgrade pip setuptools py pipenv"
