@@ -65,7 +65,6 @@ before_script:
   # https://docs.travis-ci.com/user/gui-and-headless-browsers/
   - "export DISPLAY=:99.0"
   - "if [ ${E2E} == 'yes' ]; then sh -e /etc/init.d/xvfb start; sleep 3; fi"
-  - "ps aux grep xvfb"
   # Allow services running inside docker to start
   - "./docker/wait-for-services.sh"
 
