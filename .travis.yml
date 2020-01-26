@@ -12,7 +12,7 @@ addons:
       - google-chrome
     packages:
       - dpkg
-      - google-chrome-stable
+      - google-chrome-stable --allow-unauthenticated
 
 dist: xenial # Chrome driver fails if not trusty dist
 
