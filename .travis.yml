@@ -6,12 +6,9 @@
 # terms of the MIT License; see LICENSE file for more details.
 
 addons:
-  apt:
-    update: true
-    sources:
-      - google-chrome
+  chrome: stable
 
-dist: xenial # Chrome driver fails if not trusty dist
+dist: bionic # Chrome driver fails if not trusty dist
 
 notifications:
   email: # sent to the committer and the author
@@ -49,13 +46,12 @@ before_install:
   # Start docker services
   - "docker-compose up -d"
   # Chrome webdriver for Selenium
+  - "PATH=$PATH:$HOME/webdrivers"
   - CHROME_MAIN_VERSION=`google-chrome-stable --version | sed -E 's/(^Google Chrome |\.[0-9]+ )//g'`
   - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAIN_VERSION"`
   - curl "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
-  - unzip chromedriver_linux64.zip -d ~/bin
-  #- "PATH=$PATH:$HOME/webdrivers"
-  #- "if [ ${E2E} == 'yes' ] && [ ! -f $HOME/webdrivers/chromedriver ]; then wget https://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip -P $HOME/webdrivers; unzip -d $HOME/webdrivers $HOME/webdrivers/chromedriver_linux64.zip; fi"
-  - "export CHROME_BIN=chromium-browser"
+  - unzip chromedriver_linux64.zip -d $HOME/webdrivers 
+    #- "if [ ${E2E} == 'yes' ] && [ ! -f $HOME/webdrivers/chromedriver ]; then wget https://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip -P $HOME/webdrivers; unzip -d $HOME/webdrivers $HOME/webdrivers/chromedriver_linux64.zip; fi"
   - "nvm install 6; nvm use 6"
   - "travis_retry pip install --upgrade pip setuptools py pipenv"
   - "travis_retry pip install twine wheel coveralls"
