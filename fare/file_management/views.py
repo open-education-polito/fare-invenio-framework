@@ -7,12 +7,13 @@ from flask_login import login_required
 from flask_security import current_user, roles_accepted
 
 from .forms import RecordForm, DeleteForm
-from .api import create_record, delete_record, index_record, list_unrevisioned_records
+from .api import create_record, delete_record
 from flask import request
 
 from .models import MyRecord
 from invenio_files_rest.models import Bucket, ObjectVersion
 from flask import jsonify
+
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -68,35 +69,7 @@ def create():
 @blueprint.route('/revision/', methods=('GET',))
 @login_required
 def revision_list():
-
-    # retrieve the unrevisioned records
-    records = list_unrevisioned_records()
-    '''
-    print(records)
-    print("----------------------------")
-    print(jsonify(records))
-    print(dir(jsonify(records)))
-    print("----------------------------")
-    print(jsonify(records).data)
-    print("----------------------------")
-    '''
-    jrecords = jsonify(records).json
-    for e in jrecords['hits']['hits']:
-        print(str(e['_source']['title']) + " " + str(e['_source']['revisioned']))
-    '''
-    list_records = []
-
-    for record in jrecords['hits']['hits']:
-        record_id = record['_id']
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print(record_id)
-        myrecord = MyRecord.get_record(record_id)
-        print(myrecord)
-        list_records.append(myrecord)
-    print("ENDDDDDDDDDDDDDDDDDDDDDDDDDDD")
-    '''
-    # return render_template('file_management/unrevisioned.html', records_list=jrecords)
-    return render_template('file_management/unrevisioned.html', vm=jrecords)
+    return render_template('file_management/unrevisioned.html')
 
 
 '''

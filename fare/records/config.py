@@ -13,7 +13,7 @@ import invenio_logging.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
-from invenio_search import RecordsSearch
+from .search import RevisionedRecordsSearch
 
 
 def _(x):
@@ -29,7 +29,7 @@ RECORDS_REST_ENDPOINTS = {
         pid_minter='recid',
         pid_fetcher='recid',
         default_endpoint_prefix=True,
-        search_class=RecordsSearch,
+        search_class=RevisionedRecordsSearch,
         indexer_class=RecordIndexer,
         search_index='records',
         search_type=None,

@@ -4,9 +4,7 @@
 
 {%- block body_inner -%}
     <invenio-search
-     search-endpoint="api/records"
-     search-extra-params="{'type': 'article'}"
-     search-hidden-params="{'status': 'published'}"
+     search-endpoint="api/file_management"
      search-headers="{'Accept': 'application/json'}"
     >
     {{super()}}

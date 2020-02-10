@@ -19,6 +19,9 @@ from invenio_search.api import RecordsSearch, DefaultFilter
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
 
+# da cancellare
+from flask import jsonify
+
 def create_record(data, file_content):
     """Create a record.
 
@@ -33,29 +36,12 @@ def create_record(data, file_content):
         current_pidstore.minters['recid'](rec_uuid, data)
         # create record and the associated bucket
         created_record = Record.create(data, id_=rec_uuid)
-        '''
+        
         # index the record
         RecordIndexer().index(created_record)
-        '''
+        
         # store the file and link it to the metadata
         created_record.files[str(rec_uuid)] = file_content
-
-    db.session.commit()
-
-
-def index_record(record_id):
-    """Index a record and mark it as revisioned.
-
-    :param record_id: The record id.
-    """
-    with db.session.begin_nested():
-
-        # retrieve the record
-        created_record = MyRecord.get_record(record_id)
-        # mark the record as revisioned
-        created_record.revisioned = True
-        # index the record
-        RecordIndexer().index(created_record)
 
     db.session.commit()
 
@@ -69,6 +55,7 @@ class RevisionSearch(RecordsSearch):
         # default_filter = DefaultFilter('revisioned:True')
         # default_filter = Q(True, field='record.revisioned')
         index = '_all'
+        # doc_types = ['unrevisioned']
         fields = ('*', )
         facets = {}
 
@@ -78,17 +65,6 @@ class RevisionSearch(RecordsSearch):
         self.query = Q(
             Bool(filter=[Q('term', revisioned=False)])
         )
-
-
-def list_unrevisioned_records():
-    """Return the list of lall records that are not revisioned.
-    """
-
-    # retrieve and return the records
-    search = RevisionSearch()
-    response = search.execute()
-    
-    return response.to_dict()
 
 
 def delete_record(fileinstance_id, version_id, key, record):
