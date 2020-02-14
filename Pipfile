@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 Babel = ">=2.4.0"
 Flask-BabelEx = ">=0.9.3"
-invenio = { version = "==3.1.1", extras = ["base", "metadata", "postgresql", "auth", "elasticsearch6" ]}
+invenio = { version = "==3.2.0", extras = ["base", "auth", "metadata", "files", "postgresql", "elasticsearch7" ]}
 uwsgi = ">=2.0"
 uwsgitop = ">=0.11"
 uwsgi-tools = ">=1.1.1"
