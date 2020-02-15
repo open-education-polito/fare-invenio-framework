@@ -1,18 +1,11 @@
+![https://travis-ci.org/open-education-polito-it/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
+![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
+![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
 
 # FARE
 > The Free Architecture for Remote Education
 
-![https://travis-ci.org/open-education-polito-it/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
-
-![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
-
-![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
-
-Free Architecture for Remote Education
-
-Further documentation will be available on
-> https://fare.readthedocs.io/ #TODO
-
+# Index
 - [Introduction](#introduction)
 - [How to contribute](#how-to-contribute)
 - [Maintenance](#Maintenance)
@@ -45,8 +38,7 @@ everyone!
 
 # How to contribute
 
-This project runs Invenio vx.x (insert structure of the project).
-To make run our instance of Invenio follow the installation [here](https://invenio.readthedocs.io/en/latest/quickstart/quickstart.html)
+This project runs Invenio v3.2.0. 
 
 ## Prerequisites
 
