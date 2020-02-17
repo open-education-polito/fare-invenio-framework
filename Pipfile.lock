@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1020e03dc1b43db95ed1f34f127ab282ba97520c937286dce80a7ad68d0c45b2"
+            "sha256": "14a91e6dbff693e1d4f5d9c07d1e6f42c67acc9fb911a2403b91a4fb39b3641f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -503,11 +503,11 @@
                 "postgresql"
             ],
             "hashes": [
-                "sha256:11e18008b18c1bbf6c4bb7ad2a803d2bacf59c1782a05d2e568f50b904642a29",
-                "sha256:febe6442671c0cfb5b1125b861427601898c1bffd3823528b380fc01c8246331"
+                "sha256:ba5badc4635670348df31610af028d98626b8bb62e2dc306de0241def79ac8cd",
+                "sha256:deff48c8f390182c348edcfaac96452b75e0b9a000875d3bfe4a0311fc7d2f98"
             ],
             "index": "pypi",
-            "version": "==3.2.0"
+            "version": "==3.2.1"
         },
         "invenio-access": {
             "hashes": [
@@ -1441,10 +1441,10 @@
         },
         "werkzeug": {
             "hashes": [
-                "sha256:169ba8a33788476292d04186ab33b01d6add475033dfc07215e6d219cc077096",
-                "sha256:6dc65cf9091cf750012f56f2cad759fa9e879f511b5ff8685e456b4e3bf90d16"
+                "sha256:1e0dedc2acb1f46827daa2e399c1485c8fa17c0d8e70b6b875b4e7f54bf408d2",
+                "sha256:b353856d37dec59d6511359f97f6a4b2468442e454bd1c98298ddce53cac1f04"
             ],
-            "version": "==1.0.0"
+            "version": "==0.16.1"
         },
         "whichcraft": {
             "hashes": [
@@ -1943,10 +1943,10 @@
         },
         "werkzeug": {
             "hashes": [
-                "sha256:169ba8a33788476292d04186ab33b01d6add475033dfc07215e6d219cc077096",
-                "sha256:6dc65cf9091cf750012f56f2cad759fa9e879f511b5ff8685e456b4e3bf90d16"
+                "sha256:1e0dedc2acb1f46827daa2e399c1485c8fa17c0d8e70b6b875b4e7f54bf408d2",
+                "sha256:b353856d37dec59d6511359f97f6a4b2468442e454bd1c98298ddce53cac1f04"
             ],
-            "version": "==1.0.0"
+            "version": "==0.16.1"
         },
         "zipp": {
             "hashes": [
