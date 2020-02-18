@@ -23,4 +23,4 @@ pipenv run invenio access allow superuser-access role admin
 pipenv run invenio roles create staff
 
 # create a Location
-invenio locations setup_storage
+pipenv run invenio locations setup_storage
