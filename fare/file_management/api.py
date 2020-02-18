@@ -19,8 +19,29 @@ from invenio_search.api import RecordsSearch, DefaultFilter
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
 
-# da cancellare
-from flask import jsonify
+# library for rest endpoint
+from functools import partial
+from invenio_pidstore.models import PIDStatus
+from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
+from .fetchers import pid_fetcher
+from .minters import dummy_pid_minter
+
+
+FILE_MANAGEMENT_PID_TYPE = "fmgid"
+FILE_MANAGEMENT_PID_MINTER = "fmgid"
+FILE_MANAGEMENT_PID_FETCHER = "fmgid"
+
+FileManagementIdProvider = type(
+    'DocumentIdProvider',
+    (RecordIdProviderV2,),
+    dict(pid_type=FILE_MANAGEMENT_PID_TYPE, default_status=PIDStatus.REGISTERED)
+)
+file_management_pid_minter = dummy_pid_minter
+file_management_pid_fetcher = partial(
+    pid_fetcher,
+    provider_cls=FileManagementIdProvider
+)
+
 
 def create_record(data, file_content):
     """Create a record.
@@ -56,6 +77,7 @@ class RevisionSearch(RecordsSearch):
         # default_filter = Q(True, field='record.revisioned')
         index = '_all'
         # doc_types = ['unrevisioned']
+        doc_types = None
         fields = ('*', )
         facets = {}
 

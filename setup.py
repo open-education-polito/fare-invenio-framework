@@ -69,6 +69,12 @@ setup(
         'invenio_search.mappings': [
             'records = fare.records.mappings'
         ],
+        "invenio_pidstore.minters": [
+            "fmgid = fare.file_management.api:file_management_pid_minter",
+        ],
+        "invenio_pidstore.fetchers": [
+            "fmgid = fare.file_management.api:file_management_pid_fetcher",
+        ],
     },
     classifiers=[
         'Environment :: Web Environment',

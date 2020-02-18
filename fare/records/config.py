@@ -14,6 +14,7 @@ from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
 from .search import RevisionedRecordsSearch
+from ..file_management.api import RevisionSearch, FILE_MANAGEMENT_PID_TYPE, FILE_MANAGEMENT_PID_MINTER, FILE_MANAGEMENT_PID_FETCHER
 
 
 def _(x):
@@ -47,6 +48,38 @@ RECORDS_REST_ENDPOINTS = {
         },
         list_route='/records/',
         item_route='/records/<pid(recid):pid_value>',
+        default_media_type='application/json',
+        max_result_window=10000,
+        error_handlers=dict(),
+        create_permission_factory_imp=deny_all,
+        read_permission_factory_imp=check_elasticsearch,
+        update_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+        list_permission_factory_imp=allow_all
+    ),
+    'fmgid': dict(
+        pid_type=FILE_MANAGEMENT_PID_TYPE,
+        pid_minter=FILE_MANAGEMENT_PID_MINTER,
+        pid_fetcher=FILE_MANAGEMENT_PID_FETCHER,
+        default_endpoint_prefix=True,
+        search_class=RevisionSearch,
+        indexer_class=RecordIndexer,
+        # search_index='records',
+        search_type=None,
+        record_serializers={
+            'application/json': ('fare.records.serializers'
+                                 ':json_v1_response'),
+        },
+        search_serializers={
+            'application/json': ('fare.records.serializers'
+                                 ':json_v1_search'),
+        },
+        record_loaders={
+            'application/json': ('fare.records.loaders'
+                                 ':json_v1'),
+        },
+        list_route='/file_management/',
+        item_route='/file_management/<pid(recid):pid_value>',
         default_media_type='application/json',
         max_result_window=10000,
         error_handlers=dict(),
