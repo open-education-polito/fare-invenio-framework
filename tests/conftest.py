@@ -9,27 +9,26 @@
 
 from __future__ import absolute_import, print_function
 
-import pytest
-from invenio_app.factory import create_app
-
 import os
 import shutil
 import tempfile
 
+import pytest
 from flask import Flask
-from invenio_db import InvenioDB, db as db_
-from sqlalchemy_utils.functions import create_database, database_exists
-from invenio_userprofiles.views import blueprint_ui_init
-from invenio_userprofiles import InvenioUserProfiles, UserProfile
-from invenio_accounts.models import Role
 from invenio_access import InvenioAccess
 from invenio_accounts import InvenioAccounts
+from invenio_accounts.models import Role
+from invenio_app.factory import create_app
+from invenio_db import InvenioDB
+from invenio_db import db as db_
+from invenio_userprofiles import InvenioUserProfiles, UserProfile
+from invenio_userprofiles.views import blueprint_ui_init
+from sqlalchemy_utils.functions import create_database, database_exists
 
 
 @pytest.fixture
 def app():
     """Create fixture app."""
-
     # Set temporary instance path for sqlite
     instance_path = tempfile.mkdtemp()
     _app = Flask('testapp', instance_path=instance_path)
@@ -76,7 +75,6 @@ def client(app, db):
 @pytest.fixture()
 def users(db, app):
     """Create admin, staff and user."""
-
     with db.session.begin_nested():
         datastore = app.extensions["security"].datastore
 

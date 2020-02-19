@@ -1,3 +1,4 @@
+"""api for grant_staff module."""
 from __future__ import absolute_import, print_function
 
 from flask import current_app
@@ -7,8 +8,9 @@ _datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
 
 
 def grant_staff_permission(user):
-    """ Grant staff permission to  a user
-        param string user: the email of the user that obtain staff permission
+    """Grant staff permission to  a user.
+
+    param string user: the email of the user that obtain staff permission
     """
     role = "staff"
 
