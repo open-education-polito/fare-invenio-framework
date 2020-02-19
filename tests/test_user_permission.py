@@ -5,9 +5,10 @@
 # fare is free software; you can redistribute it and/or modify it under the
 # terms of the MIT License; see LICENSE file for more details.
 
-import requests
-from flask_security import login_user, current_user
 import json
+
+import requests
+from flask_security import current_user, login_user
 
 
 def test_anonymous_user_get_page(app):

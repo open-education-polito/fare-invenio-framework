@@ -4,11 +4,10 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, redirect, render_template, url_for
 from flask_login import login_required
-
-from .forms import StaffForm
-from .api import grant_staff_permission
 from flask_security import roles_accepted
 
+from .api import grant_staff_permission
+from .forms import StaffForm
 
 # define a new Flask Blueprint that is register under
 # the url path /file_management
