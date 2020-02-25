@@ -65,6 +65,7 @@ before_script:
   - "./docker/wait-for-services.sh"
 
 script:
+  - ./scripts/server &
   - ./run-tests.sh # E2E tests are skipped if E2E env is set to 'no'
 
 after_success:
