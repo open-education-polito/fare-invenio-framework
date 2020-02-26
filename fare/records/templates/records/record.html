@@ -6,8 +6,6 @@
   terms of the MIT License; see LICENSE file for more details.
 #}
 
-{% if current_user.has_role('admin') or current_user.has_role('staff') %}
-
 {%- extends config.RECORDS_UI_BASE_TEMPLATE %}
 
 {%- macro record_content(data) %}
@@ -39,28 +37,34 @@
 {%- endmacro %}
 
 {%- block page_body %}
+
+{% if ( ((current_user.has_role('admin') or current_user.has_role('staff')) and 
+            record.revisioned == False )
+            or
+            (record.revisioned == True) )%}
+
 <div class="container">
   <h2>{{record.title}}</h2>
   <div class="panel panel-default">
     <ul class="list-group">
       {{ record_content(record) }}
     </ul>
-        {% if current_user.has_role('admin') or
-            current_user.has_role('staff') or
-            current_user.id==record.owner %}
+        {% if current_user.has_role('admin') or current_user.id==record.owner %}
 	<form action="{{ url_for('file_management.delete') }}" method="GET">
 		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
 		<input type="submit" value="Delete" />
 	</form>
         {% endif %}
         {% if current_user.has_role('admin') or current_user.has_role('staff') %}
-	<form action="{{ url_for('file_management.publish') }}" method="POST">
-		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-		<input type="submit" value="Publish" />
-	</form>
+            {% if record.revisioned == False %}
+	        <form action="{{ url_for('file_management.publish') }}" method="POST">
+		        <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+		        <input type="submit" value="Publish" />
+	        </form>
+            {% endif %}
         {% endif %}
   </div>
 </div>
-{%- endblock %}
-{% endif %}
 
+{% endif %}
+{%- endblock %}

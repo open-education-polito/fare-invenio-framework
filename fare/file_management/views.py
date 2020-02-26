@@ -82,24 +82,17 @@ def revision_list():
 @blueprint.route('/publish/', methods=('GET', 'POST'))
 @login_required
 def publish():
-    bucket = "9485e4e8-ddd1-4317-b2ba-be35be021826"
+    bucket = request.form['record_bucket']
     bucket = Bucket.get(bucket)
     # store buckets values: version_id and the key
     values = str(bucket.objects[0]).split(':')
     version_id = values[1]
     key = values[2]
-    print("----------------------------")
-    print(request.__dict__)
-    print("----------------------------")
-    for e in request.__dict__['environ']:
-        print(e + ": " + str(request.__dict__['environ'][e]))
-    print("----------------------------")
-    # change the revision field
+    # retrieve the record
     record = MyRecord.get_record(key)
     publish_record(record)
-    # index the record
-    # index_record(record_id)
-    return render_template('file_management/success.html')
+
+    return render_template('file_management/unrevisioned.html')
 
 
 

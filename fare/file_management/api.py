@@ -91,19 +91,11 @@ class RevisionSearch(RecordsSearch):
 
 def publish_record(record):
     with db.session.begin_nested():
-        print("----------------------------")
-        print(record.__dict__)
-        print("--------------MODEL DICT--------------")
-        print(record.model.__dict__)
-        print("------------METHODS----------------")
-        print(dir(record))
-        print("-------------BEFORE---------------")
-        print(record.model.json['revisioned'])
-        record.model.json['revisioned'] = True
-        #record.update()
-        #record.commit()
-        print("-------------AFTER---------------")
-        print(record.model.json['revisioned'])
+
+        record['revisioned'] = True
+        record.commit()
+        RecordIndexer().index(record)
+
     db.session.commit()
 
 
