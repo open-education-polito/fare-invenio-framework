@@ -89,6 +89,24 @@ class RevisionSearch(RecordsSearch):
         )
 
 
+def publish_record(record):
+    with db.session.begin_nested():
+        print("----------------------------")
+        print(record.__dict__)
+        print("--------------MODEL DICT--------------")
+        print(record.model.__dict__)
+        print("------------METHODS----------------")
+        print(dir(record))
+        print("-------------BEFORE---------------")
+        print(record.model.json['revisioned'])
+        record.model.json['revisioned'] = True
+        #record.update()
+        #record.commit()
+        print("-------------AFTER---------------")
+        print(record.model.json['revisioned'])
+    db.session.commit()
+
+
 def delete_record(fileinstance_id, version_id, key, record):
     """Delete a record.
 

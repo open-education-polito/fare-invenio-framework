@@ -7,12 +7,11 @@ from flask_login import login_required
 from flask_security import current_user, roles_accepted
 
 from .forms import RecordForm, DeleteForm
-from .api import create_record, delete_record
+from .api import create_record, delete_record, publish_record
 from flask import request
 
 from .models import MyRecord
 from invenio_files_rest.models import Bucket, ObjectVersion
-from flask import jsonify
 
 
 # define a new Flask Blueprint that is register
@@ -69,20 +68,39 @@ def create():
 @blueprint.route('/revision/', methods=('GET',))
 @login_required
 def revision_list():
+
+    # check if the user is admin or staff
+    if(
+            (not current_user.has_role('admin')) and
+            (not current_user.has_role('staff'))
+    ):
+        abort(403)
+
     return render_template('file_management/unrevisioned.html')
 
 
-'''
-@blueprint.route('/revision/<id>', methods=('GET', 'POST'))
+@blueprint.route('/publish/', methods=('GET', 'POST'))
 @login_required
-def revision():
-
+def publish():
+    bucket = "9485e4e8-ddd1-4317-b2ba-be35be021826"
+    bucket = Bucket.get(bucket)
+    # store buckets values: version_id and the key
+    values = str(bucket.objects[0]).split(':')
+    version_id = values[1]
+    key = values[2]
+    print("----------------------------")
+    print(request.__dict__)
+    print("----------------------------")
+    for e in request.__dict__['environ']:
+        print(e + ": " + str(request.__dict__['environ'][e]))
+    print("----------------------------")
     # change the revision field
-    record = 
+    record = MyRecord.get_record(key)
+    publish_record(record)
     # index the record
-    index_record(record_id)
-    return
-'''
+    # index_record(record_id)
+    return render_template('file_management/success.html')
+
 
 
 @blueprint.route('/delete/', methods=('GET', 'POST'))

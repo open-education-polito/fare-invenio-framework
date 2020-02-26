@@ -6,6 +6,8 @@
   terms of the MIT License; see LICENSE file for more details.
 #}
 
+{% if current_user.has_role('admin') or current_user.has_role('staff') %}
+
 {%- extends config.RECORDS_UI_BASE_TEMPLATE %}
 
 {%- macro record_content(data) %}
@@ -51,7 +53,14 @@
 		<input type="submit" value="Delete" />
 	</form>
         {% endif %}
+        {% if current_user.has_role('admin') or current_user.has_role('staff') %}
+	<form action="{{ url_for('file_management.publish') }}" method="POST">
+		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+		<input type="submit" value="Publish" />
+	</form>
+        {% endif %}
   </div>
 </div>
 {%- endblock %}
+{% endif %}
 
