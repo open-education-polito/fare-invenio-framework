@@ -73,10 +73,7 @@ class RevisionSearch(RecordsSearch):
     class Meta:
         """Configuration for search."""
 
-        # default_filter = DefaultFilter('revisioned:True')
-        # default_filter = Q(True, field='record.revisioned')
         index = '_all'
-        # doc_types = ['unrevisioned']
         doc_types = None
         fields = ('*', )
         facets = {}
