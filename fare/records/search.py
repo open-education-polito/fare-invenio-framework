@@ -1,17 +1,17 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2019 Open Education Polito.
+#
+# fare is free software; you can redistribute it and/or modify it under the
+# terms of the MIT License; see LICENSE file for more details.
+
+"""Searching class for revisioned records."""
+
 from __future__ import absolute_import, print_function
 
-import uuid
-
-from flask import current_app
-from invenio_db import db
-from invenio_indexer.api import RecordIndexer
-from invenio_pidstore import current_pidstore
-from invenio_records_files.api import Record
-
-
-from invenio_search.api import RecordsSearch, DefaultFilter
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
+from invenio_search.api import RecordsSearch
 
 
 class RevisionedRecordsSearch(RecordsSearch):
@@ -26,8 +26,8 @@ class RevisionedRecordsSearch(RecordsSearch):
         facets = {}
 
     def __init__(self, **kwargs):
+        """Init class for RevisionedRecordsSearch."""
         super(RevisionedRecordsSearch, self).__init__(**kwargs)
         self.query = Q(
             Bool(filter=[Q('term', revisioned=True)])
         )
-

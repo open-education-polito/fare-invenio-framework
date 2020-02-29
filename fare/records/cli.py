@@ -12,6 +12,7 @@ from invenio_files_rest.models import Location
 def load_locations(force=False):
     """
     Load default file store and archive location.
+
     Lifted from https://github.com/zenodo/zenodo
     """
     # NOTE: os.path.join returns its 2nd argument if that argument is an
@@ -49,6 +50,7 @@ def load_locations(force=False):
 @click.group()
 def locations():
     """Deposit location commands.
+
     Usage on the command line becomes:
         menrva locations <command>
     """
@@ -60,6 +62,7 @@ def locations():
 def load_locations_cli():
     """
     Sets up where files are stored or archived.
+
     Lifted from https://github.com/zenodo/zenodo
     """
     locations = load_locations()

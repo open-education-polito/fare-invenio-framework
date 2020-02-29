@@ -13,8 +13,9 @@ import invenio_logging.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
+from ..file_management.api import FILE_MNGT_PID_FETCHER, \
+    FILE_MNGT_PID_MINTER, FILE_MNGT_PID_TYPE, RevisionSearch
 from .search import RevisionedRecordsSearch
-from ..file_management.api import RevisionSearch, FILE_MANAGEMENT_PID_TYPE, FILE_MANAGEMENT_PID_MINTER, FILE_MANAGEMENT_PID_FETCHER
 
 
 def _(x):
@@ -58,9 +59,9 @@ RECORDS_REST_ENDPOINTS = {
         list_permission_factory_imp=allow_all
     ),
     'fmgid': dict(
-        pid_type=FILE_MANAGEMENT_PID_TYPE,
-        pid_minter=FILE_MANAGEMENT_PID_MINTER,
-        pid_fetcher=FILE_MANAGEMENT_PID_FETCHER,
+        pid_type=FILE_MNGT_PID_TYPE,
+        pid_minter=FILE_MNGT_PID_MINTER,
+        pid_fetcher=FILE_MNGT_PID_FETCHER,
         default_endpoint_prefix=True,
         search_class=RevisionSearch,
         indexer_class=RecordIndexer,

@@ -2,39 +2,32 @@
 
 from __future__ import absolute_import, print_function
 
-import uuid
-
-from flask import current_app
-from invenio_db import db
-from invenio_indexer.api import RecordIndexer
-from invenio_pidstore import current_pidstore
-from invenio_records_files.api import Record
-
-from .models import MyRecord
-from invenio_files_rest.models import Bucket, FileInstance, ObjectVersion
 import shutil
-from invenio_pidstore.models import PersistentIdentifier
+import uuid
+from functools import partial
 
-from invenio_search.api import RecordsSearch, DefaultFilter
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
-
-# library for rest endpoint
-from functools import partial
-from invenio_pidstore.models import PIDStatus
+from invenio_db import db
+from invenio_files_rest.models import FileInstance
+from invenio_indexer.api import RecordIndexer
+from invenio_pidstore import current_pidstore
+from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
+from invenio_records_files.api import Record
+from invenio_search.api import RecordsSearch
+
 from .fetchers import pid_fetcher
 from .minters import dummy_pid_minter
 
-
-FILE_MANAGEMENT_PID_TYPE = "fmgid"
-FILE_MANAGEMENT_PID_MINTER = "fmgid"
-FILE_MANAGEMENT_PID_FETCHER = "fmgid"
+FILE_MNGT_PID_TYPE = "fmgid"
+FILE_MNGT_PID_MINTER = "fmgid"
+FILE_MNGT_PID_FETCHER = "fmgid"
 
 FileManagementIdProvider = type(
     'DocumentIdProvider',
     (RecordIdProviderV2,),
-    dict(pid_type=FILE_MANAGEMENT_PID_TYPE, default_status=PIDStatus.REGISTERED)
+    dict(pid_type=FILE_MNGT_PID_TYPE, default_status=PIDStatus.REGISTERED)
 )
 file_management_pid_minter = dummy_pid_minter
 file_management_pid_fetcher = partial(
@@ -57,10 +50,8 @@ def create_record(data, file_content):
         current_pidstore.minters['recid'](rec_uuid, data)
         # create record and the associated bucket
         created_record = Record.create(data, id_=rec_uuid)
-        
         # index the record
         RecordIndexer().index(created_record)
-        
         # store the file and link it to the metadata
         created_record.files[str(rec_uuid)] = file_content
 
@@ -78,8 +69,8 @@ class RevisionSearch(RecordsSearch):
         fields = ('*', )
         facets = {}
 
-
     def __init__(self, **kwargs):
+        """Init for RevisionSearch."""
         super(RevisionSearch, self).__init__(**kwargs)
         self.query = Q(
             Bool(filter=[Q('term', revisioned=False)])
@@ -87,6 +78,7 @@ class RevisionSearch(RecordsSearch):
 
 
 def publish_record(record):
+    """Revision a record."""
     with db.session.begin_nested():
 
         record['revisioned'] = True
@@ -102,7 +94,6 @@ def delete_record(fileinstance_id, version_id, key, record):
     :param dict data: The record data.
     :param file_content: The file to store.
     """
-
     # get the FileInstance object
     file_instance = FileInstance.get(fileinstance_id)
     # get the uri of the file for the directory of the folder
@@ -120,4 +111,3 @@ def delete_record(fileinstance_id, version_id, key, record):
 
     # removing the file on disk and the folder containing it
     shutil.rmtree(uri[:i+8])
-

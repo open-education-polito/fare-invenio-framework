@@ -3,9 +3,8 @@
 from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators, TextAreaField
-
 from flask_wtf.file import FileField, FileRequired
+from wtforms import StringField, TextAreaField, validators
 
 
 class RecordForm(FlaskForm):
@@ -35,6 +34,6 @@ class RecordForm(FlaskForm):
 
 
 class DeleteForm(FlaskForm):
-    """ form to delete files """
+    """form to delete files."""
 
     file_bucket = StringField('Id of the bucket', [validators.DataRequired()])

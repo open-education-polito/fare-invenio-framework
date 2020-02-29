@@ -1,10 +1,14 @@
+"""MyRecord class model."""
+
 from invenio_records_files.api import Record
 from invenio_records_files.models import RecordsBuckets
-from invenio_files_rest.models import ObjectVersion
+
 
 class MyRecord(Record):
+    """MyRecord class."""
 
     def delete(self, force=True):
+        """Delete function for a record."""
         # Remove links between records and buckets
         RecordsBuckets.query.filter_by(
                 bucket=self.files.bucket

@@ -2,17 +2,14 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, redirect, render_template, url_for, abort
+from flask import Blueprint, abort, redirect, render_template, request, url_for
 from flask_login import login_required
-from flask_security import current_user, roles_accepted
-
-from .forms import RecordForm, DeleteForm
-from .api import create_record, delete_record, publish_record
-from flask import request
-
-from .models import MyRecord
+from flask_security import current_user
 from invenio_files_rest.models import Bucket, ObjectVersion
 
+from .api import create_record, delete_record, publish_record
+from .forms import DeleteForm, RecordForm
+from .models import MyRecord
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -68,7 +65,7 @@ def create():
 @blueprint.route('/revision/', methods=('GET',))
 @login_required
 def revision_list():
-
+    """View to display all unrevisioned records."""
     # check if the user is admin or staff
     if(
             (not current_user.has_role('admin')) and
@@ -82,11 +79,11 @@ def revision_list():
 @blueprint.route('/publish/', methods=('GET', 'POST'))
 @login_required
 def publish():
+    """View to publish a record."""
     bucket = request.form['record_bucket']
     bucket = Bucket.get(bucket)
     # store buckets values: version_id and the key
     values = str(bucket.objects[0]).split(':')
-    version_id = values[1]
     key = values[2]
     # retrieve the record
     record = MyRecord.get_record(key)
@@ -95,12 +92,10 @@ def publish():
     return render_template('file_management/unrevisioned.html')
 
 
-
 @blueprint.route('/delete/', methods=('GET', 'POST'))
 @login_required
 def delete():
     """The delete view."""
-
     form = DeleteForm()
 
     # storing the bucket uuid
