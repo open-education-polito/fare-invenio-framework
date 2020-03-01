@@ -7,14 +7,14 @@ from werkzeug.local import LocalProxy
 _datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
 
 
-def grant_staff_permission(user):
+def grant_staff_permission(user_email):
     """Grant staff permission to  a user.
 
-    param string user: the email of the user that obtain staff permission
+    param string user_email: the email of the user that obtain staff permission
     """
     role = "staff"
 
-    user, role = _datastore._prepare_role_modify_args(user, role)
+    user, role = _datastore._prepare_role_modify_args(user_email, role)
 
     # check if the user exist
     if user is None:

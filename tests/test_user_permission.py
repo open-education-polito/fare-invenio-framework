@@ -20,7 +20,7 @@ def test_anonymous_user_get_page(app):
     non authenticated user
 
     Output:
-    GET of the permission page to change permission with status code 301
+    GET of the permission page to change permission with status code 302
     """
 
     url = "https://localhost:5000/grant_staff/grant"
