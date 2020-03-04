@@ -65,10 +65,10 @@ def test_staff_grant_user(app, users, db):
 
     url = "https://localhost:5000/grant_staff/grant"
     staff = users['staff']
-    user_email = users['user'].email
+    user = users['user']
     login_user(staff)
 
-    payload = {'email': user_email}
+    payload = {'email': user.email}
 
     r = requests.post(url, data=payload, verify=False)
 
@@ -83,7 +83,13 @@ def test_staff_grant_user(app, users, db):
     '''
     assert r.status_code == 200
 
+    login_user(user)
+    url = "https://localhost:5000/grant_staff/grant"
+    r = requests.get(url, verify=False)
+    assert r.status_code == 200
 
+
+'''
 def test_staff_grant_non_existing_user(app, users, db):
     """
     Test purpose:
@@ -106,13 +112,13 @@ def test_staff_grant_non_existing_user(app, users, db):
 
     r = requests.post(url, data=payload, verify=False)
 
-    '''
+    """
     with client:
         r = client.post(url, json={
                 'email': user_email
             }, follow_redirects=True
         )
-    '''
+    """
     assert r.status_code == 404
 
 
@@ -136,11 +142,12 @@ def test_admin_grant_staff(app, users, client, db):
     payload = {'email': user_email}
 
     r = requests.post(url, data=payload, verify=False, allow_redirects=True)
-    '''
+    """
     with client:
         r = client.post(url, json={
                 'email': user_email
             }, follow_redirects=True
         )
-    '''
+    """
     assert r.status_code == 409
+'''
