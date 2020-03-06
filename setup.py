@@ -35,7 +35,6 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires = ['Werkzeug>=0.15,<1.0.0'],
     entry_points={
         'console_scripts': [
             'fare = invenio_app.cli:cli',
