@@ -34,7 +34,8 @@ env:
     - E2E=no
   jobs:
     # Momentarily disable E2E tests
-    - REQUIREMENTS=prod #E2E=yes
+    # Momentarily disable prod testing to speed up dev
+    #- REQUIREMENTS=prod #E2E=yes 
     - REQUIREMENTS=qa
 
 python:
