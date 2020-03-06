@@ -10,7 +10,7 @@ invenio = { version = "==3.2.1", extras = ["base", "auth", "metadata", "files", 
 uwsgi = ">=2.0"
 uwsgitop = ">=0.11"
 uwsgi-tools = ">=1.1.1"
-lxml = ">=3.5.0,<4.2.6"
+lxml = ">=3.5.0,<4.5.1"
 
 [dev-packages]
 Flask-Debugtoolbar = ">=0.10.1"
