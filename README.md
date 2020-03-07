@@ -1,6 +1,7 @@
 ![https://travis-ci.org/open-education-polito-it/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
 ![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
 ![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
+[![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-invenio.svg?style=plastic)](https://github.com/open-education-polito/fare-invenio/releases)
 
 # FARE
 > The Free Architecture for Remote Education
@@ -38,7 +39,7 @@ everyone!
 
 # How to contribute
 
-This project runs Invenio v3.2.0. 
+This project runs Invenio v3.2.1. 
 
 ## Prerequisites
 
