@@ -51,3 +51,6 @@ recursive-include fare *.png *.jpg *.svg
 recursive-include docker *.cfg *.conf *.crt *.ini *.key *.pem *.sh
 recursive-include tests *.py
 recursive-include docs *.md
+
+# added by check_manifest.py
+recursive-include fare *.md
