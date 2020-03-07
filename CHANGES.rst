@@ -6,7 +6,23 @@
 
 All notable changes to this project will be documented in this file.
 
-[Release 1.1.0] - 2020-02-04 
+
+[Release 0.2.0] - 2020-03-07 
+----------------------------
+
+Added
+~~~~~
+
+-  Feature user permission
+
+Changed
+~~~~~~~
+
+-  Port `invenio` to 3.2.1
+-  Add ADR files
+
+
+[Release 0.1.0] - 2020-02-04 
 ----------------------------
 
 Added
