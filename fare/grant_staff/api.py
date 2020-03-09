@@ -18,13 +18,17 @@ def grant_staff_permission(user_email):
 
     # check if the user exist
     if user is None:
+        current_app.logger.error('User "' + str(user_email) +
+                                 '" does not exist')
         return 404
     # if successfull print it in the terminal with green color
     if _datastore.add_role_to_user(user, role):
-        print('\x1b[0;32;40m' + 'Role "' + str(role) + '" added '
-              'to user "' + str(user) + '" successfully.' + '\x1b[0m')
+        current_app.logger.info('Role "' + str(role) +
+                                '" added to "' + str(user) + '" successfully')
     else:
         # Cannot add role to user
+        current_app.logger.error('"' + str(user) +
+                                 '" has already the "' + str(role) + '" role')
         return 409
     # commit the changes to the database
     _datastore.commit()
