@@ -110,4 +110,11 @@ def delete_record(fileinstance_id, version_id, key, record):
     db.session.commit()
 
     # removing the file on disk and the folder containing it
+    # the full path is /home/<user>/.local/share/virtualenvs/
+    # fare-invenio-<code>/var/instance/data/<f1>/<f2>/<bucketid>/<filename>
+    # after have stored the index of the folder "data", where there are all
+    # the records, the path is passed to the function below
+    # and trimmed at <f1>, a folder name composed by 2 character,
+    # at the index "i" is added 8 because is the number of
+    # character for completing the path, terminating at "<f1>/"
     shutil.rmtree(uri[:i+8])
