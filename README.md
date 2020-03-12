@@ -116,7 +116,7 @@ Code actually maintained by Open Education Polito.
 For inquiries, please open an issue and tag @libremente.
 
 # Logging
-Logging is done by [invenio_loggigng](https://invenio-logging.readthedocs.io/en/latest/index.html) module.
+Logging is done by [invenio_logging](https://invenio-logging.readthedocs.io/en/latest/index.html) module.
 The log messages are:
 ```
 current_app.logger.debug('Where am I?')
