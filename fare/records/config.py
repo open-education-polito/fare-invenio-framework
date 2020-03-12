@@ -13,6 +13,7 @@ import invenio_logging.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
+
 from ..file_management.api import FILE_MNGT_PID_FETCHER, \
     FILE_MNGT_PID_MINTER, FILE_MNGT_PID_TYPE, RevisionSearch
 from .search import RevisionedRecordsSearch
