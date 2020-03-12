@@ -115,6 +115,18 @@ Searching [help](https://github.com/open-education-polito/fare-invenio)?
 Code actually maintained by Open Education Polito.
 For inquiries, please open an issue and tag @libremente.
 
+# Logging
+Logging is done by [invenio_loggigng](https://invenio-logging.readthedocs.io/en/latest/index.html) module.
+The log messages are:
+```
+current_app.logger.debug('Where am I?')
+current_app.logger.info('Hello world!')
+current_app.logger.warning('Be carefull with overlogging.')
+current_app.logger.error('Connection could not be initialized.')
+current_app.logger.exception('You should not divide by zero!')
+```
+The file where to write the log messages can be specified setting the variable `LOGGING_FS_LOGFILE`
+
 # Please note
 This version works only with `python 3.6.x`
 
