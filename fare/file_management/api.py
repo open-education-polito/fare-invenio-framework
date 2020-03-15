@@ -53,7 +53,11 @@ def create_record(data, file_content):
         # index the record
         RecordIndexer().index(created_record)
         # store the file and link it to the metadata
-        created_record.files[str(rec_uuid)] = file_content
+        created_record.files[file_content.filename] = file_content
+
+
+        #created_record.files[str(rec_uuid)] = file_content
+
 
     db.session.commit()
 
@@ -88,11 +92,13 @@ def publish_record(record):
     db.session.commit()
 
 
-def delete_record(fileinstance_id, version_id, key, record):
+def delete_record(fileinstance_id, version_id, record_uuid, record):
     """Delete a record.
 
-    :param dict data: The record data.
-    :param file_content: The file to store.
+    :param fileinstance_id: The file instance id.
+    :param version_id: The id of the record's version.
+    :param record_uuid: The record's uuid.
+    :param record: The Record object.
     """
     # get the FileInstance object
     file_instance = FileInstance.get(fileinstance_id)
@@ -103,10 +109,10 @@ def delete_record(fileinstance_id, version_id, key, record):
 
     # removing the record indexing, the record and the file instance
     recind = RecordIndexer()
-    recind.delete_by_id(record_uuid=key)
+    recind.delete_by_id(record_uuid=record_uuid)
     record.delete()
     FileInstance.query.filter_by(id=fileinstance_id).delete()
-    PersistentIdentifier.query.filter_by(object_uuid=key).delete()
+    PersistentIdentifier.query.filter_by(object_uuid=record_uuid).delete()
     db.session.commit()
 
     # removing the file on disk and the folder containing it

@@ -8,8 +8,9 @@ from flask_security import current_user
 from invenio_files_rest.models import Bucket, ObjectVersion
 
 from .api import create_record, delete_record, publish_record
-from .forms import DeleteForm, RecordForm
+from .forms import UtilsForm, RecordForm
 from .models import MyRecord
+
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -80,13 +81,9 @@ def revision_list():
 @login_required
 def publish():
     """View to publish a record."""
-    bucket = request.form['record_bucket']
-    bucket = Bucket.get(bucket)
-    # store buckets values: version_id and the key
-    values = str(bucket.objects[0]).split(':')
-    key = values[2]
+    record_id = request.form['record_id']
     # retrieve the record
-    record = MyRecord.get_record(key)
+    record = MyRecord.get_record(record_id)
     publish_record(record)
 
     return render_template('file_management/unrevisioned.html')
@@ -96,13 +93,8 @@ def publish():
 @login_required
 def delete():
     """The delete view."""
-    form = DeleteForm()
-
-    # storing the bucket uuid
-    if request.method == 'GET':
-        bucket_uuid = request.args.get('record_bucket')
-    else:
-        bucket_uuid = form.file_bucket.data
+    bucket_uuid = request.form['record_bucket']
+    record_id = request.form['record_id']
 
     # get Bucket object
     bucket = Bucket.get(bucket_uuid)
@@ -113,8 +105,7 @@ def delete():
     # retrieve the fileinstance_id
     fileinstance_id = str(ObjectVersion.get(bucket, key, version_id).file_id)
     # creating MyRecord object, extention of invenio_records_files.Record
-    record = MyRecord.get_record(key)
-
+    record = MyRecord.get_record(record_id)
     # check if the user is the owner of the record or if is admin or staff
     if(
             (not current_user.id == record['owner']) and
@@ -123,13 +114,8 @@ def delete():
     ):
         abort(403)
 
-    if form.validate_on_submit():
-        delete_record(fileinstance_id, version_id, key, record)
-        return redirect(url_for('file_management.success_delete'))
-
-    form.file_bucket.data = bucket_uuid
-
-    return render_template('file_management/delete.html', form=form)
+    delete_record(fileinstance_id, version_id, record_id, record)
+    return redirect(url_for('file_management.success_delete'))
 
 
 @blueprint.route("/success")
