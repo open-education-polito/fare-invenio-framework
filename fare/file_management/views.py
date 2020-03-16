@@ -8,9 +8,8 @@ from flask_security import current_user
 from invenio_files_rest.models import Bucket, ObjectVersion
 
 from .api import create_record, delete_record, publish_record
-from .forms import UtilsForm, RecordForm
+from .forms import RecordForm
 from .models import MyRecord
-
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management

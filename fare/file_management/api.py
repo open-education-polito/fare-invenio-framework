@@ -55,10 +55,6 @@ def create_record(data, file_content):
         # store the file and link it to the metadata
         created_record.files[file_content.filename] = file_content
 
-
-        #created_record.files[str(rec_uuid)] = file_content
-
-
     db.session.commit()
 
 
