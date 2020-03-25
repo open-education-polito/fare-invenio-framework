@@ -8,8 +8,10 @@ from functools import partial
 
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
+from flask import current_app
 from invenio_db import db
-from invenio_files_rest.models import FileInstance
+from invenio_files_rest.models import FileInstance, ObjectVersion
+from invenio_files_rest.views import ObjectResource
 from invenio_indexer.api import RecordIndexer
 from invenio_pidstore import current_pidstore
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
@@ -120,3 +122,33 @@ def delete_record(fileinstance_id, version_id, record_uuid, record):
     # at the index "i" is added 8 because is the number of
     # character for completing the path, terminating at "<f1>/"
     shutil.rmtree(uri[:i+8])
+
+
+def download_record(record, bucket, key, version_id, usr='unknown'):
+    """Download a record.
+
+    :param record: the record object from invenio_records_files
+    :param bucket: the record's 'bucket.
+    :param key: the record's key.
+    :param version_id: the record's version id.
+    :param usr: a string that identify the current user
+    """
+    obj_version = ObjectVersion.get(bucket, key, version_id)
+    pid = PersistentIdentifier.get('recid', record['id'])
+
+    current_app.logger.info(
+                        "Download file= " + record['title'] +
+                        ", requested by user= " + usr
+                            )
+
+    # Send file
+    return ObjectResource.send_object(
+        bucket, obj_version,
+        expected_chksum=obj_version.file.checksum,
+        logger_data={
+            'bucket_id': bucket,
+            'pid_type': pid.pid_type,
+            'pid_value': pid.pid_value,
+        },
+        as_attachment=True
+    )

@@ -2,10 +2,12 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, abort, redirect, render_template, request, url_for
+from flask import Blueprint, abort, current_app, redirect, render_template, \
+    request, url_for
 from flask_login import login_required
 from flask_security import current_user
 from invenio_files_rest.models import Bucket, ObjectVersion
+from sqlalchemy.orm.exc import NoResultFound
 
 from .api import create_record, delete_record, publish_record
 from .forms import RecordForm
@@ -115,6 +117,65 @@ def delete():
 
     delete_record(fileinstance_id, version_id, record_id, record)
     return redirect(url_for('file_management.success_delete'))
+
+
+@blueprint.route('/download/', methods=('GET', 'POST'))
+def download():
+    """The download view."""
+    # storing the bucket uuid
+    bucket_uuid = request.form['record_bucket']
+    record_id = request.form['record_id']
+
+    # check if the session is anonymous or not
+    if not hasattr(current_user, 'email'):
+        usr = "anonymous"
+    else:
+        usr = current_user.email
+
+    # get Bucket object
+    bucket = Bucket.get(bucket_uuid)
+
+    # chekc if the bucket exist
+    if bucket is None:
+        current_app.logger.error(
+                            "Impossible to download file requested by user= " +
+                            usr + ", bucket not found: " + bucket_uuid
+                                )
+        abort(404)
+
+    # store buckets values: bucket, version_id and the key
+    values = str(bucket.objects[0]).split(':')
+    bucket = values[0]
+    version_id = values[1]
+    key = values[2]
+
+    try:
+        record = MyRecord.get_record(record_id)
+    except NoResultFound:
+
+        current_app.logger.error(
+                            "Impossible to download file requested by user= " +
+                            usr + " ,record id not found: " + record_id
+                                )
+        abort(404)
+
+    # check if the file is revisioned, if not only
+    # staff member can download it to do the review
+    if not record['revisioned']:
+        if (
+            (not current_user.has_role('admin')) and
+            (not current_user.has_role('staff'))
+        ):
+
+            current_app.logger.error(
+                            "Impossible to download file= " + record['title'] +
+                            ", user= " + usr + " not authorized"
+                                    )
+
+            # forbidden for the user
+            abort(403)
+
+    return download_record(record, bucket, key, version_id, usr)
 
 
 @blueprint.route("/success")

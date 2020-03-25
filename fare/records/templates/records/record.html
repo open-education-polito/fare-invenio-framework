@@ -65,6 +65,11 @@
 	        </form>
             {% endif %}
         {% endif %}
+	<form action="{{ url_for('file_management.download') }}" method="POST">
+		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+		<input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+		<input type="submit" value="Download" />
+	</form>
   </div>
 </div>
 
