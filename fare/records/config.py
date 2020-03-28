@@ -9,6 +9,7 @@
 
 from __future__ import absolute_import, print_function
 
+import invenio_logging.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
@@ -19,6 +20,8 @@ def _(x):
     """Identity function for string extraction."""
     return x
 
+invenio_logging.config.LOGGING_FS_LOGFILE = "/var/log/fare/log_fare.txt"
+invenio_logging.config.LOGGING_FS_PYWARNINGS = True
 
 RECORDS_REST_ENDPOINTS = {
     'recid': dict(
