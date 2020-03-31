@@ -25,6 +25,26 @@
       "type": "string",
       "format": "date-time"
     },
+    "educationLevel": {
+      "description": "School order of the record.",
+      "type": "string"
+    },
+    "subject": {
+      "description": "School Discipline of the record.",
+      "type": "string"
+    },
+    "coverage": {
+      "description": "Argument of the discipline.",
+      "type": "string"
+    },
+    "description": {
+      "description": "A short description of the content of the record.",
+      "type": "string"
+    },
+    "revisioned": {
+      "description": "A boolean that indicate if the recore was revisioned of not.",
+      "type": "boolean"
+    },
     "contributors": {
       "description": "Contributors in order of importance.",
       "minItems": 1,
@@ -87,6 +107,10 @@
   "required": [
     "id",
     "contributors",
-    "title"
+    "title",
+    "educationLevel",
+    "subject",
+    "coverage",
+    "description"
   ]
 }

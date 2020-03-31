@@ -42,10 +42,14 @@ setup(
         'invenio_base.apps': [
             'fare_records = fare.records:fare',
         ],
+	'flask.commands': [
+    	    'locations = fare.records.cli:locations',
+	],
         'invenio_base.blueprints': [
             'fare = fare.theme.views:blueprint',
             'fare_records = fare.records.views:blueprint',
-             'fare_grant_staff = fare.grant_staff.views:blueprint',
+            'fare_grant_staff = fare.grant_staff.views:blueprint',
+	    'fare_file_management = fare.file_management.views:blueprint',
         ],
         'invenio_assets.webpack': [
             'fare_theme = fare.theme.webpack:theme',
@@ -64,6 +68,12 @@ setup(
         ],
         'invenio_search.mappings': [
             'records = fare.records.mappings'
+        ],
+        "invenio_pidstore.minters": [
+            "fmgid = fare.file_management.api:file_management_pid_minter",
+        ],
+        "invenio_pidstore.fetchers": [
+            "fmgid = fare.file_management.api:file_management_pid_fetcher",
         ],
     },
     classifiers=[

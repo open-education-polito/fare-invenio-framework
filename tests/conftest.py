@@ -21,6 +21,8 @@ from invenio_accounts.models import Role
 from invenio_app.factory import create_app
 from invenio_db import InvenioDB
 from invenio_db import db as db_
+from invenio_files_rest import InvenioFilesREST
+from invenio_records import InvenioRecords
 from invenio_userprofiles import InvenioUserProfiles, UserProfile
 from invenio_userprofiles.views import blueprint_ui_init
 from sqlalchemy_utils.functions import create_database, database_exists
@@ -36,6 +38,8 @@ def app():
     InvenioAccounts(_app)
     InvenioDB(_app)
     InvenioUserProfiles(_app)
+    InvenioRecords(_app)
+    InvenioFilesREST(_app)
     # UserProfile(_app)
 
     _app.config.update(
