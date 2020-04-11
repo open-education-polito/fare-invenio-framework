@@ -9,7 +9,7 @@ from flask_security import current_user
 from invenio_files_rest.models import Bucket, ObjectVersion
 from sqlalchemy.orm.exc import NoResultFound
 
-from .api import create_record, delete_record, publish_record
+from .api import create_record, delete_record, download_record, publish_record
 from .forms import RecordForm
 from .models import MyRecord
 
@@ -73,6 +73,11 @@ def revision_list():
             (not current_user.has_role('admin')) and
             (not current_user.has_role('staff'))
     ):
+        current_app.logger.error(
+                            "Impossible to revision file requested by user= " +
+                            current_user.email + " , this user does not have \
+                            the permission, action not allowed"
+                                )
         abort(403)
 
     return render_template('file_management/unrevisioned.html')
@@ -83,8 +88,19 @@ def revision_list():
 def publish():
     """View to publish a record."""
     record_id = request.form['record_id']
+
     # retrieve the record
-    record = MyRecord.get_record(record_id)
+    try:
+        record = MyRecord.get_record(record_id)
+    except NoResultFound:
+
+        current_app.logger.error(
+                            "Impossible to publish file requested by user= " +
+                            current_user.email + " ,record id not found: " +
+                            record_id
+                                )
+        abort(404)
+
     publish_record(record)
 
     return render_template('file_management/unrevisioned.html')
@@ -99,20 +115,46 @@ def delete():
 
     # get Bucket object
     bucket = Bucket.get(bucket_uuid)
+
+    # chekc if the bucket exist
+    if bucket is None:
+        current_app.logger.error(
+                            "Impossible to delete the file requested by user= "
+                            + current_user.email + ", bucket not found: " +
+                            bucket_uuid
+                                )
+        abort(404)
+
     # store buckets values: version_id and the key
     values = str(bucket.objects[0]).split(':')
     version_id = values[1]
     key = values[2]
     # retrieve the fileinstance_id
     fileinstance_id = str(ObjectVersion.get(bucket, key, version_id).file_id)
+
     # creating MyRecord object, extention of invenio_records_files.Record
-    record = MyRecord.get_record(record_id)
+    try:
+        record = MyRecord.get_record(record_id)
+    except NoResultFound:
+
+        current_app.logger.error(
+                            "Impossible to delete file requested by user= " +
+                            current_user.email + " ,record id not found: " +
+                            record_id
+                                )
+        abort(404)
+
     # check if the user is the owner of the record or if is admin or staff
     if(
             (not current_user.id == record['owner']) and
             (not current_user.has_role('admin')) and
             (not current_user.has_role('staff'))
     ):
+        current_app.logger.error(
+                            "Impossible to delete file requested by user= " +
+                            current_user.email + " , this user does not have \
+                            the permission, action not allowed"
+                                )
         abort(403)
 
     delete_record(fileinstance_id, version_id, record_id, record)

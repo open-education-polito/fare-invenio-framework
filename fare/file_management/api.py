@@ -9,6 +9,7 @@ from functools import partial
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
 from flask import current_app
+from flask_security import current_user
 from invenio_db import db
 from invenio_files_rest.models import FileInstance, ObjectVersion
 from invenio_files_rest.views import ObjectResource
@@ -59,6 +60,11 @@ def create_record(data, file_content):
 
     db.session.commit()
 
+    current_app.logger.info(
+                        "Created file= " + created_record['title'] +
+                        ", by user= " + current_user.email
+                            )
+
 
 class RevisionSearch(RecordsSearch):
     """Define default filter for search unrevisioned record."""
@@ -88,6 +94,11 @@ def publish_record(record):
         RecordIndexer().index(record)
 
     db.session.commit()
+
+    current_app.logger.info(
+                        "Published file= " + record['title'] +
+                        ", by user= " + current_user.email
+                            )
 
 
 def delete_record(fileinstance_id, version_id, record_uuid, record):
@@ -122,6 +133,11 @@ def delete_record(fileinstance_id, version_id, record_uuid, record):
     # at the index "i" is added 8 because is the number of
     # character for completing the path, terminating at "<f1>/"
     shutil.rmtree(uri[:i+8])
+
+    current_app.logger.info(
+                        "Deleted file= " + record['title'] +
+                        ", by user= " + current_user.email
+                            )
 
 
 def download_record(record, bucket, key, version_id, usr='unknown'):
