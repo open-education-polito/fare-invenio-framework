@@ -11,28 +11,6 @@
   <div class="row">
     <div class="col-lg-12">
     <h1 class="text-center">Welcome to fare.</h1>
-
-    {% if current_user.has_role('admin') or current_user.has_role('staff') %}
-        <a href="/grant_staff/grant">
-            <button typer="button" class="btn btn-primary"> Grant permission </button> 
-        </a>
-    {% endif %}
-
-    {% if current_user.is_authenticated %}
-        <a href="/file_management/create">
-	    <button type="button" class="btn btn-primary">
-	        Upload content
-            </button>
-	</a>
-        {% if current_user.has_role('admin') or current_user.has_role('staff') %}
-            <a href="/file_management/revision">
-                <button type="button" class="btn btn-primary">
-                    Revision content
-		</button>
-	    </a>
-        {% endif %}
-    {% endif %}
-
   </div>
 </div>
 {%- endblock %}
