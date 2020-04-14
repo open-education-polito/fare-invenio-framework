@@ -44,33 +44,52 @@
             (record.revisioned == True) )%}
 
 <div class="container">
-  <h2>{{record.title}}</h2>
-  <div class="panel panel-default">
-    <ul class="list-group">
-      {{ record_content(record) }}
-    </ul>
-        {% if current_user.has_role('admin') or current_user.id==record.owner %}
-	<form action="{{ url_for('file_management.delete') }}" method="POST">
-		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-		<input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-		<input type="submit" value="Delete" />
-	</form>
+    <h1>{{record.title}}</h1>
+    <span class="label label-primary">
+        {{ record.educationLevel }}
+    </span>
+    <h3>{{ record.subject }}: {{ record.coverage }} </h3>
+    <h5>Autori: {% for contributor in record.contributors %} {{ contributor['name'] }} {% endfor %}</h5>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Description</h3>
+                </div>
+                <div class="panel-body">
+                    {{ record.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if current_user.has_role('admin') or current_user.id==record.owner %}
+        <form action="{{ url_for('file_management.delete') }}" method="POST" id="deleteform" style="display: inline;">
+            <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+            <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+        </form>
+        <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">Delete</button>
+    {% endif %}
+
+
+    {% if current_user.has_role('admin') or current_user.has_role('staff') %}
+        {% if record.revisioned == False %}
+            <form action="{{ url_for('file_management.publish') }}" method="POST" id="publishform" style="display: inline;">
+                <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+	        <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+            </form>
+            <button type="submit" class="btn btn-success" form="publishform" value="Publish">Publish</button>
         {% endif %}
-        {% if current_user.has_role('admin') or current_user.has_role('staff') %}
-            {% if record.revisioned == False %}
-	        <form action="{{ url_for('file_management.publish') }}" method="POST">
-		        <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-		        <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-		        <input type="submit" value="Publish" />
-	        </form>
-            {% endif %}
-        {% endif %}
-	<form action="{{ url_for('file_management.download') }}" method="POST">
-		<input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-		<input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-		<input type="submit" value="Download" />
-	</form>
-  </div>
+    {% endif %}
+
+
+    <form action="{{ url_for('file_management.download') }}" method="POST" id="downloadform" style="display: inline;">
+        <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+        <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+    </form>
+    <button type="submit" class="btn btn-primary" form="downloadform" value="Download">Download</button>
+
 </div>
 
 {% endif %}
