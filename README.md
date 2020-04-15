@@ -1,4 +1,4 @@
-![https://travis-ci.org/open-education-polito-it/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
+![https://travis-ci.org/github/open-education-polito/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
 ![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
 ![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
 [![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-invenio.svg?style=plastic)](https://github.com/open-education-polito/fare-invenio/releases)
@@ -109,6 +109,11 @@ Searching [help](https://github.com/open-education-polito/fare-invenio)?
 # Maintenance
 Code actually maintained by Open Education Polito.
 For inquiries, please open an issue and tag @libremente.
+
+## Decision record
+The decisions regarding the architecture are recorded in the ADR folder. Please
+visit [ADR](docs/architecture/decisions) to know more about the previous
+decisions.
 
 # Logging
 Logging is done by [invenio_logging](https://invenio-logging.readthedocs.io/en/latest/index.html) module.
