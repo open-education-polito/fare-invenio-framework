@@ -6,6 +6,21 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.3.0] - 2020-04-15  
+----------------------------
+
+Added
+~~~~~
+
+-  Feature file management
+-  Feature file download
+-  Feature logging
+
+Changed
+~~~~~~~
+
+-  Add ADR files
+
 
 [Release 0.2.0] - 2020-03-07 
 ----------------------------
