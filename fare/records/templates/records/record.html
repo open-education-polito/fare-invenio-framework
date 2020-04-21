@@ -48,14 +48,18 @@
     <span class="label label-primary">
         {{ record.educationLevel }}
     </span>
-    <h3>{{ record.subject }}: {{ record.coverage }} </h3>
-    <h5>Autori: {% for contributor in record.contributors %} {{ contributor['name'] }} {% endfor %}</h5>
+    &nbsp;
+    <span class="label label-success">
+        {{ record.subject }}
+    </span>
+    <h3><b>Argomento:</b> {{ record.coverage }} </h3>
+    <h5><b>Autori:</b> {% for contributor in record.contributors %} {{ contributor['name'] }} {% endfor %}</h5>
 
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Description</h3>
+                    <h3 class="panel-title">Descrizione</h3>
                 </div>
                 <div class="panel-body">
                     {{ record.description }}
@@ -69,7 +73,7 @@
             <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
             <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
         </form>
-        <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">Delete</button>
+        <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">Rimuovi</button>
     {% endif %}
 
 
@@ -79,7 +83,7 @@
                 <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
 	        <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
             </form>
-            <button type="submit" class="btn btn-success" form="publishform" value="Publish">Publish</button>
+            <button type="submit" class="btn btn-success" form="publishform" value="Publish">Pubblica</button>
         {% endif %}
     {% endif %}
 
