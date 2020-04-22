@@ -1,4 +1,4 @@
-![https://travis-ci.org/github/open-education-polito/fare-invenio](https://img.shields.io/travis/open-education-polito/fare-invenio.svg)
+[![Build Status](https://travis-ci.org/open-education-polito/fare-invenio.svg?branch=master)](https://travis-ci.org/open-education-polito/fare-invenio)
 ![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
 ![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
 [![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-invenio.svg?style=plastic)](https://github.com/open-education-polito/fare-invenio/releases)
