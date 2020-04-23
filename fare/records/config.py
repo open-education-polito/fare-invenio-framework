@@ -116,11 +116,15 @@ RECORDS_REST_FACETS = dict(
     records=dict(
         aggs=dict(
             type=dict(terms=dict(field='type')),
-            keywords=dict(terms=dict(field='keywords'))
+            keywords=dict(terms=dict(field='keywords')),
+            Ordine_di_scuola=dict(terms=dict(field='educationLevel')),
+            Disciplina=dict(terms=dict(field='subject'))
         ),
         post_filters=dict(
             type=terms_filter('type'),
             keywords=terms_filter('keywords'),
+            Ordine_di_scuola=terms_filter('educationLevel'),
+            Disciplina=terms_filter('subject'),
         )
     )
 )

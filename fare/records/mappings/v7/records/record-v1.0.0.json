@@ -24,6 +24,12 @@
         "type": "date",
         "format": "date"
       },
+      "educationLevel": {
+        "type": "keyword"
+      },
+      "subject": {
+        "type": "keyword"
+      },
       "contributors": {
         "type": "object",
         "properties": {
