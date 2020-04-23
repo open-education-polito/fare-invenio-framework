@@ -4,7 +4,7 @@
     fare is free software; you can redistribute it and/or modify it under
     the terms of the MIT License; see LICENSE file for more details.
 
-Authors
-=======
+Moral rights:
+* 
 
-- Open Education Polito
+The version control system provides attribution for specific lines of code.
