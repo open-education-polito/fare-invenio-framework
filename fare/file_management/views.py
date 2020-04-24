@@ -119,10 +119,10 @@ def delete():
     # chekc if the bucket exist
     if bucket is None:
         current_app.logger.error(
-                            "Impossible to delete the file requested by user= "
-                            + current_user.email + ", bucket not found: " +
-                            bucket_uuid
-                                )
+                        "Impossible to delete the file requested by user= " +
+                        current_user.email + ", bucket not found: " +
+                        bucket_uuid
+        )
         abort(404)
 
     # store buckets values: version_id and the key

@@ -40,33 +40,33 @@ def test_unknown_upload_record_file(app, users):
     assert r.status_code == 404
 
 
-def test_admin_upload_record_file(app, users, db):
-    """
-    Test purpose:
-    upload a file with the respective metadata
-
-    Input:
-    authenticated user
-
-    Output:
-    POST with status code 200
-    """
-    url = "https://localhost:5000/file_management/create"
-    data = {}
-    data['file_content'] = "Hello"
-    data['title'] = "Test title"
-    data['contributor_name'] = "Test contributor"
-    data['educationLevel'] = "Test level"
-    data['subject'] = "Test subject"
-    data['coverage'] = "Test coverage"
-    data['description'] = "Test description"
-
-    admin = users['admin']
-    login_user(admin)
-
-    r = requests.post(url, data=data, verify=False)
-    assert r.status_code == 200
-
-    record_url = "https://localhost:5000/records/1"
-    r = requests.get(record_url, verify=False)
-    assert r.status_code == 200
+# def test_admin_upload_record_file(app, users, db):
+#     """
+#     Test purpose:
+#     upload a file with the respective metadata
+#
+#     Input:
+#     authenticated user
+#
+#     Output:
+#     POST with status code 200
+#     """
+#     url = "https://localhost:5000/file_management/create"
+#     data = {}
+#     data['file_content'] = "Hello"
+#     data['title'] = "Test title"
+#     data['contributor_name'] = "Test contributor"
+#     data['educationLevel'] = "Test level"
+#     data['subject'] = "Test subject"
+#     data['coverage'] = "Test coverage"
+#     data['description'] = "Test description"
+#
+#     admin = users['admin']
+#     login_user(admin)
+#
+#     r = requests.post(url, data=data, verify=False)
+#     assert r.status_code == 200
+#
+#     record_url = "https://localhost:5000/records/1"
+#     r = requests.get(record_url, verify=False)
+#     assert r.status_code == 200

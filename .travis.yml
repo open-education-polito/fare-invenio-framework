@@ -35,11 +35,11 @@ env:
   jobs:
     # Momentarily disable E2E tests
     # Momentarily disable prod testing to speed up dev
-    #- REQUIREMENTS=prod #E2E=yes 
+    #- REQUIREMENTS=prod #E2E=yes
     - REQUIREMENTS=qa
 
 python:
-  - "3.6.9"
+  - "3.6.4"
 
 before_install:
   # Stop default travis services
