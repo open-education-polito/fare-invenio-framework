@@ -92,7 +92,6 @@ def create():
                )
 def revision_list():
     """View to display all unrevisioned records."""
-
     return render_template('file_management/unrevisioned.html')
 
 
