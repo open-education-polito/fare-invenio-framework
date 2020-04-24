@@ -38,6 +38,7 @@ include *.md
 include *.lock
 include .adr-dir
 include .python-version
+include CODEOWNERS
 prune docs/_build
 recursive-include docs *.bat
 recursive-include docs *.py

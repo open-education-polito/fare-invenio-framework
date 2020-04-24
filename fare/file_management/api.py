@@ -126,7 +126,7 @@ def delete_record(fileinstance_id, version_id, record_uuid, record):
 
     # removing the file on disk and the folder containing it
     # the full path is /home/<user>/.local/share/virtualenvs/
-    # fare-invenio-<code>/var/instance/data/<f1>/<f2>/<bucketid>/<filename>
+    # fare-platform-<code>/var/instance/data/<f1>/<f2>/<bucketid>/<filename>
     # after have stored the index of the folder "data", where there are all
     # the records, the path is passed to the function below
     # and trimmed at <f1>, a folder name composed by 2 character,

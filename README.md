@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/open-education-polito/fare-invenio.svg?branch=master)](https://travis-ci.org/open-education-polito/fare-invenio)
-![https://coveralls.io/r/open-education-polito/fare-invenio](https://img.shields.io/coveralls/open-education-polito/fare-invenio.svg)
-![https://github.com/open-education-polito/fare-invenio/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-invenio.svg)
-[![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-invenio.svg?style=plastic)](https://github.com/open-education-polito/fare-invenio/releases)
+[![Build Status](https://travis-ci.org/open-education-polito/fare-platform.svg?branch=master)](https://travis-ci.org/open-education-polito/fare-platform)
+![https://coveralls.io/r/open-education-polito/fare-platform](https://img.shields.io/coveralls/open-education-polito/fare-platform.svg)
+![https://github.com/open-education-polito/fare-platform/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-platform.svg)
+[![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-platform.svg?style=plastic)](https://github.com/open-education-polito/fare-platform/releases)
 
 # FARE
 > The Free Architecture for Remote Education
@@ -100,8 +100,8 @@ You can now start the development web server and the background worker for your 
 
 ## Reporting a bug and asking help
 
-If you found a bug please report it [here](https://github.com/open-education-polito/fare-invenio) opening an issue.
-Searching [help](https://github.com/open-education-polito/fare-invenio)?
+If you found a bug please report it [here](https://github.com/open-education-polito/fare-platform) opening an issue.
+Searching [help](https://github.com/open-education-polito/fare-platform)?
 
 ## Semantic Versioning
 [Here](https://semver.org/) the semantic versioning we use
