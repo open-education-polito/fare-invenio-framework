@@ -35,16 +35,18 @@ env:
   jobs:
     # Momentarily disable E2E tests
     # Momentarily disable prod testing to speed up dev
-    #- REQUIREMENTS=prod #E2E=yes 
+    #- REQUIREMENTS=prod #E2E=yes
     - REQUIREMENTS=qa
 
 python:
-  - "3.6.9"
+  - "3.6"
 
 before_install:
   # Stop default travis services
   - "sudo service mysql stop"
   - "sudo service postgresql stop"
+  # Make dir for logs
+  - "sudo mkdir /var/log/fare && sudo chmod 777 /var/log/fare -R"
   # Start docker services
   - "docker-compose up -d"
   # Momentarily disable E2E tests

@@ -88,7 +88,6 @@ def test_staff_grant_user(app, users, db):
     r = requests.get(url, verify=False)
     assert r.status_code == 200
 
-
 '''
 def test_staff_grant_non_existing_user(app, users, db):
     """
