@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/open-education-polito/fare-platform.svg?branch=master)](https://travis-ci.org/open-education-polito/fare-platform)
-![https://coveralls.io/r/open-education-polito/fare-platform](https://img.shields.io/coveralls/open-education-polito/fare-platform.svg)
-![https://github.com/open-education-polito/fare-platform/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-platform.svg)
+[![Coverage Status](https://coveralls.io/repos/github/open-education-polito/fare-platform/badge.svg?branch=master)](https://coveralls.io/github/open-education-polito/fare-platform?branch=master)![https://github.com/open-education-polito/fare-platform/blob/master/LICENSE](https://img.shields.io/github/license/open-education-polito/fare-platform.svg)
 [![GitHub release](https://img.shields.io/github/release/open-education-polito/fare-platform.svg?style=plastic)](https://github.com/open-education-polito/fare-platform/releases)
 
 # FARE
