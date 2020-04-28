@@ -117,8 +117,8 @@ RECORDS_REST_FACETS = dict(
         aggs=dict(
             type=dict(terms=dict(field='type')),
             keywords=dict(terms=dict(field='keywords')),
-            Ordine_di_scuola=dict(terms=dict(field='educationLevel')),
-            Disciplina=dict(terms=dict(field='subject'))
+            Ordine_di_scuola=dict(terms=dict(field='educationLevel.keyword')),
+            Disciplina=dict(terms=dict(field='subject.keyword'))
         ),
         post_filters=dict(
             type=terms_filter('type'),
