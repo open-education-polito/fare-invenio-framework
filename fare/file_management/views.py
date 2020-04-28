@@ -31,8 +31,15 @@ def create():
     form = RecordForm()
     # if the form is submitted and valid
     if form.validate_on_submit():
-        # we creare one contributor object with the submitted name
-        contributors = [dict(name=form.contributor_name.data)]
+        list_names = form.contributor_name.data.split(",")
+        list_contributors = []
+
+        for contributor in list_names:
+            t = {"name": contributor}
+            list_contributors.append(t)
+
+        # we creare contributors object with the submitted names
+        contributors = list_contributors
         # set the owner as the current logged in user
         owner = int(current_user.get_id())
         # set the school order
