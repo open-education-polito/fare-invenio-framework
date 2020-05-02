@@ -4,7 +4,8 @@ from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from wtforms import IntegerField, StringField, TextAreaField, validators
+from .utils import read_menu_fields
+from wtforms import IntegerField, StringField, TextAreaField, validators, SelectField
 
 
 class RecordForm(FlaskForm):
@@ -19,11 +20,11 @@ class RecordForm(FlaskForm):
     contributor_name = StringField(
         'Name of the contributor', [validators.DataRequired()]
     )
-    educationLevel = StringField(
-        'Education level', [validators.DataRequired()]
+    educationLevel = SelectField(
+        'Education level', choices=read_menu_fields("educationLevel")
     )
-    subject = StringField(
-        'Subject', [validators.DataRequired()]
+    subject = SelectField(
+        'Subject', choices=read_menu_fields("subject")
     )
     coverage = StringField(
         'Coverage', [validators.DataRequired()]
