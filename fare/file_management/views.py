@@ -26,6 +26,12 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/arguments', methods=('GET',))
+def retrieve_arguments():
+    from .utils import arguments
+    return arguments()
+
+
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
 @register_menu(blueprint, 'settings.createfile',

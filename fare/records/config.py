@@ -10,6 +10,7 @@
 from __future__ import absolute_import, print_function
 
 import invenio_logging.config
+import invenio_theme.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import allow_all, check_elasticsearch, deny_all
@@ -23,8 +24,74 @@ def _(x):
     """Identity function for string extraction."""
     return x
 
+
 invenio_logging.config.LOGGING_FS_LOGFILE = "/var/log/fare/log_fare.txt"
 invenio_logging.config.LOGGING_FS_PYWARNINGS = True
+
+EDUCATION_LEVEL = {
+  "educationLevel": [
+                      "Divulgazione",
+                      "Scuola Ospedaliera",
+                      "Scuola Primaria",
+                      "Scuola Secondaria di primo grado",
+                      "Scuola Secondaria di secondo grado",
+                      "Università"
+  ]
+}
+
+SUBJECTS = {
+  "subject": [
+              "Arte",
+              "Biologia",
+              "Chimica",
+              "Economia",
+              "Elettronica",
+              "Etica",
+              "Fisica",
+              "Geografia",
+              "Informatica",
+              "Lingue e letteratura",
+              "Matematica",
+              "Scienze",
+              "Società",
+              "Sociologia",
+              "Storia"
+  ]
+}
+
+ARGUMENTS = {
+    "Matematica": [
+        "Algebra",
+        "Geometria analitica",
+        "Analisi",
+        "Fondamenti",
+        "Combinatoria",
+        "Probabilità",
+        "Statistica"
+    ],
+    "Informatica": [
+        "Hardware",
+        "Software",
+        "Programmazione",
+        "Sicurezza",
+        "Reti"
+    ],
+    "Scienze": [
+        "Scienze naturali",
+        "Scienze astronomiche"
+    ],
+    "Lingue e letteratura": [
+        "Italiano",
+        "Inglese"
+    ],
+    "Fisica": [
+        "Elettromagnetismo",
+        "Ottica"
+    ],
+    "Arte": [
+        "Storia dell'arte"
+    ]
+}
 
 RECORDS_REST_ENDPOINTS = {
     'recid': dict(
