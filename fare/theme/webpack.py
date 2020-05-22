@@ -16,8 +16,11 @@ theme = WebpackBundle(
     'assets',
     entry={
         'fare-theme': './scss/fare/theme.scss',
+        'fare-js': './js/fare/fare.js',
     },
     dependencies={
         # add any additional npm dependencies here...
+        'bootstrap-italia': '~1.3.10',
+        'bootstrap': '~4.3.1',
     }
 )
