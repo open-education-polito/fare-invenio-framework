@@ -27,6 +27,7 @@ def _(x):
 
 invenio_logging.config.LOGGING_FS_LOGFILE = "/var/log/fare/log_fare.txt"
 invenio_logging.config.LOGGING_FS_PYWARNINGS = True
+invenio_theme.config.THEME_FOOTER_TEMPLATE = "fare/footer.html"
 
 EDUCATION_LEVEL = {
   "educationLevel": [

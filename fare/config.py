@@ -64,6 +64,8 @@ THEME_FRONTPAGE_TITLE = _('FARE')
 THEME_FRONTPAGE_TEMPLATE = 'fare/frontpage.html'
 #: Theme logo.
 THEME_LOGO = 'images/farelogo.png'
+#: Site images.
+SITE_IMAGES = 'images/'
 
 # Email configuration
 # ===================
