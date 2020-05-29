@@ -191,8 +191,8 @@ RECORDS_REST_FACETS = dict(
         post_filters=dict(
             type=terms_filter('type'),
             keywords=terms_filter('keywords'),
-            Ordine_di_scuola=terms_filter('educationLevel'),
-            Disciplina=terms_filter('subject'),
+            Ordine_di_scuola=terms_filter('educationLevel.keyword'),
+            Disciplina=terms_filter('subject.keyword'),
         )
     )
 )
