@@ -14,6 +14,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from .api import create_record, delete_record, download_record, publish_record
 from .forms import RecordForm
 from .models import MyRecord
+from .utils import get_all_arguments
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -28,8 +29,7 @@ blueprint = Blueprint(
 
 @blueprint.route('/arguments', methods=('GET',))
 def retrieve_arguments():
-    from .utils import arguments
-    return arguments()
+    return get_all_arguments()
 
 
 @blueprint.route('/create', methods=('GET', 'POST'))

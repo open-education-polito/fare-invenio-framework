@@ -2,7 +2,12 @@
   let subject_select = document.getElementById("subject");
   let argument_select = document.getElementById("coverage");
 
-  subject_select.onchange = function () {
+
+  subject_select.addEventListener("change", set_argument);
+  window.addEventListener("load", set_argument);
+
+
+  function set_argument () {
 
       fetch('arguments').then(function (response) {
 
@@ -18,6 +23,7 @@
               }
 
               argument_select.innerHTML = optionHTML;
+
           })
 
       });

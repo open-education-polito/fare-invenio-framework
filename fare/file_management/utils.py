@@ -22,33 +22,23 @@ def read_menu_fields(key):
     return choices
 
 
-def arguments():
+def get_all_arguments():
     """
-    Used for the view to retrieve
+    Used to retrieve
     the arguments of each subject
     """
     return ARGUMENTS
 
 
-def init_field():
+def init_field_all():
     """
-    Initialize the field of the coverage with
-    the arguments of the default subject, that
-    is the first element of the sorted array
+    Initialize the field coverage with
+    all the arguments
     """
-    data = SUBJECTS
-    subjects = []
     arguments_list = []
 
-    for subject in data["subject"]:
-        subjects.append(subject)
-
-    subjects.sort()
-
-    if ARGUMENTS.get(subjects[0]) is None:
-        return [("", "")]
-
-    for argument in ARGUMENTS[subjects[0]]:
-        arguments_list.append((argument, argument))
+    for subject in ARGUMENTS.keys():
+        for argument in ARGUMENTS[subject]:
+            arguments_list.append((argument, argument))
 
     return arguments_list
