@@ -85,6 +85,25 @@ class RevisionSearch(RecordsSearch):
         )
 
 
+class StatusSearch(RecordsSearch):
+    """Define default filter for search records of a specific owner."""
+
+    class Meta:
+        """Configuration for search."""
+
+        index = '_all'
+        doc_types = None
+        fields = ('*', )
+        facets = {}
+
+    def __init__(self, **kwargs):
+        """Init for RevisionSearch."""
+        super(StatusSearch, self).__init__(**kwargs)
+        self.query = Q(
+            Bool(filter=[Q('term', owner=current_user.id)])
+        )
+
+
 def publish_record(record):
     """Revision a record."""
     with db.session.begin_nested():

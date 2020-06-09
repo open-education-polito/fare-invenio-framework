@@ -11,7 +11,7 @@ from flask_security import current_user, roles_accepted
 from invenio_files_rest.models import Bucket, ObjectVersion
 from sqlalchemy.orm.exc import NoResultFound
 
-from .api import create_record, delete_record, download_record, publish_record
+from .api import create_record, delete_record, download_record, publish_record, StatusSearch
 from .forms import RecordForm
 from .models import MyRecord
 from .utils import get_all_arguments
@@ -27,6 +27,20 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/user_uploads', methods=('GET',))
+@login_required
+@register_menu(blueprint, 'settings.status',
+               _('%(icon)s Status files',
+                 icon='<i class="fa fa-check-circle fa-fw"></i>'
+                 ),
+               order=6
+               )
+def user_uploads():
+    """View to let user see the status (revisioned=true/false) of his files"""
+    status = StatusSearch()
+    return render_template('file_management/user_uploads.html', records_list=status.execute().hits)
+
+
 @blueprint.route('/arguments', methods=('GET',))
 def retrieve_arguments():
     return get_all_arguments()
@@ -36,7 +50,7 @@ def retrieve_arguments():
 @login_required
 @register_menu(blueprint, 'settings.createfile',
                _('%(icon)s Upload file',
-                 icon='<i class="fa fa-download fa-fw"></i>'
+                 icon='<i class="fa fa-file-text fa-fw"></i>'
                  ),
                order=5
                )
