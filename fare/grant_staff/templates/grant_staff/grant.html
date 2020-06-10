@@ -15,11 +15,31 @@
 {% block page_body %}
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <h2>Grant Staff permission</h2>
+      <div class="row">
+        <h2 class="text-center">Fai diventare un membro <b>Staff</b></h2>
       </div>
-      <div class="col-md-offset-3 col-md-6 well">
-        <form action="{{ url_for('grant_staff.grant') }}" method="POST">
+      <div class="row">
+        <div class="col-sm-4 text-center">
+          <i class="fa fa-users fa-5x aria-hidden='true' create-file-icon"></i>
+        </div>
+        <div class="col-sm-4 text-center">
+          <p>
+            Dai la possibilità ad altri utenti di FARE di
+            revisionare contenuti che aspettano di essere
+            pubblicati sulla piattaforma, inserisci la mail
+            nel box e premi il tasto <b>'Abilita'</b>
+          </p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <i class="fa fa-users fa-5x aria-hidden='true' create-file-icon"></i>
+        </div>
+      </div>
+
+      <br><br><br><br>
+
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6 well">
+          <form action="{{ url_for('grant_staff.grant') }}" method="POST">
             <div class="form-group {{ 'has-error' if form.email.errors }}">
               <label for="email">{{ form.email.label }}</label>
               {{ form.email(class_="form-control")|safe }}
@@ -27,9 +47,15 @@
             </div>
             {{ form.csrf_token }}
             {{ errors(form.csrf_token) }}
-            <button type="submit" class="btn btn-default">Grant</button>
-        </form>
+            <button type="submit" class="btn btn-warning">Abilita</button>
+          </form>
+        </div>
       </div>
+
     </div>
+
   </div>
+
+  <br><br><br><br>
+
 {% endblock page_body %}

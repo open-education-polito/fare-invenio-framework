@@ -9,3 +9,43 @@
 // Check out https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/assets/scss/invenio_theme
 @import "variables";
 @import "../invenio_theme/styles";
+
+.navbar-static-top{
+  background-image: url("../../../static/images/books.png");
+}
+
+.navbar-header{
+  background-color: seagreen;
+  border-radius: 4px;
+}
+
+.home-separator{
+  border: 2px solid seagreen;
+  border-radius: 5px;
+  width: 50%;
+}
+
+body.cover-page{
+  background-color: seagreen;
+}
+
+a{
+  color: seagreen;
+}
+
+.marketing h1{
+  color: seagreen;
+}
+
+.frontpage-icon{
+  border-color: seagreen;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 100%;
+  padding: 8%;
+  color: black;
+}
+
+.create-file-icon{
+  color: black;
+}
