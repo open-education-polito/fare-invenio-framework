@@ -38,7 +38,7 @@
 
 {%- block page_body %}
 
-{% if ( ((current_user.has_role('admin') or current_user.has_role('staff')) and 
+{% if ( ((current_user.has_role('admin') or current_user.has_role('staff')) and
             record.revisioned == False )
             or
             (record.revisioned == True) )%}
@@ -69,7 +69,7 @@
     </div>
 
     {% if current_user.has_role('admin') or current_user.id==record.owner %}
-        <form action="{{ url_for('file_management.delete') }}" method="POST" id="deleteform" style="display: inline;">
+        <form action="{{ url_for('file_management.delete') }}" method="POST" id="deleteform">
             <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
             <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
         </form>
@@ -79,7 +79,7 @@
 
     {% if current_user.has_role('admin') or current_user.has_role('staff') %}
         {% if record.revisioned == False %}
-            <form action="{{ url_for('file_management.publish') }}" method="POST" id="publishform" style="display: inline;">
+            <form action="{{ url_for('file_management.publish') }}" method="POST" id="publishform">
                 <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
 	        <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
             </form>
@@ -88,7 +88,7 @@
     {% endif %}
 
 
-    <form action="{{ url_for('file_management.download') }}" method="POST" id="downloadform" style="display: inline;">
+    <form action="{{ url_for('file_management.download') }}" method="POST" id="downloadform">
         <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
         <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
     </form>
