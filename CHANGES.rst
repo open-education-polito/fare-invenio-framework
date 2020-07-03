@@ -6,6 +6,17 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.4.0] - 2020-07-03  
+----------------------------
+
+
+Changed
+~~~~~~~
+
+- Upgraded invenio to 3.3.0 
+- Small bug fixes
+
+
 [Release 0.3.0] - 2020-04-15  
 ----------------------------
 
