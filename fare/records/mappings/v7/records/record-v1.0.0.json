@@ -24,6 +24,22 @@
         "type": "date",
         "format": "date"
       },
+      "educationLevel": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "subject": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
       "contributors": {
         "type": "object",
         "properties": {

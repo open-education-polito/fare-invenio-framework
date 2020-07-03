@@ -3,8 +3,10 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint, redirect, render_template, url_for
+from flask_babelex import gettext as _
 from flask_login import login_required
-from flask_security import roles_accepted
+from flask_menu import register_menu
+from flask_security import current_user, roles_accepted
 
 from .api import grant_staff_permission
 from .forms import StaffForm
@@ -23,6 +25,14 @@ blueprint = Blueprint(
 @blueprint.route('/grant', methods=('GET', 'POST'))
 @login_required
 @roles_accepted('admin', 'staff')
+@register_menu(blueprint, 'settings.grant',
+               _('%(icon)s Concedi permessi',
+                   icon='<i class="fa fa-users fa-fw"></i>'),
+               order=7,
+               visible_when=lambda: bool(current_user.has_role('admin') or
+                                         current_user.has_role('staff')
+                                         ) is not False
+               )
 def grant():
     """The grant view."""
     form = StaffForm()

@@ -1,0 +1,62 @@
+{%- extends config.BASE_TEMPLATE %}
+
+
+{% block page_body %}
+
+{% if records_list|length == 0 %}
+
+  <h3 id="no-files">Al momento non hai caricato nessun file</h3>
+
+{% else %}
+
+  <div id="main-div" class="col-md-12">
+
+    {% for record in records_list %}
+
+      <hr/>
+
+      <div class="row">
+
+      <div class="col-md-8">
+        <span class="label label-primary">{{ record['educationLevel'] }}</span>
+        <span class="label label-success">{{ record['subject'] }}</span>
+
+        {% if record['revisioned'] %}
+          <h3><a href="/records/{{ record['id'] }}">{{ record['title'] }}</a></h3>
+        {% else %}
+          <h3>{{ record['title'] }}</h3>
+        {% endif %}
+
+        <h5><b>Argomento:</b> {{ record['coverage'] }}</h5>
+        <ul class="list-inline">
+            <b>Autore/i:</b>
+            {% for contributor in record['contributors'] %}
+            <li>
+              {{ contributor.name }};
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+
+
+      <div id="label-div" class="col-md-3">
+        <h3>
+        {% if record['revisioned'] %}
+          <span class="pull-right label label-info">pubblicato</span>
+        {% else %}
+          <span class="pull-right label label-danger">da revisionare</span>
+        {% endif %}
+        </h3>
+      </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+{% endif %}
+
+{{ webpack['status-files.css'] }}
+
+{% endblock page_body %}

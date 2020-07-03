@@ -16,51 +16,57 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2>Create record</h2>
+        <center><h1>Carica il materiale</h1></center><br>
       </div>
       <div class="col-md-offset-3 col-md-6 well">
         <form action="{{ url_for('file_management.create') }}" method="POST" enctype="multipart/form-data">
             <div class="form-group {{ 'has-error' if form.title.errors }}">
-              <label for="title">{{ form.title.label }}</label>
+              <label for="title">Titolo</label>
               {{ form.title(class_="form-control")|safe }}
               {{ errors(form.title) }}
             </div>
             <div class="form-group {{ 'has-error' if form.contributor_name.errors }}">
-              <label for="contributor_name">{{ form.contributor_name.label }}</label>
+              <label for="contributor_name">Autore/i</label>
               <small>(split the different authors with a comma)</small>
               {{ form.contributor_name(class_="form-control")|safe }}
               {{ errors(form.contributor_name) }}
             </div>
             <div class="form-group {{ 'has-error' if form.educationLevel.errors }}">
-              <label for="educationLevel">{{ form.educationLevel.label }}</label>
+              <label for="educationLevel">Ordine di scuola</label>
               {{ form.educationLevel(class_="form-control")|safe }}
               {{ errors(form.educationLevel) }}
             </div>
             <div class="form-group {{ 'has-error' if form.subject.errors }}">
-              <label for="subject">{{ form.subject.label }}</label>
+              <label for="subject">Disciplina</label>
               {{ form.subject(class_="form-control")|safe }}
               {{ errors(form.subject) }}
             </div>
             <div class="form-group {{ 'has-error' if form.coverage.errors }}">
-              <label for="coverage">{{ form.coverage.label }}</label>
+              <label for="coverage">Argomento</label>
               {{ form.coverage(class_="form-control")|safe }}
               {{ errors(form.coverage) }}
             </div>
             <div class="form-group {{ 'has-error' if form.description.errors }}">
-              <label for="description">{{ form.description.label }}</label>
+              <label for="description">Descrizione</label>
               {{ form.description(class_="form-control")|safe }}
               {{ errors(form.description) }}
             </div>
 	    <div class="form-group {{ 'has-error' if form.file_content.errors }}">
-              <label for="file_content">{{ form.file_content.label }}</label>
+              <label for="file_content">File</label>
               {{ form.file_content(class_="form-control")|safe }}
               {{ errors(form.file_content) }}
             </div>
             {{ form.csrf_token }}
             {{ errors(form.csrf_token) }}
-            <button type="submit" class="btn btn-default">Create</button>
+            <button type="submit" class="btn btn-default">Crea</button>
         </form>
       </div>
     </div>
   </div>
+
+  {{ webpack['fare-argument.js'] }}
+
 {% endblock page_body %}
+
+
+

@@ -5,10 +5,13 @@
   terms of the MIT License; see LICENSE file for more details.
 
 -->
-
 <div ng-repeat="record in vm.invenioSearchResults.hits.hits track by $index">
-  <h4><a target="_self" ng-href="/records/{{ record.id }}">{{ record.metadata.title }}</a></h4>
+  <span class="label label-primary">{{ record.metadata.educationLevel }}</span>
+  <span class="label label-success">{{ record.metadata.subject }}</span>
+  <h3><a target="_self" ng-href="/records/{{ record.id }}">{{ record.metadata.title }}</a></h3>
+  <h5><b>Argomento:</b> {{ record.metadata.coverage }}</h5>
   <ul class="list-inline">
+      <b>Autore/i:</b>
       <li ng-repeat='contributor in record.metadata.contributors'>
         {{ contributor.name }};
       </li>

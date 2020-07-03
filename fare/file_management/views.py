@@ -4,14 +4,17 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, abort, current_app, redirect, render_template, \
     request, url_for
+from flask_babelex import gettext as _
 from flask_login import login_required
-from flask_security import current_user
+from flask_menu import register_menu
+from flask_security import current_user, roles_accepted
 from invenio_files_rest.models import Bucket, ObjectVersion
 from sqlalchemy.orm.exc import NoResultFound
 
-from .api import create_record, delete_record, download_record, publish_record
+from .api import create_record, delete_record, download_record, publish_record, StatusSearch
 from .forms import RecordForm
 from .models import MyRecord
+from .utils import get_all_arguments
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -24,8 +27,33 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/user_uploads', methods=('GET',))
+@login_required
+@register_menu(blueprint, 'settings.status',
+               _('%(icon)s Status files',
+                 icon='<i class="fa fa-check-circle fa-fw"></i>'
+                 ),
+               order=6
+               )
+def user_uploads():
+    """View to let user see the status (revisioned=true/false) of his files"""
+    status = StatusSearch()
+    return render_template('file_management/user_uploads.html', records_list=status.execute().hits)
+
+
+@blueprint.route('/arguments', methods=('GET',))
+def retrieve_arguments():
+    return get_all_arguments()
+
+
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
+@register_menu(blueprint, 'settings.createfile',
+               _('%(icon)s Upload file',
+                 icon='<i class="fa fa-file-text fa-fw"></i>'
+                 ),
+               order=5
+               )
 def create():
     """The create view."""
     form = RecordForm()
@@ -73,20 +101,17 @@ def create():
 
 @blueprint.route('/revision/', methods=('GET',))
 @login_required
+@roles_accepted('admin', 'staff')
+@register_menu(blueprint, 'settings.revision',
+               _('%(icon)s Revisione contenuti',
+                   icon='<i class="fa fa-eye fa-fw"></i>'),
+               order=6,
+               visible_when=lambda: bool(current_user.has_role('admin') or
+                                         current_user.has_role('staff')
+                                         ) is not False
+               )
 def revision_list():
     """View to display all unrevisioned records."""
-    # check if the user is admin or staff
-    if(
-            (not current_user.has_role('admin')) and
-            (not current_user.has_role('staff'))
-    ):
-        current_app.logger.error(
-                            "Impossible to revision file requested by user= " +
-                            current_user.email + " , this user does not have \
-                            the permission, action not allowed"
-                                )
-        abort(403)
-
     return render_template('file_management/unrevisioned.html')
 
 
