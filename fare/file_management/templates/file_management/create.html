@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <center><h1>Carica il materiale</h1></center><br>
+        <h1 class="text-center">Carica il materiale</h1><br>
       </div>
       <div class="col-md-offset-3 col-md-6 well">
         <form action="{{ url_for('file_management.create') }}" method="POST" enctype="multipart/form-data">
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group {{ 'has-error' if form.contributor_name.errors }}">
               <label for="contributor_name">Autore/i</label>
-              <small>(split the different authors with a comma)</small>
+              <small>(separa gli autori con una virgola)</small>
               {{ form.contributor_name(class_="form-control")|safe }}
               {{ errors(form.contributor_name) }}
             </div>
@@ -38,11 +38,13 @@
             </div>
             <div class="form-group {{ 'has-error' if form.subject.errors }}">
               <label for="subject">Disciplina</label>
+              <small>(Manca una disciplina? contattaci <a href="https://openeducation.polito.it/it/contatti">qui)</a></small>
               {{ form.subject(class_="form-control")|safe }}
               {{ errors(form.subject) }}
             </div>
             <div class="form-group {{ 'has-error' if form.coverage.errors }}">
               <label for="coverage">Argomento</label>
+              <small>(Manca una argomento? contattaci <a href="https://openeducation.polito.it/it/contatti">qui)</a></small>
               {{ form.coverage(class_="form-control")|safe }}
               {{ errors(form.coverage) }}
             </div>

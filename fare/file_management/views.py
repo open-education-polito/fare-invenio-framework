@@ -30,7 +30,7 @@ blueprint = Blueprint(
 @blueprint.route('/user_uploads', methods=('GET',))
 @login_required
 @register_menu(blueprint, 'settings.status',
-               _('%(icon)s Status files',
+               _('%(icon)s Stato files',
                  icon='<i class="fa fa-check-circle fa-fw"></i>'
                  ),
                order=6
@@ -49,7 +49,7 @@ def retrieve_arguments():
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
 @register_menu(blueprint, 'settings.createfile',
-               _('%(icon)s Upload file',
+               _('%(icon)s Carica file',
                  icon='<i class="fa fa-file-text fa-fw"></i>'
                  ),
                order=5
