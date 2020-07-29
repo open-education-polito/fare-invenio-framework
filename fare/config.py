@@ -63,7 +63,7 @@ THEME_FRONTPAGE_TITLE = _(' ')
 #: Frontpage template.
 THEME_FRONTPAGE_TEMPLATE = 'fare/frontpage.html'
 #: Theme logo.
-THEME_LOGO = 'images/farelogo.png'
+THEME_LOGO = 'images/fare_logo.png'
 #: Site images.
 SITE_IMAGES = 'images/'
 

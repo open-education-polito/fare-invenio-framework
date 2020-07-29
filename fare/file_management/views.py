@@ -11,9 +11,9 @@ from flask_security import current_user, roles_accepted
 from invenio_files_rest.models import Bucket, ObjectVersion
 from sqlalchemy.orm.exc import NoResultFound
 
-from .api import create_record, delete_record, download_record, publish_record, StatusSearch
+from .api import RecordFare
 from .forms import RecordForm
-from .models import MyRecord
+from .search import StatusSearch
 from .utils import get_all_arguments
 
 # define a new Flask Blueprint that is register
@@ -30,7 +30,7 @@ blueprint = Blueprint(
 @blueprint.route('/user_uploads', methods=('GET',))
 @login_required
 @register_menu(blueprint, 'settings.status',
-               _('%(icon)s Status files',
+               _('%(icon)s Stato files',
                  icon='<i class="fa fa-check-circle fa-fw"></i>'
                  ),
                order=6
@@ -49,7 +49,7 @@ def retrieve_arguments():
 @blueprint.route('/create', methods=('GET', 'POST'))
 @login_required
 @register_menu(blueprint, 'settings.createfile',
-               _('%(icon)s Upload file',
+               _('%(icon)s Carica file',
                  icon='<i class="fa fa-file-text fa-fw"></i>'
                  ),
                order=5
@@ -81,7 +81,7 @@ def create():
         # set the file of the record
         content = form.file_content.data
         # create the record and set the revisioned field to false
-        create_record(
+        RecordFare.create_record(
           dict(
             title=form.title.data,
             contributors=contributors,
@@ -123,7 +123,7 @@ def publish():
 
     # retrieve the record
     try:
-        record = MyRecord.get_record(record_id)
+        record = RecordFare.get_record(record_id)
     except NoResultFound:
 
         current_app.logger.error(
@@ -133,7 +133,7 @@ def publish():
                                 )
         abort(404)
 
-    publish_record(record)
+    RecordFare.publish_record(record)
 
     return render_template('file_management/unrevisioned.html')
 
@@ -166,7 +166,7 @@ def delete():
 
     # creating MyRecord object, extention of invenio_records_files.Record
     try:
-        record = MyRecord.get_record(record_id)
+        record = RecordFare.get_record(record_id)
     except NoResultFound:
 
         current_app.logger.error(
@@ -189,7 +189,7 @@ def delete():
                                 )
         abort(403)
 
-    delete_record(fileinstance_id, version_id, record_id, record)
+    record.delete_record(fileinstance_id, record_id)
     return redirect(url_for('file_management.success_delete'))
 
 
@@ -224,7 +224,7 @@ def download():
     key = values[2]
 
     try:
-        record = MyRecord.get_record(record_id)
+        record = RecordFare.get_record(record_id)
     except NoResultFound:
 
         current_app.logger.error(
@@ -249,7 +249,7 @@ def download():
             # forbidden for the user
             abort(403)
 
-    return download_record(record, bucket, key, version_id, usr)
+    return RecordFare.download_record(record, bucket, key, version_id, usr)
 
 
 @blueprint.route("/success")
