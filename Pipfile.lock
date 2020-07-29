@@ -958,9 +958,9 @@
         },
         "maxminddb": {
             "hashes": [
-                "sha256:ed42434c3b88229a6a3c0e9e58c5a0f4fc17dcdde42dedcbcf225db8f04e8848"
+                "sha256:b95d8ed21799e6604683669c7ed3c6a184fcd92434d5762dccdb139b4f29e597"
             ],
-            "version": "==2.0.1"
+            "version": "==2.0.2"
         },
         "maxminddb-geolite2": {
             "hashes": [
@@ -1710,11 +1710,11 @@
         },
         "isort": {
             "hashes": [
-                "sha256:1b0265ff0639af0a6f0f95a44956a985a1256960905aaf57ecf9175356c54ced",
-                "sha256:27c7f27adc4b1a6afde1b66c8af46d42da03671d68648e2a8ab2166df03b668e"
+                "sha256:761a8f490d8bbcd3549b5618ed423468bbdece603cce44b290ee274c9a360893",
+                "sha256:a4401d357b0f7a9064781da345e6e2f075ebc09fbebf605740163140d5ac418c"
             ],
             "index": "pypi",
-            "version": "==5.2.0"
+            "version": "==5.2.1"
         },
         "itsdangerous": {
             "hashes": [
