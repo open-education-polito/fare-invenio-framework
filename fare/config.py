@@ -59,7 +59,7 @@ THEME_SITENAME = _('FARE')
 #: Use default frontpage.
 THEME_FRONTPAGE = True
 #: Frontpage title.
-THEME_FRONTPAGE_TITLE = _(' ')
+THEME_FRONTPAGE_TITLE = _('Esplora. Collabora. Impara.')
 #: Frontpage template.
 THEME_FRONTPAGE_TEMPLATE = 'fare/frontpage.html'
 #: Theme logo.
