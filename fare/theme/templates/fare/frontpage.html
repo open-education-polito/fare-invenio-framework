@@ -11,54 +11,69 @@
 {%- endblock page_header %}
 
 {%- block page_body %}
-<div class="container marketing">
+<div class="container marketing frontpage-full-width">
 
-  <div class="row">
-
-    <div class="col-sm-4">
+  <div class="row explore-row">
+    <div class="col-sm-6">
+      <img src="{{ url_for('static', filename='images/explore_books.png') }}" alt="Explore"/>
+    </div>
+    <div class="col-sm-6">
       <div class="row text-center">
-        <i class="fa fa-desktop fa-5x aria-hidden='true' frontpage-icon"></i>
+        <i class="fa fa-search fa-3x aria-hidden='true' frontpage-icon"></i>
       </div>
       <div class="row">
-        <h1 class="text-center frontpage-icon-header">Carica</h1>
+        <h2 class="text-center">Esplora</h2>
         <hr class="home-separator">
-        <h3 class="text-center">
-          Registrati a FARE e carica contenuti didattici (video, libri, slides...)
-          con licenza creative commons
+        <h3 class="text-center frontpage-explanation">
+          Esplora migliaia di risorse didattiche personalizzando la ricerca in base alle tue
+          preferenze, inserisci le parole chiave o seleziona l'oridne di scuola, la materia o
+          gli argomenti tra quelli proposti
         </h3>
-        <br><br><br>
       </div>
     </div>
+  </div>
 
-    <div class="col-sm-4">
+  <br><br><br>
+
+  <div class="row collaborate-row">
+    <div class="col-sm-6">
       <div class="row text-center">
-        <i class="fa fa-check-circle fa-5x aria-hidden='true' frontpage-icon"></i>
+        <i class="fa fa-desktop fa-3x aria-hidden='true' frontpage-icon"></i>
       </div>
       <div class="row">
-        <h1 class="text-center frontpage-icon-header">Condividi</h1>
+        <h2 class="text-center">Collabora</h2>
         <hr class="home-separator">
-        <h3 class="text-center">
-          I contenuti che carichi dovranno essere approvati prima di essere resi pubblici
+        <h3 class="text-center frontpage-explanation">
+          Registrati a FARE e collabora caricando contenuti didattici (video, libri, slides...) con
+          licenza creative commons. I contenuti che carichi dovranno essere approvati prima
+          di essere resi pubblici
         </h3>
-        <br><br><br>
       </div>
     </div>
+    <div class="col-sm-6">
+      <img src="{{ url_for('static', filename='images/collaborate.png') }}" alt="Collaborate"/>
+    </div>
+  </div>
 
-    <div class="col-sm-4">
+  <br><br><br>
+
+  <div class="row learn-row">
+    <div class="col-sm-6">
+      <img src="{{ url_for('static', filename='images/learning_group.png') }}" alt="Learn"/>
+    </div>
+    <div class="col-sm-6">
       <div class="row text-center">
-        <i class="fa fa-book fa-5x aria-hidden='true' frontpage-icon"></i>
+        <i class="fa fa-book fa-3x aria-hidden='true' frontpage-icon"></i>
       </div>
       <div class="row">
-        <h1 class="text-center frontpage-icon-header">Impara</h1>
+        <h2 class="text-center">Impara</h2>
         <hr class="home-separator">
-        <h3 class="text-center">
-          Esplora il materiale didattico, migliaia di contenuti didattici
-        per ogni ordine di scuola e grado, tutto in creative commons!
+        <h3 class="text-center frontpage-explanation">
+          Impara su FARE con materiale didattico selezionato, per ogni ordine di
+          scuola e grado, tutto in creative commons!
         </h3>
-        <br><br><br>
       </div>
     </div>
-
   </div>
 
 </div>

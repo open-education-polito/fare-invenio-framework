@@ -14,3 +14,25 @@
       impara con materiale selezionato
     </h3>
 {%- endblock frontpage_title %}
+
+{%- block navbar_inner %}
+
+  <div class="col-sm-2 text-center button-menu">
+     <a class="btn btn-default">Guida</a>
+  </div>
+
+  <div class="col-sm-2 text-center button-menu">
+     <a class="btn btn-default" href="https://github.com/open-education-polito/fare-platform">Github</a>
+  </div>
+
+  <div class="col-sm-2 text-center button-menu">
+     <a class="btn btn-default" href="https://openeducation.polito.it/">About</a>
+  </div>
+
+  <div class="col-sm-2 text-center button-menu">
+     <a class="btn btn-default">Corsi completi</a>
+  </div>
+
+  {{ super() }}
+
+{%- endblock navbar_inner %}

@@ -53,7 +53,15 @@
         {{ record.subject }}
     </span>
     <h3><b>Argomento:</b> {{ record.coverage }} </h3>
-    <h5><b>Autori:</b> {% for contributor in record.contributors %} {{ contributor['name'] }} {% endfor %}</h5>
+    <h5>
+      <b>Autori:</b>
+      {% for contributor in record.contributors %}
+        {{ contributor['name'] }}
+        {% if not loop.last %}
+          ,
+        {% endif %}
+      {% endfor %}
+    </h5>
 
     <div class="row">
         <div class="col-sm-6">

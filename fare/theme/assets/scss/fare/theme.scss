@@ -13,7 +13,7 @@
 .navbar-default{
   background-color: transparent;
   border-color: transparent;
-  background-image: url("../../../static/images/library.png");
+  background-image: url("../../../static/images/frontpage_library.png");
 }
 
 .frontpage-search{
@@ -22,7 +22,7 @@
 
 .frontpage-navbar {
     min-height: 750px;
-    background-image: url("../../../static/images/library.png");
+    background-image: url("../../../static/images/frontpage_library.png");
 }
 
 .frontpage-subtitle{
@@ -43,17 +43,18 @@ a{
   color: seagreen;
 }
 
-.marketing h1{
+.marketing h1, .marketing h2{
   color: seagreen;
 }
 
 .frontpage-icon{
   border-color: seagreen;
   border-style: solid;
-  border-width: 5px;
+  border-width: 7px;
   border-radius: 100%;
-  padding: 8%;
+  padding: 3%;
   color: black;
+  margin-top: 2%;
 }
 
 .create-file-icon{
@@ -68,10 +69,6 @@ a{
   margin-right:auto;
 }
 
-.frontpage-icon-header{
-  padding-bottom: 0px
-}
-
 #publishform, #downloadform, #deleteform{
   display: inline;
 }
@@ -79,4 +76,32 @@ a{
 footer {
   margin-top: 50%;
   background-color: lightgrey;
+}
+
+.list-inline{
+  margin-left: 0px;
+}
+
+.button-menu{
+  margin-top: 13px;
+}
+
+.explore-row{
+  background-color: lightgoldenrodyellow;
+}
+
+.collaborate-row{
+  background-color: lightcyan;
+}
+
+.learn-row{
+  background-color: lightblue;
+}
+
+.frontpage-full-width{
+  width: auto;
+}
+
+.frontpage-explanation{
+  padding: 3%;
 }
