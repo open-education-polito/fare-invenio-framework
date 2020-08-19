@@ -17,6 +17,8 @@ from __future__ import absolute_import, print_function
 
 from datetime import timedelta
 
+import invenio_logging.config
+
 
 def _(x):
     """Identity function used to trigger string extraction."""
@@ -165,3 +167,7 @@ FIXTURES_ARCHIVE_LOCATION = 'archive/'
 """Location where uploaded files are archived. If not an absolute path it is
    relative to instance path.
 """
+
+# Logging
+invenio_logging.config.LOGGING_FS_LOGFILE = "logs/log_fare.txt"
+invenio_logging.config.LOGGING_FS_PYWARNINGS = True

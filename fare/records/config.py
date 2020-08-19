@@ -865,7 +865,6 @@ PIDSTORE_RECID_FIELD = 'id'
 FARE_ENDPOINTS_ENABLED = True
 """Enable/disable automatic endpoint registration."""
 
-
 RECORDS_REST_FACETS = dict(
     records=dict(
         aggs=dict(
@@ -884,7 +883,6 @@ RECORDS_REST_FACETS = dict(
 )
 """Introduce searching facets."""
 
-
 RECORDS_REST_SORT_OPTIONS = dict(
     records=dict(
         bestmatch=dict(
@@ -902,7 +900,6 @@ RECORDS_REST_SORT_OPTIONS = dict(
     )
 )
 """Setup sorting options."""
-
 
 RECORDS_REST_DEFAULT_SORT = dict(
     records=dict(
