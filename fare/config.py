@@ -169,5 +169,5 @@ FIXTURES_ARCHIVE_LOCATION = 'archive/'
 """
 
 # Logging
-invenio_logging.config.LOGGING_FS_LOGFILE = "fare/fare.log"
+invenio_logging.config.LOGGING_FS_LOGFILE = "/var/logs/fare/fare.log"
 invenio_logging.config.LOGGING_FS_PYWARNINGS = True
