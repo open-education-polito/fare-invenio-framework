@@ -46,7 +46,7 @@ before_install:
   - "sudo service mysql stop"
   - "sudo service postgresql stop"
   # Make dir for logs
-  - "mkdir /var/log/fare" 
+  - "sudo mkdir /var/log/fare && sudo chmod 777 /var/log/fare/ -R" 
   # Start docker services
   - "docker-compose up -d"
   # Momentarily disable E2E tests
