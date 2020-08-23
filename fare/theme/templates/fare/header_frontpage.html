@@ -17,21 +17,15 @@
 
 {%- block navbar_inner %}
 
-  <div class="col-sm-2 text-center button-menu">
-     <a class="btn btn-default">Guida</a>
-  </div>
-
-  <div class="col-sm-2 text-center button-menu">
-     <a class="btn btn-default" href="https://github.com/open-education-polito/fare-platform">Github</a>
-  </div>
-
-  <div class="col-sm-2 text-center button-menu">
-     <a class="btn btn-default" href="https://openeducation.polito.it/">About</a>
-  </div>
-
-  <div class="col-sm-2 text-center button-menu">
-     <a class="btn btn-default">Corsi completi</a>
-  </div>
+  <ul class="nav navbar-nav">
+    <li><a href="#"><b class="frontpage-menu-item">Guida</b></a></li>
+    <li><a href="https://github.com/open-education-polito/fare-platform">
+      <b class="frontpage-menu-item">Github</b>
+    </a></li>
+    <li><a href="https://openeducation.polito.it/"><b class="frontpage-menu-item">Chi siamo</b></a></li>
+    <li><a href="#"><b class="frontpage-menu-item">Corsi completi</b></a></li>
+    <li><a href="#"><b class="frontpage-menu-item">Videoconferenza</b></a></li>
+  </ul>
 
   {{ super() }}
 
