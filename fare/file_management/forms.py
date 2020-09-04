@@ -32,6 +32,15 @@ class RecordForm(FlaskForm):
     description = TextAreaField(
         'Description', [validators.DataRequired()]
     )
+    license = SelectField(
+        'License', choices=(['CC BY', 'CC BY'],
+                            ['CC BY-SA', 'CC BY-SA'],
+                            ['CC BY-NC', 'CC BY-NC'],
+                            ['CC BY-ND', 'CC BY-ND'],
+                            ['CC BY-NC-SA', 'CC BY-NC-SA'],
+                            ['CC BY-NC-ND', 'CC BY-NC-ND']
+                            )
+    )
 
     def validate(self):
         """

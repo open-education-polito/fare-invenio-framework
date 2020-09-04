@@ -76,6 +76,8 @@ def create():
         subject = form.subject.data
         # set the argument
         coverage = form.coverage.data
+        # set the license
+        license = form.license.data
         # set the description
         description = form.description.data
         # set the file of the record
@@ -89,6 +91,7 @@ def create():
             educationLevel=educationLevel,
             subject=subject,
             coverage=coverage,
+            license=license,
             description=description,
             revisioned=False,
           ),

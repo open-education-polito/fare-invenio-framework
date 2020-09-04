@@ -30,6 +30,69 @@ invenio_logging.config.LOGGING_FS_LOGFILE = "/var/log/fare/log_fare.txt"
 invenio_logging.config.LOGGING_FS_PYWARNINGS = True
 invenio_theme.config.THEME_FOOTER_TEMPLATE = "fare/footer.html"
 
+FARE_LICENSES = {
+    "CC BY": {
+        "yes": [
+            "Creazione opere derivate",
+            "Distribuire",
+            "Attribuzione Richiesta",
+            "Uso a scopo Commerciale"
+        ],
+        "no": []
+    },
+    "CC BY-SA": {
+        "yes": [
+            "Creazione opere derivate",
+            "Distribuire",
+            "Attribuzione richiesta",
+            "Uso a scopo commerciale"
+        ],
+        "no": [
+            "Cambiare licenza"
+        ]
+    },
+    "CC BY-NC": {
+        "yes": [
+            "Creazione opere derivate",
+            "Distribuire",
+            "Attribuzione richiesta"
+        ],
+        "no": [
+            "Uso a scopo commerciale"
+        ]
+    },
+    "CC BY-ND": {
+        "yes": [
+            "Distribuire",
+            "Attribuzione richiesta",
+            "Uso a scopo commerciale"
+        ],
+        "no": [
+            "Creazione opere derivate"
+        ]
+    },
+    "CC BY-NC-SA": {
+        "yes": [
+            "Creazione opere derivate",
+            "Distribuire",
+            "Attribuzione richiesta"
+        ],
+        "no": [
+            "Uso a scopo commerciale"
+        ]
+    },
+    "CC BY-NC-ND": {
+        "yes": [
+            "Distribuire",
+            "Attribuzione richiesta"
+        ],
+        "no": [
+            "Creazione opere derivate",
+            "Uso a scopo commerciale"
+        ]
+    }
+}
+
 EDUCATION_LEVEL = {
   "educationLevel": [
                       "Divulgazione",
@@ -872,13 +935,15 @@ RECORDS_REST_FACETS = dict(
             type=dict(terms=dict(field='type')),
             keywords=dict(terms=dict(field='keywords')),
             Ordine_di_scuola=dict(terms=dict(field='educationLevel.keyword')),
-            Disciplina=dict(terms=dict(field='subject.keyword'))
+            Disciplina=dict(terms=dict(field='subject.keyword')),
+            Licenza=dict(terms=dict(field='license.keyword'))
         ),
         post_filters=dict(
             type=terms_filter('type'),
             keywords=terms_filter('keywords'),
             Ordine_di_scuola=terms_filter('educationLevel.keyword'),
             Disciplina=terms_filter('subject.keyword'),
+            Licenza=terms_filter('license.keyword'),
         )
     )
 )

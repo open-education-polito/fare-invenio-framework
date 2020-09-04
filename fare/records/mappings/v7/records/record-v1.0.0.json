@@ -40,6 +40,14 @@
           }
         }
       },
+      "license": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
       "contributors": {
         "type": "object",
         "properties": {
