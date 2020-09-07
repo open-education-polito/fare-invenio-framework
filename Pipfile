@@ -30,7 +30,7 @@ pytest-runner = ">=3.0.0,<5"
 Sphinx = ">=1.5.1"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [scripts]
 test = "python setup.py test"
