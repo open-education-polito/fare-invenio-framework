@@ -69,9 +69,7 @@
         <b>Autori:</b>
         {% for contributor in record.contributors %}
           {{ contributor['name'] }}
-          {% if not loop.last %}
-            ,
-          {% endif %}
+          {% if not loop.last %} , {% endif %}
         {% endfor %}
       </h4>
       <br>
@@ -159,6 +157,10 @@
                 </div>
             </div>
         </div>
+
+      <p class="text-center">Vuoi sapere di più sulle licenze Creative Commons? Clicca
+        <a href="https://creativecommons.org/licenses/?lang=it">qui</a>
+      </p>
 
     </div>
   </div>

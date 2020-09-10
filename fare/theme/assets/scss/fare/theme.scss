@@ -10,6 +10,7 @@
 @import "variables";
 @import "../invenio_theme/styles";
 
+
 .navbar-default{
   background-color: transparent;
   border-color: transparent;
@@ -38,7 +39,7 @@
 }
 
 .home-separator{
-  border: 2px solid seagreen;
+  border: 2px solid white;
   border-radius: 5px;
   width: 50%;
 }
@@ -48,21 +49,17 @@ body.cover-page{
   background-size: 100%;
 }
 
-a{
-  color: seagreen;
-}
-
 .marketing h1, .marketing h2{
-  color: seagreen;
+  color: white;
 }
 
 .frontpage-icon{
-  border-color: seagreen;
+  border-color: white;
   border-style: solid;
   border-width: 7px;
   border-radius: 100%;
   padding: 3%;
-  color: black;
+  color: white;
   margin-top: 2%;
 }
 
@@ -83,8 +80,8 @@ a{
 }
 
 footer {
-  margin-top: 50%;
-  background-color: lightgrey;
+  margin-top: 10%;
+  background-color: #b0bec5;
 }
 
 .list-inline{
@@ -96,15 +93,15 @@ footer {
 }
 
 .explore-row{
-  background-color: lightgoldenrodyellow;
+  background-color: #ffbb33;
 }
 
 .collaborate-row{
-  background-color: lightcyan;
+  background-color: #4285f4;
 }
 
 .learn-row{
-  background-color: lightblue;
+  background-color: #00c851;
 }
 
 .frontpage-full-width{
@@ -113,15 +110,17 @@ footer {
 
 .frontpage-explanation{
   padding: 3%;
+  color: white;
 }
 
 .tutorial-image{
   margin-left: 30%;
   margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .tutorial-row{
-  background-color: gainsboro;
+  background-color: #2bbbad;
 }
 
 .frontpage-menu-item{
