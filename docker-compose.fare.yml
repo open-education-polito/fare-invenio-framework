@@ -57,7 +57,7 @@ services:
       service: app
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_ui.ini"]
     image: fare
-    ports:
+    expose:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
@@ -76,7 +76,7 @@ services:
       service: app
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_rest.ini"]
     image: fare
-    ports:
+    expose:
       - "5001"
     volumes:
       - static_data:/opt/invenio/var/instance/static

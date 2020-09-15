@@ -37,15 +37,15 @@ services:
     build: ./docker/nginx/
     image: fare-frontend
     restart: "always"
-    ports:
+    expose:
       - "80"
       - "443"
   cache:
     image: redis
     restart: "always"
     read_only: true
-    ports:
-      - "6379:6379"
+    expose:
+      - "6379"
   db:
     image: postgres:9.6
     restart: "always"
@@ -53,14 +53,14 @@ services:
       - "POSTGRES_USER=${PG_USER}"
       - "POSTGRES_PASSWORD=${PG_PASSWORD}"
       - "POSTGRES_DB=${PG_DB}"
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
   mq:
     image: rabbitmq:3-management
     restart: "always"
-    ports:
-      - "15672:15672"
-      - "5672:5672"
+    expose:
+      - "15672"
+      - "5672"
   es:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.2.0
     restart: "always"
@@ -73,18 +73,18 @@ services:
         soft: -1
         hard: -1
     mem_limit: 1g
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+    expose:
+      - "9200"
+      - "9300"
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:7.2.1
     environment:
       - "ELASTICSEARCH_HOSTS=http://es:9200"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ports: 
-      - "5601:5601"
+    expose: 
+      - "5601"
   flower:
     image: mher/flower
     command: --broker=amqp://guest:guest@mq:5672/ --broker_api=http://guest:guest@mq:15672/api/
-    ports:
-      - "5555:5555"
+    expose:
+      - "5555"
