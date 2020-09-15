@@ -13,5 +13,8 @@
 # Invenio usually needs.
 
 FROM inveniosoftware/centos7-python:3.6
-COPY Pipfile Pipfile.lock ./
-RUN pipenv install --deploy --system
+COPY . ./
+RUN chmod -R 777 /opt/invenio/src && \
+        mkdir /var/log/fare && \
+        chmod -R 777 /var/log/fare && \
+        pipenv install --deploy --system

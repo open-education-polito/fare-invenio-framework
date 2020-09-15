@@ -45,6 +45,10 @@
       "description": "A boolean that indicate if the recore was revisioned of not.",
       "type": "boolean"
     },
+    "license": {
+      "description": "License of the record.",
+      "type": "string"
+    },
     "contributors": {
       "description": "Contributors in order of importance.",
       "minItems": 1,

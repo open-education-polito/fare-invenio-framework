@@ -45,6 +45,7 @@ class MetadataSchemaV1(StrictKeysMixin):
     coverage = SanitizedUnicode(required=True)
     description = SanitizedUnicode(required=True)
     revisioned = fields.Boolean(required=True)
+    license = SanitizedUnicode(required=True)
 
 
 class RecordSchemaV1(StrictKeysMixin):

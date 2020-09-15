@@ -10,35 +10,57 @@
 @import "variables";
 @import "../invenio_theme/styles";
 
-.navbar-static-top{
-  background-image: url("../../../static/images/books.png");
+
+.navbar-default{
+  background-color: transparent;
+  border-color: transparent;
+  background-image: url("../../../static/images/frontpage_library.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.frontpage-search{
+  margin-top: 20%;
+  background-color: rgba(22,35,42,.6);
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.frontpage-navbar {
+  min-height: 750px;
+  background-image: url("../../../static/images/frontpage_library.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.frontpage-subtitle{
+  color: white;
 }
 
 .home-separator{
-  border: 2px solid seagreen;
+  border: 2px solid white;
   border-radius: 5px;
   width: 50%;
 }
 
 body.cover-page{
-  background-color: seagreen;
+  background-image: url("../../../static/images/login_background.png");
+  background-size: 100%;
 }
 
-a{
-  color: seagreen;
-}
-
-.marketing h1{
-  color: seagreen;
+.marketing h1, .marketing h2{
+  color: white;
 }
 
 .frontpage-icon{
-  border-color: seagreen;
+  border-color: white;
   border-style: solid;
-  border-width: 5px;
+  border-width: 7px;
   border-radius: 100%;
-  padding: 8%;
-  color: black;
+  padding: 3%;
+  color: white;
+  margin-top: 2%;
 }
 
 .create-file-icon{
@@ -53,10 +75,63 @@ a{
   margin-right:auto;
 }
 
-.frontpage-icon-header{
-  padding-bottom: 0px
-}
-
 #publishform, #downloadform, #deleteform{
   display: inline;
+}
+
+footer {
+  margin-top: 10%;
+  background-color: #b0bec5;
+}
+
+.list-inline{
+  margin-left: 0px;
+}
+
+.button-menu{
+  margin-top: 13px;
+}
+
+.explore-row{
+  background-color: #ffbb33;
+}
+
+.collaborate-row{
+  background-color: #4285f4;
+}
+
+.learn-row{
+  background-color: #00c851;
+}
+
+.frontpage-full-width{
+  width: auto;
+}
+
+.frontpage-explanation{
+  padding: 3%;
+  color: white;
+}
+
+.tutorial-image{
+  margin-left: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.tutorial-row{
+  background-color: #2bbbad;
+}
+
+.frontpage-menu-item{
+  color: white;
+  font-size: large;
+}
+
+.frontpage-image{
+  width: 100%;
+}
+
+.navbar-nav{
+  background-color: rgba(22,35,42,.6);
 }

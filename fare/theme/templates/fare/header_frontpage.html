@@ -1,0 +1,32 @@
+{%- extends "invenio_theme/header_frontpage.html" %}
+
+{%- block navbar %}
+  <div class="frontpage-navbar">
+    {{ super() }}
+  </div>
+{%- endblock navbar %}
+
+{%- block frontpage_title %}
+    {{ super() }}
+    <h3 class="text-center frontpage-subtitle">
+      Esplora migliaia di contenuti didattici con licenza Creative Commons,
+      collabora caricando il tuo materiale,
+      impara con materiale selezionato
+    </h3>
+{%- endblock frontpage_title %}
+
+{%- block navbar_inner %}
+
+  <ul class="nav navbar-nav">
+    <li><a href="#"><b class="frontpage-menu-item">Guida</b></a></li>
+    <li><a href="https://github.com/open-education-polito/fare-platform">
+      <b class="frontpage-menu-item">Github</b>
+    </a></li>
+    <li><a href="https://openeducation.polito.it/"><b class="frontpage-menu-item">Chi siamo</b></a></li>
+    <li><a href="#"><b class="frontpage-menu-item">Corsi completi</b></a></li>
+    <li><a href="https://fare.polito.it/fare/meeting"><b class="frontpage-menu-item">Videoconferenza</b></a></li>
+  </ul>
+
+  {{ super() }}
+
+{%- endblock navbar_inner %}

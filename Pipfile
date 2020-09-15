@@ -12,6 +12,8 @@ uwsgi = ">=2.0"
 uwsgi-tools = ">=1.1.1"
 uwsgitop = ">=0.11"
 fare = {editable = true,path = "."}
+# nbconvert added temporarily
+nbconvert = {extras = ["execute"], version = ">=4.1.0,<6.0.0"}
 
 [dev-packages]
 check-manifest = ">=0.35"
@@ -30,7 +32,7 @@ pytest-runner = ">=3.0.0,<5"
 Sphinx = ">=1.5.1"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [scripts]
 test = "python setup.py test"
