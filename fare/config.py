@@ -12,9 +12,9 @@ You overwrite and set instance-specific configuration by either:
 - Configuration file: ``<virtualenv prefix>/var/instance/invenio.cfg``
 - Environment variables: ``APP_<variable name>``
 """
-
+import os
 from __future__ import absolute_import, print_function
-
+from dotenv import load_dotenv
 from datetime import timedelta
 
 
@@ -22,6 +22,8 @@ def _(x):
     """Identity function used to trigger string extraction."""
     return x
 
+# Loading dotenv
+load_dotenv()
 
 # Rate limiting
 # =============
@@ -132,7 +134,7 @@ JSONSCHEMAS_HOST = 'fare.polito.it'
 
 #: Secret key - each installation (dev, production, ...) needs a separate key.
 #: It should be changed before deploying.
-SECRET_KEY = 'CHANGE_ME'
+SECRET_KEY = os.getenv('SECRET_KEY')
 #: Max upload size for form data via application/mulitpart-formdata.
 MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MiB
 #: Sets cookie with the secure flag by default

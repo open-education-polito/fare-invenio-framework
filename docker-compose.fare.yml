@@ -24,7 +24,7 @@
 # - DB: (PostgresSQL/MySQL) (exposed port: 5432 or 3306)
 # - Message queue: RabbitMQ (exposed ports: 5672, 15672)
 # - Elasticsearch (exposed ports: 9200, 9300)
-#
+
 version: '2.3'
 services:
   # Load balancer
@@ -38,6 +38,8 @@ services:
       - frontend
   # Frontend
   frontend:
+    env_file:
+      - .env
     extends:
       file: docker-services.yml
       service: frontend
@@ -48,6 +50,8 @@ services:
       - web-api
   # UI Application
   web-ui:
+    env_file:
+      - .env
     extends:
       file: docker-services.yml
       service: app
@@ -57,6 +61,7 @@ services:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
+      - log:/var/log/fare
     links:
       - cache
       - es
@@ -64,6 +69,8 @@ services:
       - db
   # API Rest Application
   web-api:
+    env_file:
+      - .env
     extends:
       file: docker-services.yml
       service: app
@@ -73,6 +80,7 @@ services:
       - "5001"
     volumes:
       - static_data:/opt/invenio/var/instance/static
+      - log:/var/log/fare
     links:
       - cache
       - es
@@ -80,6 +88,8 @@ services:
       - db
   # Worker
   worker:
+    env_file:
+      - .env
     extends:
       file: docker-services.yml
       service: app
@@ -97,6 +107,8 @@ services:
       file: docker-services.yml
       service: cache
   db:
+    env_file:
+      - .env
     extends:
       file: docker-services.yml
       service: db
@@ -111,3 +123,4 @@ services:
       service: es
 volumes:
   static_data:
+  log:

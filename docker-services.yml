@@ -11,7 +11,7 @@ services:
     build:
       context: ./
       args:
-        - ENVIRONMENT=DEV
+        - ENVIRONMENT=${ENVIRONMENT}
     image: fare
     environment:
       - "INVENIO_ACCOUNTS_SESSION_REDIS_URL=redis://cache:6379/1"
@@ -21,7 +21,7 @@ services:
       - "INVENIO_CELERY_BROKER_URL=amqp://guest:guest@mq:5672/"
       - "INVENIO_CELERY_RESULT_BACKEND=redis://cache:6379/2"
       - "INVENIO_SEARCH_ELASTIC_HOSTS=['es:9200']"
-      - "INVENIO_SECRET_KEY=CHANGE_ME"
+      - "INVENIO_SECRET_KEY=${SECRET_KEY}"
       - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://fare:fare@db/fare"
       - "INVENIO_WSGI_PROXIES=2"
       - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
@@ -50,9 +50,9 @@ services:
     image: postgres:9.6
     restart: "always"
     environment:
-      - "POSTGRES_USER=fare"
-      - "POSTGRES_PASSWORD=fare"
-      - "POSTGRES_DB=fare"
+      - "POSTGRES_USER=${PG_USER}"
+      - "POSTGRES_PASSWORD=${PG_PASSWORD}"
+      - "POSTGRES_DB=${PG_DB}"
     ports:
       - "5432:5432"
   mq:
