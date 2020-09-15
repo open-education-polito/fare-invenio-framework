@@ -6,6 +6,23 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.5.0] - 2020-09-15  
+----------------------------
+
+
+Added
+~~~~~~~
+
+- New UX/UI 
+- Added CC licenses list
+
+Fixed
+-----
+
+- Fixed concurrency bugs
+- Fixed bugs on PIDStore
+
+
 [Release 0.4.0] - 2020-07-03  
 ----------------------------
 
