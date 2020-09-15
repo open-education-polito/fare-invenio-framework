@@ -12,8 +12,8 @@ You overwrite and set instance-specific configuration by either:
 - Configuration file: ``<virtualenv prefix>/var/instance/invenio.cfg``
 - Environment variables: ``APP_<variable name>``
 """
-import os
 from __future__ import absolute_import, print_function
+import os
 from dotenv import load_dotenv
 from datetime import timedelta
 
@@ -119,8 +119,10 @@ CELERY_BEAT_SCHEDULE = {
 # Database
 # ========
 #: Database URI including user and password
-SQLALCHEMY_DATABASE_URI = \
-    'postgresql+psycopg2://fare:fare@localhost/fare'
+SQLALCHEMY_USER = os.getenv('PG_USER')
+SQLALCHEMY_PWD = os.getenv('PG_PASSWORD')
+QLALCHEMY_DATABASE_URI = \
+        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + '@localhost/fare'
 
 # JSONSchemas
 # ===========
