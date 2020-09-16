@@ -9,7 +9,7 @@
 
 {% else %}
 
-  <div id="main-div" class="col-md-12">
+  <div class="container">
 
     {% for record in records_list %}
 
@@ -36,10 +36,11 @@
             </li>
             {% endfor %}
         </ul>
+        <h5><b>Licenza:</b> {{ record['license'] }}</h5>
       </div>
 
 
-      <div id="label-div" class="col-md-3">
+      <div id="label-div" class="col-md-4">
         <h3>
         {% if record['revisioned'] %}
           <span class="pull-right label label-info">pubblicato</span>
