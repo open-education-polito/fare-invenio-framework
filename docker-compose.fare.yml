@@ -20,10 +20,10 @@
 # - UI application: UWSGI (not exposed)
 # - API application: UWSGI (not exposed)
 # - Worker: Celery (not exposed)
-# - Cache: Redis (exposed port: 6379)
-# - DB: (PostgresSQL/MySQL) (exposed port: 5432 or 3306)
-# - Message queue: RabbitMQ (exposed ports: 5672, 15672)
-# - Elasticsearch (exposed ports: 9200, 9300)
+# - Cache: Redis (not exposed)
+# - DB: (PostgresSQL/MySQL) (not exposed)
+# - Message queue: RabbitMQ (not exposed)
+# - Elasticsearch (not exposed)
 
 version: '2.3'
 services:

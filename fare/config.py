@@ -145,7 +145,9 @@ SESSION_COOKIE_SECURE = True
 #: provided, the allowed hosts variable is set to localhost. In production it
 #: should be set to the correct host and it is strongly recommended to only
 #: route correct hosts to the application.
-APP_ALLOWED_HOSTS = ['fare.polito.it', 'localhost', '127.0.0.1']
+APP_ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if os.getenv('CURRENT_HOST') is not None:
+    APP_ALLOWED_HOSTS.insert(0,os.getenv('CURRENT_HOST'))
 
 # OAI-PMH
 # =======
