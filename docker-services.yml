@@ -22,7 +22,7 @@ services:
       - "INVENIO_CELERY_RESULT_BACKEND=redis://cache:6379/2"
       - "INVENIO_SEARCH_ELASTIC_HOSTS=['es:9200']"
       - "INVENIO_SECRET_KEY=${SECRET_KEY}"
-      - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://fare:fare@db/fare"
+      - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://${PG_USER}:${PG_PASSWORD}@db/${PG_DB}"
       - "INVENIO_WSGI_PROXIES=2"
       - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
   lb:
@@ -53,6 +53,7 @@ services:
       - "POSTGRES_USER=${PG_USER}"
       - "POSTGRES_PASSWORD=${PG_PASSWORD}"
       - "POSTGRES_DB=${PG_DB}"
+      - "PGDATA=/var/lib/postgresql/data"
     expose:
       - "5432"
   mq:

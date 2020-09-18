@@ -45,6 +45,7 @@ services:
       service: frontend
     volumes:
       - static_data:/opt/invenio/var/instance/static
+      - nginx_log:/var/log/nginx
     links:
       - web-ui
       - web-api
@@ -61,7 +62,7 @@ services:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
-      - log:/var/log/fare
+      - ui_log:/var/log/fare 
     links:
       - cache
       - es
@@ -80,7 +81,7 @@ services:
       - "5001"
     volumes:
       - static_data:/opt/invenio/var/instance/static
-      - log:/var/log/fare
+      - api_log:/var/log/fare
     links:
       - cache
       - es
@@ -121,6 +122,12 @@ services:
     extends:
       file: docker-services.yml
       service: es
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
 volumes:
   static_data:
-  log:
+  es_data:
+  ui_log:
+  api_log:
+  nginx_log:
