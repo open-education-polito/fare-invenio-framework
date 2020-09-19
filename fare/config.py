@@ -86,8 +86,7 @@ COLLECT_STORAGE = 'flask_collect.storage.file'
 #: Email address used as sender of account registration emails.
 SECURITY_EMAIL_SENDER = SUPPORT_EMAIL
 #: Email subject for account registration emails.
-SECURITY_EMAIL_SUBJECT_REGISTER = _(
-    "Welcome to fare!")
+SECURITY_EMAIL_SUBJECT_REGISTER = _("Welcome to FARE!")
 #: Redis session storage URL.
 ACCOUNTS_SESSION_REDIS_URL = 'redis://localhost:6379/1'
 #: Enable session/user id request tracing. This feature will add X-Session-ID

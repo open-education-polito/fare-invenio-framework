@@ -113,6 +113,8 @@ services:
     extends:
       file: docker-services.yml
       service: db
+    volumes:
+      - pg_data:/pgdata
   # http://guest:guest@127.0.0.1:15672
   mq:
     extends:
@@ -131,3 +133,4 @@ volumes:
   ui_log:
   api_log:
   nginx_log:
+  pg_data:
