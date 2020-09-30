@@ -16,6 +16,8 @@
 
   {% if current_user.is_authenticated %}
 
+    <hr class="box-separator">
+
     <div class="row tutorial-row">
       <div class="col-sm-6">
         <img class="tutorial-image" src="{{ url_for('static', filename='images/menu_options.png') }}" alt="Menu"/>
@@ -34,7 +36,7 @@
       </div>
     </div>
 
-    <br><br><br>
+    <hr class="box-separator">
 
     <div class="row tutorial-row">
       <div class="col-sm-6">
@@ -55,7 +57,7 @@
       </div>
     </div>
 
-    <br><br><br>
+    <hr class="box-separator">
 
     <div class="row tutorial-row">
       <div class="col-sm-6">
@@ -79,8 +81,22 @@
 
   {% else %}
 
+    <hr class="box-separator">
+
+    <div class="row welcome-row frontpage-explanation">
+          <h1 class="text-center"><b>
+            Benvenuto su F.A.R.E.
+          </b></h1>
+          <h3 class="text-center">
+            FARE, acronimo di “Free Architecture for Remote Education”, è un grande archivio di materiali didattici e divulgativi liberi. 
+            Il codice sorgente è coperto da licenze di software libero e tutti i contenuti pubblicati sono coperti da licenze Creative Commons.
+          </h3>
+   </div>
+
+    <hr class="box-separator">
+
     <div class="row explore-row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 frontpage-img-style">
         <img class="frontpage-image" src="{{ url_for('static', filename='images/explore_books.png') }}" alt="Explore"/>
       </div>
       <div class="col-sm-6">
@@ -99,7 +115,42 @@
       </div>
     </div>
 
-    <br><br><br>
+    <hr class="box-separator">
+
+    <div class="row creative-commons-row">
+      <div class="col-sm-6">
+        <div class="row text-center">
+          <i class="fa fa-leanpub fa-3x aria-hidden='true' frontpage-icon"></i>
+        </div>
+        <div class="row">
+          <h2 class="text-center">Libero</h2>
+          <hr class="home-separator">
+          <h3 class="text-center frontpage-explanation">
+            Scarica tutto il materiale che vuoi, quando vuoi, non serve registrarsi. 
+            Basta scrivere quello che cerchi nella barra di ricerca e iniziare ad esplorare il materiale
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row text-center">
+          <i class="fa fa-creative-commons fa-3x aria-hidden='true' frontpage-icon"></i>
+        </div>
+        <div class="row">
+          <h2 class="text-center">Creative Commons</h2>
+          <hr class="home-separator">
+          <h3 class="text-center frontpage-explanation">
+            Tutto il materiale presente su FARE è pubblicato con licenza creative commons! 
+            Se vuoi saperne di più su queste licenze clicca
+            <a href="https://creativecommons.org/licenses/?lang=it">
+              qui <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <hr class="box-separator">
 
     <div class="row collaborate-row">
       <div class="col-sm-6">
@@ -116,15 +167,15 @@
           </h3>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 frontpage-img-style">
         <img class="frontpage-image" src="{{ url_for('static', filename='images/collaborate.png') }}" alt="Collaborate"/>
       </div>
     </div>
 
-    <br><br><br>
+    <hr class="box-separator">
 
     <div class="row learn-row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 frontpage-img-style">
         <img class="frontpage-image" src="{{ url_for('static', filename='images/learning_group.png') }}" alt="Learn"/>
       </div>
       <div class="col-sm-6">
