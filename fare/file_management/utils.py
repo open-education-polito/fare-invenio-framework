@@ -30,6 +30,22 @@ def get_all_arguments():
     return ARGUMENTS
 
 
+def get_all_subjects():
+    """
+    Used to retrieve
+    all subjects
+    """
+    return SUBJECTS
+
+
+def get_all_education_levels():
+    """
+    Used to retrieve
+    all education levels
+    """
+    return EDUCATION_LEVEL
+
+
 def init_field_all():
     """
     Initialize the field coverage with

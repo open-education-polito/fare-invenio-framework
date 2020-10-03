@@ -14,7 +14,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from .api import RecordFare
 from .forms import RecordForm
 from .search import StatusSearch
-from .utils import get_all_arguments
+from .utils import get_all_arguments, get_all_subjects, get_all_education_levels
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -44,6 +44,23 @@ def user_uploads():
 @blueprint.route('/arguments', methods=('GET',))
 def retrieve_arguments():
     return get_all_arguments()
+
+
+@blueprint.route('/guide_search', methods=('GET',))
+def retrieve_guide_search():
+    subjects = get_all_subjects()
+    education_levels = get_all_education_levels()
+    return render_template('file_management/guide_search.html', subjects=subjects, education_levels=education_levels)
+
+
+@blueprint.route('/guide_permissions', methods=('GET',))
+def retrieve_guide_permissions():
+    return render_template('file_management/guide_permissions.html')
+
+
+@blueprint.route('/guide_upload', methods=('GET',))
+def retrieve_guide_upload():
+    return render_template('file_management/guide_upload.html')
 
 
 @blueprint.route('/create', methods=('GET', 'POST'))
