@@ -18,12 +18,19 @@
 {%- block navbar_inner %}
 
   <ul class="nav navbar-nav">
-    <li><a href="#"><b class="frontpage-menu-item">Guida</b></a></li>
-    <li><a href="https://github.com/open-education-polito/fare-platform">
-      <b class="frontpage-menu-item">Github</b>
-    </a></li>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <b class="frontpage-menu-item"> Guide <span class="caret"></span></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="{{ url_for('file_management.retrieve_guide_search') }}">Ricerca</a></li>
+        <li><a href="{{ url_for('file_management.retrieve_guide_upload') }}">Caricamento file</a></li>
+        <li><a href="{{ url_for('file_management.retrieve_guide_permissions') }}">Permessi utente</a></li>
+      </ul>
+    </li>
+
     <li><a href="https://openeducation.polito.it/"><b class="frontpage-menu-item">Chi siamo</b></a></li>
-    <li><a href="#"><b class="frontpage-menu-item">Corsi completi</b></a></li>
     <li><a href="https://fare.polito.it/fare/meeting"><b class="frontpage-menu-item">Videoconferenza</b></a></li>
   </ul>
 

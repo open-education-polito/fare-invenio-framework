@@ -92,7 +92,10 @@
               <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
               <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
           </form>
-          <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">Rimuovi</button>
+          <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              Rimuovi
+          </button>
       {% endif %}
 
 
@@ -102,7 +105,10 @@
                   <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
             <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
               </form>
-              <button type="submit" class="btn btn-success" form="publishform" value="Publish">Pubblica</button>
+              <button type="submit" class="btn btn-success" form="publishform" value="Publish">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Pubblica
+              </button>
           {% endif %}
       {% endif %}
 
@@ -111,7 +117,10 @@
           <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
           <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
       </form>
-      <button type="submit" class="btn btn-primary" form="downloadform" value="Download">Download</button>
+      <button type="submit" class="btn btn-primary" form="downloadform" value="Download">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          Download
+      </button>
 
     </div>
 
@@ -160,6 +169,7 @@
 
       <p class="text-center">Vuoi sapere di più sulle licenze Creative Commons? Clicca
         <a href="https://creativecommons.org/licenses/?lang=it">qui</a>
+        <i class="fa fa-external-link" aria-hidden="true"></i>
       </p>
 
     </div>

@@ -1,0 +1,75 @@
+{%- extends config.BASE_TEMPLATE %}
+
+{% block page_body %}
+
+<div class="container">
+
+<h1 class="text-center">Guida al caricamento dei files su FARE</h1>
+
+<p>
+  Su FARE tutti gli utenti registrati possono caricare del materiale didattico, basta cliccare sul menù in alto come mostrato sotto
+</p>
+
+<img class="guide-image-small" src="{{ url_for('static', filename='images/menu_options.png') }}" alt="Menu"/>
+
+<p>
+  Dopo che il menù a tendina si sarà aperto clicca sulla voce <b>Carica file</b> con il simbolo <i class="fa fa-file-text fa-fw"></i> 
+</p>
+
+<img class="guide-image-small" src="{{ url_for('static', filename='images/upload_file.png') }}" alt="Upload"/>
+
+<p>
+  A questo punto apparirà un form per l'inserimento dei dati relativi al materiale didattico che si sta caricando come quello
+  nell'immagine riportata sotto
+</p>
+
+<img class="guide-image-medium" src="{{ url_for('static', filename='images/record_form.png') }}" alt="Form"/>
+
+<p>
+  Compila tutti i campi: titolo, autori, ordine di scuola, disciplina, argomento, una descrizione del contenuto del materiale che si sta caricando,
+  la licenza creative common con cui caricare il materiale (
+  per saperne di più sulle licenze Creative Commons clicca
+  <a href="https://creativecommons.org/licenses/?lang=it">qui</a><i class="fa fa-external-link" aria-hidden="true"></i>
+  ) e infine seleziona dal tuo computer il file da caricare e clicca sul pulsante 
+  <button type="submit" class="btn btn-default">Crea</button>.
+  Se l'operazione è avvenuta con successo comparirà la schermata seguente
+</p>
+
+<img class="guide-image-large" src="{{ url_for('static', filename='images/record_upload_after.png') }}" alt="After_upload"/>
+
+<p>
+  Un utente iscritto a FARE che ha caricato del materiale puoi vedere il suo stato, ovvero se è stato revisionato e quindi reso pubblico,
+  oppure se è ancora in fase di revisione. Per verificarlo effettua l'accesso e clicca nel menù in alto come mostrato nell'immagine qui sotto
+</p>
+
+<img class="guide-image-small" src="{{ url_for('static', filename='images/menu_options.png') }}" alt="Menu"/>
+
+<p>
+  In questo modo verrà aperto il menù a tendina che mostra tutte le posibili opzioni. Per verificare lo stato dei file che hai caricato clicca alla voce
+  <b>Stato files</b> con il simbolo <i class="fa fa-check-circle" aria-hidden="true"></i> , come mostrato di seguito
+</p>
+
+<img class="guide-image-small" src="{{ url_for('static', filename='images/status_file.png') }}" alt="Status"/>
+
+<p>
+  Nella pagina saranno visibili tutti i files caricati con l'account con il quale hai effettuato l'accesso. Nell'immagine sotto un esempio della
+  pagina
+</p>
+
+<img class="guide-image-large" src="{{ url_for('static', filename='images/status_records.png') }}" alt="Status"/>
+
+<p>
+  <b>Ricorda:</b> se accanto al file compare la scritta 
+  <span class="label label-danger">da revisionare</span>
+  , vuol dire che il file deve ancora essere revisionato dai membri <b>staff</b> per poter essere reso pubblico.
+  se, invece compare la scritta 
+  <span class="label label-info">pubblicato</span>
+  allora il file ha passato la fase di revisione e quindi è pubblico e può essere scaricato da tutti.
+</p>
+
+
+</div>
+
+{{ webpack['guide.css'] }}
+
+{% endblock page_body %}

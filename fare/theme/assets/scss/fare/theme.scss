@@ -28,10 +28,10 @@
 }
 
 .frontpage-navbar {
-  min-height: 750px;
   background-image: url("../../../static/images/frontpage_library.png");
   background-repeat: no-repeat;
   background-size: 100%;
+  min-height: 750px;
 }
 
 .frontpage-subtitle{
@@ -42,6 +42,12 @@
   border: 2px solid white;
   border-radius: 5px;
   width: 50%;
+}
+
+.box-separator{
+  padding: 0px;
+  margin: 0px;
+  border: 2px solid white;
 }
 
 body.cover-page{
@@ -60,7 +66,7 @@ body.cover-page{
   border-radius: 100%;
   padding: 3%;
   color: white;
-  margin-top: 2%;
+  margin-top: 5%;
 }
 
 .create-file-icon{
@@ -81,7 +87,7 @@ body.cover-page{
 
 footer {
   margin-top: 10%;
-  background-color: #b0bec5;
+  background-color: #F0EDEE;
 }
 
 .list-inline{
@@ -92,20 +98,31 @@ footer {
   margin-top: 13px;
 }
 
+.welcome-row{
+  background-color: #005B96;
+  padding: 3%;
+}
+
 .explore-row{
-  background-color: #ffbb33;
+  background-color: #B3CDE0;
+}
+
+.creative-commons-row{
+  background-color: #03396C;
+  padding: 3%;
 }
 
 .collaborate-row{
-  background-color: #4285f4;
+  background-color: #6497B1;
 }
 
 .learn-row{
-  background-color: #00c851;
+  background-color: #335B7E;
 }
 
 .frontpage-full-width{
   width: auto;
+  padding: 0px;
 }
 
 .frontpage-explanation{
@@ -114,13 +131,17 @@ footer {
 }
 
 .tutorial-image{
-  margin-left: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 5%;
   margin-bottom: 5%;
+  width: 30%;
 }
 
 .tutorial-row{
-  background-color: #2bbbad;
+  background-color: #005B96;
+  padding: 3%;
 }
 
 .frontpage-menu-item{
@@ -130,6 +151,10 @@ footer {
 
 .frontpage-image{
   width: 100%;
+}
+
+.frontpage-img-style{
+  padding: 0px;
 }
 
 .navbar-nav{
