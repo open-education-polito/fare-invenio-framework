@@ -15,10 +15,10 @@ services:
     image: fare
     environment:
       - "INVENIO_ACCOUNTS_SESSION_REDIS_URL=redis://cache:6379/1"
-      - "INVENIO_BROKER_URL=amqp://guest:guest@mq:5672/"
+      - "INVENIO_BROKER_URL=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/"
       - "INVENIO_CACHE_REDIS_URL=redis://cache:6379/0"
       - "INVENIO_CACHE_TYPE=redis"
-      - "INVENIO_CELERY_BROKER_URL=amqp://guest:guest@mq:5672/"
+      - "INVENIO_CELERY_BROKER_URL=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/"
       - "INVENIO_CELERY_RESULT_BACKEND=redis://cache:6379/2"
       - "INVENIO_SEARCH_ELASTIC_HOSTS=['es:9200']"
       - "INVENIO_SECRET_KEY=${SECRET_KEY}"
@@ -86,6 +86,6 @@ services:
       - "5601"
   flower:
     image: mher/flower
-    command: --broker=amqp://guest:guest@mq:5672/ --broker_api=http://guest:guest@mq:15672/api/
+    command: --broker=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/ --broker_api=http://${BROKER_USER}:${BROKER_PWD}@mq:15672/api/
     expose:
       - "5555"
