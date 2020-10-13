@@ -12,9 +12,9 @@ You overwrite and set instance-specific configuration by either:
 - Configuration file: ``<virtualenv prefix>/var/instance/invenio.cfg``
 - Environment variables: ``APP_<variable name>``
 """
-
 from __future__ import absolute_import, print_function
-
+import os
+from dotenv import load_dotenv
 from datetime import timedelta
 
 
@@ -22,6 +22,8 @@ def _(x):
     """Identity function used to trigger string extraction."""
     return x
 
+# Loading dotenv
+load_dotenv()
 
 # Rate limiting
 # =============
@@ -84,8 +86,7 @@ COLLECT_STORAGE = 'flask_collect.storage.file'
 #: Email address used as sender of account registration emails.
 SECURITY_EMAIL_SENDER = SUPPORT_EMAIL
 #: Email subject for account registration emails.
-SECURITY_EMAIL_SUBJECT_REGISTER = _(
-    "Welcome to fare!")
+SECURITY_EMAIL_SUBJECT_REGISTER = _("Welcome to FARE!")
 #: Redis session storage URL.
 ACCOUNTS_SESSION_REDIS_URL = 'redis://localhost:6379/1'
 #: Enable session/user id request tracing. This feature will add X-Session-ID
@@ -117,8 +118,10 @@ CELERY_BEAT_SCHEDULE = {
 # Database
 # ========
 #: Database URI including user and password
+SQLALCHEMY_USER = os.getenv('PG_USER')
+SQLALCHEMY_PWD = os.getenv('PG_PASSWORD')
 SQLALCHEMY_DATABASE_URI = \
-    'postgresql+psycopg2://fare:fare@localhost/fare'
+        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + '@localhost/${PG_DB}'
 
 # JSONSchemas
 # ===========
@@ -132,7 +135,7 @@ JSONSCHEMAS_HOST = 'fare.polito.it'
 
 #: Secret key - each installation (dev, production, ...) needs a separate key.
 #: It should be changed before deploying.
-SECRET_KEY = 'CHANGE_ME'
+SECRET_KEY = os.getenv('SECRET_KEY')
 #: Max upload size for form data via application/mulitpart-formdata.
 MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MiB
 #: Sets cookie with the secure flag by default
@@ -141,7 +144,9 @@ SESSION_COOKIE_SECURE = True
 #: provided, the allowed hosts variable is set to localhost. In production it
 #: should be set to the correct host and it is strongly recommended to only
 #: route correct hosts to the application.
-APP_ALLOWED_HOSTS = ['fare.polito.it', 'localhost', '127.0.0.1']
+APP_ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if os.getenv('CURRENT_HOST') is not None:
+    APP_ALLOWED_HOSTS.insert(0,os.getenv('CURRENT_HOST'))
 
 # OAI-PMH
 # =======

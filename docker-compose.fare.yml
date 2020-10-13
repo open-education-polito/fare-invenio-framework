@@ -1,0 +1,138 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2019 Open Education Polito.
+#
+# fare is free software; you can redistribute it and/or modify it under the
+# terms of the MIT License; see LICENSE file for more details.
+#
+# Example of a full-stack production environment for FARE.
+#
+# Usage::
+#
+#   $ ./docker/build-images.sh
+#   $ docker-compose -f docker-compose.fare.yml up -d
+#   $ ./docker/wait-for-services.sh --full
+#   $ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
+#
+# Following services are included:
+# - Load balancer: HAProxy (exposed ports: 80, 443)
+# - Frontend server: Nginx (not exposed)
+# - UI application: UWSGI (not exposed)
+# - API application: UWSGI (not exposed)
+# - Worker: Celery (not exposed)
+# - Cache: Redis (not exposed)
+# - DB: (PostgresSQL/MySQL) (not exposed)
+# - Message queue: RabbitMQ (not exposed)
+# - Elasticsearch (not exposed)
+
+version: '2.3'
+services:
+  # Load balancer
+  # http://127.0.0.1 (redirects to https)
+  # https://127.0.0.1 (application)
+  lb:
+    extends:
+      file: docker-services.yml
+      service: lb
+    links:
+      - frontend
+  # Frontend
+  frontend:
+    env_file:
+      - .env
+    extends:
+      file: docker-services.yml
+      service: frontend
+    volumes:
+      - static_data:/opt/invenio/var/instance/static
+      - nginx_log:/var/log/nginx
+    links:
+      - web-ui
+      - web-api
+  # UI Application
+  web-ui:
+    env_file:
+      - .env
+    extends:
+      file: docker-services.yml
+      service: app
+    command: ["uwsgi /opt/invenio/var/instance/uwsgi_ui.ini"]
+    image: fare
+    expose:
+      - "5000"
+    volumes:
+      - static_data:/opt/invenio/var/instance/static
+      - lo_data:/opt/invenio/var/instance/static/data
+      - ui_log:/var/log/fare 
+    links:
+      - cache
+      - es
+      - mq
+      - db
+  # API Rest Application
+  web-api:
+    env_file:
+      - .env
+    extends:
+      file: docker-services.yml
+      service: app
+    command: ["uwsgi /opt/invenio/var/instance/uwsgi_rest.ini"]
+    image: fare
+    expose:
+      - "5001"
+    volumes:
+      - static_data:/opt/invenio/var/instance/static
+      - api_log:/var/log/fare
+    links:
+      - cache
+      - es
+      - mq
+      - db
+  # Worker
+  worker:
+    env_file:
+      - .env
+    extends:
+      file: docker-services.yml
+      service: app
+    restart: "always"
+    command: ["celery worker -A invenio_app.celery --loglevel=INFO"]
+    image: fare
+    links:
+      - cache
+      - es
+      - mq
+      - db
+  # Base services
+  cache:
+    extends:
+      file: docker-services.yml
+      service: cache
+  db:
+    env_file:
+      - .env
+    extends:
+      file: docker-services.yml
+      service: db
+    volumes:
+      - pg_data:/pgdata
+  # http://guest:guest@127.0.0.1:15672
+  mq:
+    extends:
+      file: docker-services.yml
+      service: mq
+  es:
+    extends:
+      file: docker-services.yml
+      service: es
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+volumes:
+  static_data:
+  es_data:
+  pg_data:
+  lo_data:
+  ui_log:
+  api_log:
+  nginx_log:

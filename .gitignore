@@ -66,3 +66,6 @@ target/
 
 # DS_store
 .DS_Store
+
+# env file
+.env
