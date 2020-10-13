@@ -6,6 +6,22 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.6.0] - 2020-10-13  
+----------------------------
+
+
+Added
+~~~~~~~
+
+- New docker-compose file dedicated for this deployment 
+- New layout and color palette
+
+Fixed
+-----
+
+- Fixed some bugs and typos 
+
+
 [Release 0.5.0] - 2020-09-15  
 ----------------------------
 
