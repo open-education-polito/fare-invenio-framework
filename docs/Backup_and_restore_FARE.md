@@ -1,40 +1,33 @@
 # Backup and restore FARE
 
 The backup is composed of three parts:
-- Databse where are stored all the metadata and the users
-- Elasticsearch which is used to index the records and search them
-- Files which should be stored in a shared volume
-
-## 0. Shared volumes
-
-Data are shared between containers and host, they was added in the `docker-compose.full.yml` file and are organazied as follow:
-- To share the dump of the metadata between the `fare-invenio_db_1` container and the host, it was added  `/fare_shared_data/fare_db:/backup_fare_db` as volume in the `db` section
-- To share the dump of the indexes between the `fare-invenio_es_1` container and the host, it was added `/fare_shared_data/fare_es:/usr/share/elasticsearch/backup_fare_es` as volume in the `es` section
-- `/fare_shared_data/fare_files:/opt/invenio/instance/data/` was added in the `web-ui` section, to share the files uploaded in the platform
+- Databse where all the metadata and the users are stored
+- Elasticsearch used to index the records and search them
+- Files stored in the container web-ui
 
 ## 1. Database
 The dump of the metadata and the users can be done with this command:
 ```
-docker exec fare-invenio_db_1 pg_dumpall -U fare > ~/fare_shared_data/fare_db/backup_fare_db.sql
+docker exec fare-invenio_db_1 pg_dumpall -U $PG_USER > ~/fare_shared_data/fare_db/backup_fare_db.sql
 ```
 Where:
 - `fare-invenio_db_1` is the name of the container
 - `pg_dumpall` the command of postgres to dump all the database
-- `-U fare` the user
+- `-U $PG_USER` the user specified in the .env file
 - `~/fare_shared_data/fare_db/backup_fare_db.sql` the path where to save the dump
 
-Doing so we will have the dump of the database in the `/backup_fare_db` in the `fare-invenio_db_1` container and in the `~/fare_shared_data/fare_db/` path in the host.
+Doing so we will have the dump of the database in `/backup_fare_db` in the `fare-invenio_db_1` container and in the `~/fare_shared_data/fare_db/` path in the host.
 
 To restore the data we have to run this command:
 ```
-docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U fare
+docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U $PG_USER
 ```
 
 Where:
 - `fare-invenio_db_1` is the name of the container
 - `psql` the command of postgres to restore the data
 - `-f /backup_fare_db/backup_fare_db.sql` the file where there is the dump of the database
-- `-U fare` the user
+- `-U $PG_USER` the user
 
 ## 2. Elasticsearch
 First of all the path where to store the dump must be specified in the config file, it was done modifing the config file of elasticsearch in  `/docker/elasticsearch/elasticsearch.yml` adding the path of the repo `path.repo: ["<path_where_to_store_the_dump>"]`, doing so it's not needed to stop and restart the container.
@@ -90,7 +83,7 @@ delete the index with the most recent `<timestamp>` with:
 - `curl -X DELETE "localhost:9200/records-record-v1.0.0-<timestamp>?pretty"` (where `<timestamp>` is the one of the index)
 
 ## 3. Files
-The files are saved in the container `fare-invenio_web-ui_1` in the directory `/opt/invenio/instance/data/` to make the backup of the files, you have to specify the shared volume in the `docker-compose.full.yml` file, at the `web-ui` section.
+The files are saved in the container `fare-invenio_web-ui_1` in the directory `/opt/invenio/instance/data/` to make the backup of the files just run a `docker cp <src> <dest>` command, to copy the files from the container to the host.
 
 ## 4. Scripts
 
@@ -100,16 +93,19 @@ The procedure of backup and restore of the data described above was automated by
 
 The backup script can be run every time you want to save the current state of the platform. 
 The script:
+- Create the directory for store the backup if not present.
 - Make the dump of the metadata, overwriting the old one.
 - Check if the repo is yet registered or not, if not it creates the repo.
 - Save the snapshot of the indexes, with a progressive number.
+- Copy the backup of the indexes and the files in the host.
 
 ### 4.2 restore script
 
 The restore script can be run when you need to restore your data from a backup.
 The script:
+- Copy the backup files from the host to the different containers.
 - Make the restore of the metadata.
 - Check if the repo is yet registered or not, if not it creates the repo.
-- Close the `.kibana` index.
+- Close the `.kibana` index if present.
 - Calculate the number of the snapshot to restore, taking the one more recent.
-- Retrieve all the elasticsearch indexes in the form of `records-record-v1.0.0-<timestamp>` and deleting all the indexes with the `<timestamp>` most recent
+- Retrieve all the elasticsearch indexes in the form of `records-record-v1.0.0-<timestamp>` and delete all the indexes with the `<timestamp>` most recent

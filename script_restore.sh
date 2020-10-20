@@ -1,71 +1,77 @@
 #!/bin/bash
 
+# copy dump of database metadata in the container
+echo "Copying metadata in fare-invenio_db_1 container..."
+docker cp ~/fare_shared_data/fare_db/backup_fare_db.sql fare-invenio_db_1:/backup_fare_db/
+
+# copy elasticsearch dump in the container
+echo "Copying Elasticsearch data in fare-invenio_es_1 container..."
+docker cp ~/fare_shared_data/fare_es/. fare-invenio_es_1:/usr/share/elasticsearch/backup_fare_es/
+
+# copy files dump in the container
+echo "Copying files fare-invenio_web-ui_1 container..."
+docker cp ~/fare_shared_data/fare_files/. fare-invenio_web-ui_1:/opt/invenio/var/instance/data/
+
 echo "Restoring all the metadata..."
-docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U fare > /dev/null 2>&1
+docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U $PG_USER > /dev/null 2>&1
 
 # checking if repo already exists or not
-REPO=$(curl -X GET "localhost:9200/_cat/repositories" | wc -l)
-echo "Number of repos: $REPO"
+REPO=$(docker exec fare-invenio_es_1 curl -s -X GET "localhost:9200/_cat/repositories" | wc -l)
 
 if [ $REPO -eq 0 ]
 then
   echo "Recreating the repo..."
-  curl -X PUT -H "Content-Type: application/json" -d '{ "type": "fs", "settings": { "compress": true, "location": "." } }' http://localhost:9200/_snapshot/backup_fare_es
+  docker exec fare-invenio_es_1 curl -s -X PUT -H "Content-Type: application/json" -d '{ "type": "fs", "settings": { "compress": true, "location": "." } }' http://localhost:9200/_snapshot/backup_fare_es
   echo
 else
   echo "Repo exists..."
 fi
 
+echo "Check .kibana idex..."
+TEMP=$(docker exec fare-invenio_es_1 curl -s -I "localhost:9200/.kibana?pretty" | grep -o 'OK')
 
-echo "Closing .kibana index..."
-curl -X POST http://localhost:9200/.kibana/_close
-echo
+if [[ $TEMP = "OK" ]]
+then
+  echo "Closing .kibana index..."
+  docker exec fare-invenio_es_1 curl -s -X POST http://localhost:9200/.kibana/_close > /dev/null 2>&1
+else
+  echo ".kibana does not exists..."
+fi
 
 # checking number of snapshot to restore the correct snapshot with the name 'snapshot_<#number>'
 echo "Checking number of snapshots..."
-SNAPSHOTS=$(curl -X GET "localhost:9200/_cat/snapshots/backup_fare_es" | wc -l)
+SNAPSHOTS=$(docker exec fare-invenio_es_1 curl -s -X GET "localhost:9200/_cat/snapshots/backup_fare_es" | wc -l)
 echo "Number of snapshots: $SNAPSHOTS"
 echo "Restoring all the indexes..."
-curl -X POST http://localhost:9200/_snapshot/backup_fare_es/snapshot_$SNAPSHOTS/_restore
-echo
+docker exec fare-invenio_es_1 curl -s -X POST http://localhost:9200/_snapshot/backup_fare_es/snapshot_$SNAPSHOTS/_restore > /dev/null 2>&1
 
 echo "Removing unused indexes..."
-INDEXES=$(curl 'http://localhost:9200/_aliases?pretty=true' | grep -o 'records\-record\-v1.0.0\-[0-9]*')
 
-FIRST=true
-NUMB_INDEXES=0
+# creating the vector of indexes
+INDEXES=($(docker exec fare-invenio_es_1 curl -s 'http://localhost:9200/_aliases?pretty=true' | grep -o 'records\-record\-v1.0.0\-[0-9]*'))
 
-for i in $INDEXES
-do
-  NUMB_INDEXES=$((NUMB_INDEXES+1))
-done
-
-echo "THERE ARE $NUMB_INDEXES INDEXES"
+NUMB_INDEXES=${#INDEXES[@]}
 
 if [ $NUMB_INDEXES -gt 1 ]
 then
 
-  for i in $INDEXES
+  # set first position of the array as the oldest and then compare all the element
+  OLDEST=${INDEXES[0]}
+
+  for i in ${INDEXES[@]}
   do
-    if [ $FIRST ]
+    if [[ $i < $OLDEST ]]
     then
-      FIRST=false
       OLDEST=$i
-    else
-      if [ $i < $OLDEST ]
-      then
-        OLDEST=$i
-      fi
     fi
   done
 
-  echo "OLDEST: $OLDEST"
-
-  for i in $INDEXES
+  for i in ${INDEXES[@]}
   do
-    if [ $i != $OLDEST ]
+    if [[ $i != $OLDEST ]]
     then
-      curl -X DELETE "localhost:9200/$i?pretty" > /dev/null 2>&1
+      echo "Removing index: $i"
+      # docker exec fare-invenio_es_1 curl -s -X DELETE "localhost:9200/$i?pretty" > /dev/null 2>&1
     fi
   done
 

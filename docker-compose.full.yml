@@ -63,7 +63,6 @@ services:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
-      - ../fare_shared_data/fare_files:/opt/invenio/instance/data/
     links:
       - cache
       - es
@@ -123,8 +122,6 @@ services:
     extends:
       file: docker-services.yml
       service: db
-    volumes:
-      - ../fare_shared_data/fare_db:/backup_fare_db
   # http://guest:guest@127.0.0.1:15672
   mq:
     extends:
@@ -134,7 +131,5 @@ services:
     extends:
       file: docker-services.yml
       service: es
-    volumes:
-      - ../fare_shared_data/fare_es:/usr/share/elasticsearch/backup_fare_es
 volumes:
   static_data:
