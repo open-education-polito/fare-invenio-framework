@@ -62,7 +62,7 @@ services:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
-      - lo_data:/opt/invenio/var/instance/static/data
+      - lo_data:/opt/invenio/var/instance/data
       - ui_log:/var/log/fare 
     links:
       - cache
