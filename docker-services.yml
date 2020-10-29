@@ -26,22 +26,24 @@ services:
       - "INVENIO_WSGI_PROXIES=2"
       - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
   lb:
-    build: ./docker/haproxy/
+    build:
+      context: ./docker/haproxy/
+      args:
+        - HAPROXY_CERT=${HAPROXY_CERT}
     image: fare-lb
     restart: "always"
-    args:
-      - HAPROXY_CERT=${HAPROXY_CERT}
     ports:
       - "80:80"
       - "443:443"
       - "8080"
   frontend:
-    build: ./docker/nginx/
+    build:
+      context: ./docker/nginx/
+      args:
+        - NGINX_CERT=${NGINX_CERT}
+        - NGINX_KEY=${NGINX_KEY}
     image: fare-frontend
     restart: "always"
-    args:
-      - NGINX_CERT=${NGINX_CERT}
-      - NGINX_KEY=${NGINX_KEY}
     expose:
       - "80"
       - "443"
