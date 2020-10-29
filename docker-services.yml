@@ -29,6 +29,8 @@ services:
     build: ./docker/haproxy/
     image: fare-lb
     restart: "always"
+    args:
+      - HAPROXY_CERT=${HAPROXY_CERT}
     ports:
       - "80:80"
       - "443:443"
@@ -37,6 +39,9 @@ services:
     build: ./docker/nginx/
     image: fare-frontend
     restart: "always"
+    args:
+      - NGINX_CERT=${NGINX_CERT}
+      - NGINX_KEY=${NGINX_KEY}
     expose:
       - "80"
       - "443"
