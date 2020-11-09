@@ -15,6 +15,7 @@ fare = {editable = true,path = "."}
 # nbconvert added temporarily
 nbconvert = {extras = ["execute"],version = ">=4.1.0,<6.0.0"}
 python-dotenv = ">=0.14.0"
+bigbluebutton-api-python = "*"
 
 [dev-packages]
 check-manifest = ">=0.35"
