@@ -35,19 +35,19 @@
         <form action="{{ url_for('conference.join_room') }}" method="POST" enctype="multipart/form-data">
 
             <div class="form-group {{ 'has-error' if form.roomId.errors }}">
-              <label for="roomId">Id della stanza</label>
+              <label for="roomId">Nome della stanza virtuale alla quale vuoi partecipare</label>
               {{ form.roomId(class_="form-control")|safe }}
               {{ errors(form.roomId) }}
             </div>
 
             <div class="form-group {{ 'has-error' if form.password.errors }}">
-              <label for="password">Password stanza</label>
+              <label for="password">Password della stanza virtuale</label>
               {{ form.password(class_="form-control")|safe }}
               {{ errors(form.password) }}
             </div>
 
             <div class="form-group {{ 'has-error' if form.username.errors }}">
-              <label for="username">Nome utente</label>
+              <label for="username">Nome e Cognome con i quali partecipare alla lezione</label>
               {{ form.username(class_="form-control")|safe }}
               {{ errors(form.username) }}
             </div>
