@@ -116,6 +116,7 @@ services:
       service: db
     volumes:
       - pg_data:/pgdata
+      - pg_dump:/backup_fare_db
   # http://guest:guest@127.0.0.1:15672
   mq:
     extends:
@@ -136,3 +137,4 @@ volumes:
   ui_log:
   api_log:
   nginx_log:
+  pg_dump:
