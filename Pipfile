@@ -12,9 +12,10 @@ uwsgi = ">=2.0"
 uwsgi-tools = ">=1.1.1"
 uwsgitop = ">=0.11"
 fare = {editable = true,path = "."}
+python-dotenv = ">=0.14.0"
+bigbluebutton-api-python = {editable = true,git = "https://github.com/101t/bigbluebutton-api-python"}
 # nbconvert added temporarily
 nbconvert = {extras = ["execute"],version = ">=4.1.0,<6.0.0"}
-python-dotenv = ">=0.14.0"
 
 [dev-packages]
 check-manifest = ">=0.35"
@@ -38,3 +39,7 @@ python_version = "3.6"
 [scripts]
 test = "python setup.py test"
 build_sphinx = "python setup.py build_sphinx"
+# prereleases allowed because of this https://github.com/celery/pytest-celery/issues/4
+
+[pipenv]
+allow_prereleases = true

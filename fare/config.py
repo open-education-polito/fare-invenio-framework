@@ -120,8 +120,9 @@ CELERY_BEAT_SCHEDULE = {
 #: Database URI including user and password
 SQLALCHEMY_USER = os.getenv('PG_USER')
 SQLALCHEMY_PWD = os.getenv('PG_PASSWORD')
+PG_DB = os.getenv('PG_DB')
 SQLALCHEMY_DATABASE_URI = \
-        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + '@localhost/${PG_DB}'
+        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + '@localhost/' + PG_DB
 
 # JSONSchemas
 # ===========

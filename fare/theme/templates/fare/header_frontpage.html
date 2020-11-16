@@ -31,7 +31,16 @@
     </li>
 
     <li><a href="https://openeducation.polito.it/"><b class="frontpage-menu-item">Chi siamo</b></a></li>
-    <li><a href="https://fare.polito.it/fare/meeting"><b class="frontpage-menu-item">Videoconferenza</b></a></li>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <b class="frontpage-menu-item"> Stanze Virtuali <span class="caret"></span></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="{{ url_for('conference.join_room') }}">Partecipa</a></li>
+      </ul>
+    </li>
+
   </ul>
 
   {{ super() }}
