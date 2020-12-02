@@ -110,7 +110,16 @@
             Esplora migliaia di risorse didattiche personalizzando la ricerca in base alle tue
             preferenze, inserisci le parole chiave o seleziona l'ordine di scuola, la materia o
             gli argomenti tra quelli proposti
+
+          <br><br>
+          <div>
+            <a type="button" class="btn btn-default btn" href="{{ url_for('invenio_search_ui.search') }}" role="button">
+              <i class="fa fa-search"></i> Esplora
+            </a>
+          </div>
+
           </h3>
+
         </div>
       </div>
     </div>
@@ -141,13 +150,19 @@
           <hr class="home-separator">
           <h3 class="text-center frontpage-explanation">
             Tutto il materiale presente su FARE è pubblicato con licenza creative commons! 
-            Se vuoi saperne di più su queste licenze clicca
-            <a href="https://creativecommons.org/licenses/?lang=it">
-              qui <i class="fa fa-external-link" aria-hidden="true"></i>
-            </a>
+            Queste licenze danno a chiunque, dai creatori individuali alle grandi compagnie ed istituzioni, 
+            un semplice e standardizzato modo di garantirne il rispetto dei permessi sul diritto d'autore ai loro lavori creativi.
           </h3>
         </div>
       </div>
+
+      <br><br>
+      <div class="col-sm-12 text-center">
+        <a type="button" class="btn btn-default btn" href="https://creativecommons.org/licenses/?lang=it" role="button">
+          <i class="fa fa-external-link"></i> Più informazioni sulle licenze creative commons
+        </a>
+      </div>
+
     </div>
 
     <hr class="box-separator">
@@ -164,6 +179,16 @@
             Registrati a FARE e collabora caricando contenuti didattici (video, libri, slides...) con
             licenza creative commons. I contenuti che carichi dovranno essere approvati prima
             di essere resi pubblici
+
+          <br><br>
+          <div>
+            {% if security.registerable %}
+              <a href="{{url_for_security('register')}}" type="submit" class="btn btn-default btn-default"><i class="fa fa-edit"></i>
+                {{_('Sign up')}}
+              </a>
+            {% endif %}
+          </div>
+
           </h3>
         </div>
       </div>
@@ -188,6 +213,14 @@
           <h3 class="text-center frontpage-explanation">
             Impara su FARE con materiale didattico selezionato, per ogni ordine di
             scuola e grado, tutto in creative commons!
+
+          <br><br>
+          <div>
+            <a type="button" class="btn btn-default btn" href="{{ url_for('invenio_search_ui.search') }}" role="button">
+              <i class="fa fa-book"></i> Impara
+            </a>
+          </div>
+
           </h3>
         </div>
       </div>
