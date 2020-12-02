@@ -42,7 +42,10 @@ blueprint = Blueprint(
                _('%(icon)s Crea stanza',
                  icon='<i class="fa fa-video-camera fa-fw"></i>'
                  ),
-               order=7
+               order=7,
+               visible_when=lambda: bool(current_user.has_role('admin') or
+                                         current_user.has_role('roomCreator')
+                                         ) is not False
                )
 def create_room():
     """View to let user create a virtual room"""
