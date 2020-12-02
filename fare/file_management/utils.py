@@ -58,3 +58,25 @@ def init_field_all():
             arguments_list.append((argument, argument))
 
     return arguments_list
+
+
+def read_menu_fields_empty(key):
+    """
+    Use the key passed to retrieve
+    the corresponding json element
+    and set the values in the field
+    """
+    choices = []
+    data = ""
+
+    if key == "educationLevel":
+        data = EDUCATION_LEVEL
+    if key == "subject":
+        data = SUBJECTS
+
+    for element in data[key]:
+        choices.append((element, element))
+
+    choices.append((' ', ' '))
+    choices.sort()
+    return choices

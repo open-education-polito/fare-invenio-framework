@@ -15,6 +15,11 @@
     </h3>
 {%- endblock frontpage_title %}
 
+{%- block frontpage_form %}
+  {{ super() }}
+  <a type="button" class="btn btn-default btn-xs" href="{{ url_for('file_management.advanced_search') }}" role="button">Ricerca avanzata</a>
+{%- endblock frontpage_form %}
+
 {%- block navbar_inner %}
 
   <ul class="nav navbar-nav">

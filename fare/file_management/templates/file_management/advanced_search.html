@@ -1,0 +1,65 @@
+{%- extends config.BASE_TEMPLATE %}
+
+{% macro errors(field) %}
+  {% if field.errors %}
+  <span class="help-block">
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </span>
+{% endmacro %}
+
+{% block page_body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Ricerca avanzata</h1><br>
+        <h4 class="text-center">
+          Qui potrai selezionare i campi nel dettaglio per trovare risultati conformi alle tue esigenze
+        </h4>
+      </div>
+      <div class="col-md-offset-3 col-md-6 well">
+        <form action="{{ url_for('file_management.advanced_search') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group {{ 'has-error' if form.title.errors }}">
+              <label for="title">Titolo</label>
+              {{ form.title(class_="form-control")|safe }}
+              {{ errors(form.title) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.contributor_name.errors }}">
+              <label for="contributor_name">Autore/i</label>
+              <small>(separa gli autori con una virgola)</small>
+              {{ form.contributor_name(class_="form-control")|safe }}
+              {{ errors(form.contributor_name) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.educationLevel.errors }}">
+              <label for="educationLevel">Ordine di scuola</label>
+              {{ form.educationLevel(class_="form-control")|safe }}
+              {{ errors(form.educationLevel) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.subject.errors }}">
+              <label for="subject">Disciplina</label>
+              {{ form.subject(class_="form-control")|safe }}
+              {{ errors(form.subject) }}
+            </div>
+            <div class="form-group {{ 'has-error' if form.coverage.errors }}">
+              <label for="coverage">Argomento</label>
+              {{ form.coverage(class_="form-control")|safe }}
+              {{ errors(form.coverage) }}
+            </div>
+            {{ form.csrf_token }}
+            {{ errors(form.csrf_token) }}
+            <button type="submit" class="btn btn-default">Cerca</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {{ webpack['fare-advanced-search-argument.js'] }}
+
+{% endblock page_body %}
+
+
+

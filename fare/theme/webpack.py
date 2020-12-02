@@ -17,6 +17,7 @@ theme = WebpackBundle(
     entry={
         'fare-theme': './scss/fare/theme.scss',
         'fare-argument': './js/fare/argument.js',
+        'fare-advanced-search-argument': './js/fare/advanced_search_argument.js',
         'status-files': './scss/fare/status-files.scss',
         'guide': './scss/fare/guide.scss',
     },

@@ -4,7 +4,7 @@ from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from .utils import read_menu_fields, init_field_all, get_all_arguments
+from .utils import read_menu_fields, init_field_all, get_all_arguments, read_menu_fields_empty
 from wtforms import IntegerField, StringField, TextAreaField, validators, SelectField
 
 
@@ -54,6 +54,44 @@ class RecordForm(FlaskForm):
             return False
         all_arguments = get_all_arguments()
         if self.coverage.data in all_arguments[self.subject.data]:
+            return True
+        self.coverage.errors.append("Subject and argument must be compatible")
+        return False
+
+
+class AdvancedRecordForm(FlaskForm):
+    """file_management form for advanced search."""
+
+    title = StringField(
+        'Title', [validators.Optional()]
+    )
+    contributor_name = StringField(
+        'Name of the contributor', [validators.Optional()]
+    )
+    educationLevel = SelectField(
+        'Education level', choices=read_menu_fields_empty("educationLevel"), validators=[validators.Optional()]
+    )
+    subject = SelectField(
+        'Subject', choices=read_menu_fields_empty("subject"), validators=[validators.Optional()]
+    )
+    coverage = SelectField(
+        'Coverage', choices=init_field_all(), validators=[validators.Optional()]
+    )
+
+    def validate(self):
+        """
+        Validation that verify if the argument,
+        selected in the coverage field, belongs
+        to the subject selected
+        :return: False if the argument does not belong to the subject
+                 True otherwise
+        """
+        if not FlaskForm.validate(self):
+            return False
+        if self.subject.data.isspace() and self.coverage.data.isspace():
+            return True
+        all_arguments = get_all_arguments()
+        if self.coverage.data in all_arguments[self.subject.data] or self.coverage.data.isspace():
             return True
         self.coverage.errors.append("Subject and argument must be compatible")
         return False
