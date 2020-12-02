@@ -41,3 +41,35 @@ class StatusSearch(RecordsSearch):
         self.query = Q(
             Bool(filter=[Q('term', owner=current_user.id)])
         )
+
+
+class AdvancedSearch(RecordsSearch):
+    """Define default filter for search records with the selected fields."""
+
+    class Meta:
+        """Configuration for search."""
+
+        index = '_all'
+        doc_types = None
+        fields = ('*', )
+        facets = {}
+
+    def __init__(self, d, **kwargs):
+        """Init for AdvancedSearch."""
+        super(AdvancedSearch, self).__init__(**kwargs)
+
+        
+        print('-------------INIT-ADV--SRC---------------')
+        print(d)
+
+        self.query = Q(
+            Bool(filter=[
+                        Q('term', title=d['title']),
+                        Q('term', contributors=d['contributors']),
+                        Q('term', educationLevel=d['educationLevel']),
+                        Q('term', subject=d['subject']),
+                        Q('term', converage=d['coverage']),
+                        Q('term', revisioned=True)
+                        ]
+                 )
+        )

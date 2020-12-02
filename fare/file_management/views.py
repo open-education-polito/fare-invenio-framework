@@ -12,8 +12,8 @@ from invenio_files_rest.models import Bucket, ObjectVersion
 from sqlalchemy.orm.exc import NoResultFound
 
 from .api import RecordFare
-from .forms import RecordForm
-from .search import StatusSearch
+from .forms import RecordForm, AdvancedRecordForm
+from .search import StatusSearch, AdvancedSearch
 from .utils import get_all_arguments, get_all_subjects, get_all_education_levels
 
 # define a new Flask Blueprint that is register
@@ -270,6 +270,59 @@ def download():
             abort(403)
 
     return RecordFare.download_record(record, bucket, key, version_id, usr)
+
+
+@blueprint.route('/advanced_search', methods=('GET', 'POST'))
+def advanced_search():
+    """The advanced search view."""
+    form = AdvancedRecordForm()
+
+    # if the form is submitted and valid
+    if form.validate_on_submit():
+
+        value_dict = {
+                     'title':'',
+                     'contributors':'',
+                     'educationLevel':'',
+                     'subject':'',
+                     'coverage':''
+                     }
+        '''
+        if not form.contributor_name.data.isspace():
+            list_names = form.contributor_name.data.split(",")
+            list_contributors = []
+
+            for contributor in list_names:
+                t = {"name": contributor}
+                list_contributors.append(t)
+
+            # set "contributors" object with the submitted names
+            value_dict['contributors'] = list_contributors
+        '''
+        # set the school order
+        if not form.educationLevel.data.isspace():
+            value_dict['educationLevel'] = form.educationLevel.data
+
+        # set the discipline
+        if not form.subject.data.isspace():
+            value_dict['subject'] = form.subject.data
+
+        # set the argument
+        if not form.coverage.data.isspace():
+            value_dict['coverage'] = form.coverage.data
+
+        # set the title
+        if not form.title.data.isspace():
+            value_dict['title'] = form.title.data
+
+        search = AdvancedSearch(d=value_dict)
+
+        print("----------SEARCH--------")
+        print(search.execute())
+
+        return render_template(current_app.config['SEARCH_UI_SEARCH_TEMPLATE'])
+        # return render_template('../records/static/templates/records/results.html', vm=search.execute())
+    return render_template('file_management/advanced_search.html', form=form)
 
 
 @blueprint.route("/success")
