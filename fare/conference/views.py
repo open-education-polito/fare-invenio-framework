@@ -54,9 +54,9 @@ def create_room():
 
     # if the form is submitted and valid
     if form.validate_on_submit():
-        roomId = form.roomId.data
+        roomId = form.roomId.data.strip()
         password = form.password.data
-        username = form.username.data
+        username = form.username.data.strip().replace(" ", "_")
 
         b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
@@ -86,9 +86,9 @@ def join_room():
 
     # if the form is submitted and valid
     if form.validate_on_submit():
-        roomId = form.roomId.data
+        roomId = form.roomId.data.strip()
         password = form.password.data
-        username = form.username.data
+        username = form.username.data.strip().replace(" ", "_")
 
         b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
