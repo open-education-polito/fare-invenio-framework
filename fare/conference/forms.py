@@ -11,7 +11,8 @@ class RoomForm(FlaskForm):
     """conference form."""
 
     roomId = StringField(
-        'Room id', [validators.DataRequired()]
+        'Room id', [validators.DataRequired(),
+                    validators.Regexp(r'^[\w.@+-]+$', message="Il campo non può contenere spazi")]
     )
 
     password = PasswordField(
