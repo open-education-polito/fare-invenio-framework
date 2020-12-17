@@ -99,6 +99,8 @@ The script:
 - Save the snapshot of the indexes, with a progressive number.
 - Copy the backup of the indexes and the files in the host.
 
+To execute the script run the command `pipenv run ./script_backup.sh`
+
 ### 4.2 restore script
 
 The restore script can be run when you need to restore your data from a backup.
@@ -109,3 +111,5 @@ The script:
 - Close the `.kibana` index if present.
 - Calculate the number of the snapshot to restore, taking the one more recent.
 - Retrieve all the elasticsearch indexes in the form of `records-record-v1.0.0-<timestamp>` and delete all the indexes with the `<timestamp>` most recent
+
+To execute the script run the command `pipenv run ./script_restore.sh`

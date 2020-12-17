@@ -71,7 +71,7 @@ then
     if [[ $i != $OLDEST ]]
     then
       echo "Removing index: $i"
-      # docker exec fare-invenio_es_1 curl -s -X DELETE "localhost:9200/$i?pretty" > /dev/null 2>&1
+      docker exec fare-invenio_es_1 curl -s -X DELETE "localhost:9200/$i?pretty" > /dev/null 2>&1
     fi
   done
 
