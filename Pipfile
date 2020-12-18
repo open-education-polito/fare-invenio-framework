@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 Babel = ">=2.4.0"
 Flask-BabelEx = ">=0.9.3"
-invenio = {version = "==3.3.0,<3.4.0",extras = ["base", "auth", "metadata", "files", "postgresql", "elasticsearch7" ]}
+invenio = {version = "==3.4.0",extras = ["base", "auth", "metadata", "files", "postgresql", "elasticsearch7" ]}
 marshmallow = ">=3.0.0,<4.0.0"
 uwsgi = ">=2.0"
 uwsgi-tools = ">=1.1.1"
