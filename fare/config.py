@@ -56,6 +56,7 @@ SETTINGS_TEMPLATE = 'invenio_theme/page_settings.html'
 
 # Theme configuration
 # ===================
+APP_THEME = ['bootstrap3']
 #: Site name
 THEME_SITENAME = _('FARE')
 #: Use default frontpage.
