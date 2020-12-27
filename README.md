@@ -50,7 +50,34 @@ To be able to develop and run out instance you will need the following installed
 * [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/)
 * [Pipenv](https://pipenv.readthedocs.io/en/latest/)
 
-## Installation
+## Production environment
+
+### Setting environment variables
+
+Before run the application you need to set the variable in a .env file, it must be created.
+You can see an example in the .env.example file.
+
+### Run
+
+You can use a full production environment using the
+``docker-compose.fare.yml``. You can start it like this:
+
+```
+$ ./docker/build-images.sh
+$ docker-compose -f docker-compose.fare.yml up -d
+$ ./docker/wait-for-services.sh --full
+```
+
+Remember to create database tables, search indexes and message queues if not
+already done:
+
+```
+$ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
+```
+
+## Developement environment
+
+### Installation
 
 First, fire up the database, Elasticsearch, Redis and RabbitMQ:
 
@@ -77,13 +104,7 @@ Finally, install all dependencies, build the JS/CSS assets, create the database 
 (my-site)$ ./scripts/setup
 ```
 
-Remeber to install also the `invenio-records-files` module:
-
-```
-(my-site)$ pip install invenio-records-files
-```
-
-## Run
+### Run
 
 You can now start the development web server and the background worker for your new instance:
 
