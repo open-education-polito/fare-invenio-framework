@@ -4,6 +4,7 @@ from __future__ import absolute_import, print_function
 
 import os
 import json
+import secrets
 
 from bigbluebutton_api_python import BigBlueButton
 from bigbluebutton_api_python.exception.bbbexception import BBBException
@@ -57,11 +58,12 @@ def create_room():
         roomId = form.roomId.data.strip()
         password = form.password.data
         username = form.username.data.strip().replace(" ", "_")
+        modPassword = secrets.token_urlsafe(64)
 
         b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
         # params
-        dict = {'name': username, 'attendeePW': password}
+        dict = {'name': username, 'attendeePW': password, 'moderatorPW': modPassword}
 
         try:
             # use create meeting
@@ -70,7 +72,7 @@ def create_room():
             return render_template('conference/create_conference.html', form=form, existingId=True)
 
         # get room url
-        room_url = b.get_join_meeting_url(username, roomId, password)
+        room_url = b.get_join_meeting_url(username, roomId, modPassword)
 
         # redirect to the created room
         return redirect(room_url)
