@@ -11,26 +11,27 @@
   </p>
 
   <ul>
-    <li><b>Utente anonimo</b> (chi visita il sito e non ha un account) </li>
-    <li><b>Utente iscritto</b> (chi ha un account ed effettua l'accesso) </li>
-    <li><b>Utente staff</b> (utente iscritto avente il ruolo <b>staff</b>) </li>
-    <li><b>Utente che crea una stanza virtuale</b> (utente che crea le stanze virtuali) </li>
-    <li><b>Utente admin</b> (non trattato nella guida) </li>
+    <li><b>Utente anonimo</b> può accedere ai contenuti del sito, scaricare i materiali </li>
+    <li><b>Utente iscritto</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali </li>
+    <li><b>Utente staff</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali, può avviare una videoconferenza, verifica e pubblica i materiali </li>
+    <li><b>Utente che crea una stanza virtuale</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali, può avviare una videoconferenza </li>
+    <li><b>Utente admin</b> può effettuare tutte le operazioni sui materiali e sugli utenti e gestire i permessi </li>
   </ul>
 
   <h3 class="text-center">Utente anonimo</h3>
 
   <p>
-    Un utente anonimo può navigare su FARE effettuando ricerche, può esplorare tutto il materiale
-    didattico caricato e può scaricare qualsiasi file pubblico tutte le volte che vuole
+    Un qualsiasi utente che naviga sul sito fare.polito.it, un utente anonimo può navigare sul portale
+    FARE effettuando ricerche, può esplorare tutto il materiale
+    didattico caricato e può scaricare qualsiasi file pubblico
     (<a href="{{ url_for('file_management.retrieve_guide_search') }}">Guida alla ricerca e al download</a>)
   </p>
 
   <h3 class="text-center">Utente iscritto</h3>
 
   <p>
-    Un utente iscritto a FARE può compiere tutte le azioni di un utente anonimo e in più può
-    caricare del materiale didattico nell'apposita sezione
+    Un utente che ha effettuato l’accesso al portale FARE, un utente iscritto può compiere tutte le azioni
+    di un utente anonimo e in più può caricare del materiale didattico nell'apposita sezione
     (<a href="{{ url_for('file_management.retrieve_guide_upload') }}">Guida per caricare un file</a>).
     <br>
     I file caricati possono essere cancellati dall'utente che li ha caricati in qualsiasi momento visitando la pagina personale
@@ -39,27 +40,27 @@
       <i class="fa fa-trash" aria-hidden="true"></i>
       Rimuovi
     </button>
+    oppure possono essere rimossi dagli utenti admin
   </p>
 
   <h3 class="text-center">Utente staff</h3>
 
   <p>
     Un utente staff può compiere tutte le azioni di un utente iscritto e in più ha il compito di revisionare
-    il materiare caricato dagli utenti. Per revisionare i files bisogna cliccare nel menù in alto a destra come mostrato sotto
-    per aprire la tendina con le opzioni
+    il materiare caricato dagli utenti. Per revisionare i files bisogna selezionare nel menù in alto a destra come mostrato sotto
+    per aprire la tendina con le opzioni e cliccare alla voce <b>Revisione contenuti</b> con questo simbolo -> <i class="fa fa-eye fa-fw"></i>.
   </p>
 
   <img class="guide-image-small" src="{{ url_for('static', filename='images/staff_menu.png') }}" alt="Menu_staff"/>
 
   <p>
-    Successivamente bisogna cliccare alla voce <b>Revisione contenuti</b> con questo simbolo -> <i class="fa fa-eye fa-fw"></i>.
-    Fatto questo, se sono presenti files non ancora revisionati, comparirà una lista di files da revisionare come quello nell'immagine:
+    Se sono presenti files non ancora revisionati, comparirà una lista di files da revisionare come nell'immagine seguente:
   </p>
 
   <img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_list.png') }}" alt="Revision_list"/>
 
   <p>
-    Se si clicca nel titolo, in questo caso <b>La storia dell'informatica</b>, si aprire la pagina personale del record:
+    Se si clicca nel titolo, in questo caso <b>La storia dell'informatica</b>, si accederà alle informazioni del contenuto selezionato
   </p>
 
   <img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_page.png') }}" alt="Revision_page"/>
@@ -83,8 +84,8 @@
   </p>
 
   <p>
-    Ma non è tutto! Un utente <b>staff</b> può concedere a un altro utente iscritto a FARE il ruolo di <b>staff</b> così
-    da dare la possibilità di revisionare i file caricati nella piattaforma. Basta cliccare nel menù in alto a destra alla
+    Un utente <b>staff</b> può concedere a un altro utente iscritto al portale FARE il ruolo di <b>staff</b>.
+    Basta cliccare nel menù in alto a destra alla
     voce <b>Concedi permessi</b> con il simbolo -> <i class="fa fa-users" aria-hidden="true"></i> ed accedere alla pagina
     per la concessione dei permessi come riportato in figura:
   </p>
@@ -92,7 +93,7 @@
   <img class="guide-image-large" src="{{ url_for('static', filename='images/grant_staff.png') }}" alt="Grant_staff"/>
 
   <p>
-    Una volta qui devi solo inserire la mail dell'utente a cui vuoi dai i permessi di <b>staff</b> e cliccare il pulsante
+    Bisogna inserire la mail dell'utente a cui si vuol dare il permesso di <b>staff</b> e cliccare il pulsante
     <button class="btn btn-warning">Abilita</button>
   </p>
 
@@ -100,14 +101,14 @@
 
   <p>
     Gli utenti con questo permesso potranno creare una stanza virtuale. Per creare una stanza virtuale basta
-    cliccare nel menù in alto a destra come mostrato sotto per aprire la tendina con le opzioni
+    cliccare nel menù in alto a destra come mostrato nella figura sotto per aprire la tendina con le opzioni
   </p>
 
   <img class="guide-image-small" src="{{ url_for('static', filename='images/create_virtual_room_menu.png') }}" alt="Menu_room_creator"/>
 
   <p>
-    Successivamente bisogna cliccare alla voce <b>Revisione contenuti</b> con questo simbolo -> <i class="fa fa-video-camera fa-fw"></i>.
-    Fatto questo comparirà la pagina per creare una stanza virtuale come quella mostrata nella figura sotto
+    Successivamente bisogna cliccare alla voce <b>Crea stanza</b> con questo simbolo -> <i class="fa fa-video-camera fa-fw"></i>.
+    Così facendo comparirà la pagina per creare una stanza virtuale come quella mostrata nella figura sotto
   </p>
 
   <img class="guide-image-large" src="{{ url_for('static', filename='images/create_virtual_room.png') }}" alt="Create_virtual_room"/>
@@ -119,7 +120,7 @@
       <i class="fa fa-video-camera" aria-hidden="true"></i>
       Crea
     </button>
-    si entrerà automaticamente nella stanza.
+    si entrerà automaticamente nella stanza virtuale.
   </p>
 
 </div>
