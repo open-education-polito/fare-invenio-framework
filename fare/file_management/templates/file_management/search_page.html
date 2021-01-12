@@ -1,0 +1,31 @@
+{%- extends config.BASE_TEMPLATE %}
+
+{%- block page_header %}
+{%- include 'fare/header_frontpage.html' %}
+{%- endblock page_header %}
+
+{% block page_body %}
+<div class="body-image">
+  <div class="row frontpage-search">
+    <div class="col-md-12 search-block-background">
+      <h1 class="text-center">
+          Cerca per autore, materia, livello di insegnamento, parola chiave
+      </h1>
+      <h3 class="text-center">
+        per maggiori informazioni sulla ricerca clicca
+        <a href="{{ url_for('file_management.retrieve_guide_search') }}">qui</a>
+      </h3>
+      <form action="/search">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="q" class="input-lg form-control" placeholder="Type and press enter to search">
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-lg btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock page_body %}

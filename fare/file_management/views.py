@@ -46,6 +46,11 @@ def retrieve_arguments():
     return get_all_arguments()
 
 
+@blueprint.route('/search_page', methods=('GET',))
+def search_page():
+    return render_template('file_management/search_page.html')
+
+
 @blueprint.route('/guide_search', methods=('GET',))
 def retrieve_guide_search():
     subjects = get_all_subjects()

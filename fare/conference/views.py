@@ -36,6 +36,11 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/info_create', methods=('GET',))
+def info_create():
+    return render_template('conference/info_create.html')
+
+
 @blueprint.route('/create_room', methods=('GET', 'POST'))
 @login_required
 @roles_accepted('admin', 'roomCreator')
@@ -95,8 +100,8 @@ def join_room():
         b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
         r = b.is_meeting_running(roomId)
-       
-        active_room = json.loads(r['xml']['running'].lower()) 
+
+        active_room = json.loads(r['xml']['running'].lower())
 
         # check if the meeting exists
         if not active_room:

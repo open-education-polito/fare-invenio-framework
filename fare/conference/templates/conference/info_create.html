@@ -1,0 +1,23 @@
+{%- extends config.BASE_TEMPLATE %}
+
+{% block page_body %}
+
+<h1 class="text-center">
+  Crea una videoconferenza/videolezione
+</h1>
+
+<h3 class="text-center">
+  Soltanto gli utenti ai quali è stato conferito il
+  permesso potranno creare una videoconferenza/videolezione
+</h3>
+
+<br><br>
+
+<div class="row text-center">
+  <a type="button" class="btn btn-default btn" href="{{ url_for('conference.create_room') }}" role="button">
+    <i class="fa fa-video-camera"></i> Crea
+  </a>
+</div>
+
+
+{% endblock page_body %}
