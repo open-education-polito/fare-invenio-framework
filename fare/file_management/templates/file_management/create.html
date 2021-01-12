@@ -38,18 +38,31 @@
             </div>
             <div class="form-group {{ 'has-error' if form.subject.errors }}">
               <label for="subject">Disciplina</label>
-              <small>(Manca una disciplina? contattaci <a href="https://openeducation.polito.it/it/contatti">qui)</a></small>
+              <small>
+                (Manca una disciplina? contattaci
+                <a href="https://openeducation.polito.it/it/contatti">qui <i class="fa fa-external-link" aria-hidden="true"></i></a>
+              )
+              </small>
               {{ form.subject(class_="form-control")|safe }}
               {{ errors(form.subject) }}
             </div>
             <div class="form-group {{ 'has-error' if form.coverage.errors }}">
               <label for="coverage">Argomento</label>
-              <small>(Manca una argomento? contattaci <a href="https://openeducation.polito.it/it/contatti">qui)</a></small>
+              <small>
+                (Manca una argomento? contattaci
+                <a href="https://openeducation.polito.it/it/contatti">qui <i class="fa fa-external-link" aria-hidden="true"></i></a>
+              )
+              </small>
               {{ form.coverage(class_="form-control")|safe }}
               {{ errors(form.coverage) }}
             </div>
             <div class="form-group {{ 'has-error' if form.license.errors }}">
               <label for="license">Licenza</label>
+              <small>
+                (Per saperne di più sulle licenze Creative Commons clicca
+                <a href="https://creativecommons.org/licenses/?lang=it">qui <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                )
+              </small>
               {{ form.license(class_="form-control")|safe }}
               {{ errors(form.license) }}
             </div>

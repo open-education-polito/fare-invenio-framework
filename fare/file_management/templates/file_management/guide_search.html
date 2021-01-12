@@ -8,14 +8,15 @@
 
 <p>
   E' possibile effettuare ricerche per parole chiave.
-  Una parola chiave può essere il titolo con cui è stato caricato il materiale, il nome di un autore (esempio: Mezzalama), il nome di una disciplina
-  (esempio Informatica), un argomento, l'ordine di scuola (esempio Scuola Secondaria di secondo grado) e infine la licenza creative commons.
-  Attualmente le discipline disponibili sono: 
+  Una parola chiave potrebbe essere il titolo con cui è stato caricato il materiale,
+  il nome di un autore (esempio: Mezzalama), il nome di una disciplina (esempio Informatica),
+  un argomento, l'ordine di scuola (esempio Scuola Secondaria di secondo grado) e infine la licenza
+  Creative Commons. E’ possibile effettuare una ricerca per le seguenti discipline:
 </p>
 
     <table class="table table-bordered table-striped">
       <tbody>
-      {% for sub in subjects['subject'] %}  
+      {% for sub in subjects['subject'] %}
         {% if loop.index0 % 3 == 0 %}
         <tr>
         {% endif %}
@@ -30,12 +31,12 @@
     </table>
 
 <p>
-  mentre le classi di insegnamento sono: 
+  le classi di insegnamento sono:
 </p>
 
     <table class="table table-bordered table-striped">
       <tbody>
-      {% for level in education_levels['educationLevel'] %}  
+      {% for level in education_levels['educationLevel'] %}
         {% if loop.index0 % 3 == 0 %}
         <tr>
         {% endif %}
@@ -50,34 +51,24 @@
     </table>
 
 <p>
-  Di seguito  è mostrato un esempio di ricerca:
+  Di seguito è mostrato il risultato di una ricerca
 </p>
 
 <img class="guide-image-large" src="{{ url_for('static', filename='images/example_record_search.png') }}" alt="Research_result"/>
 
 <p>
-  Sulla sinistra sono presenti i filtri con cui sarà possibile migliorare la ricerca selezionando i campi di interesse
-  (esempio: se spunto la voce Informatica, nel box della Disciplina, otterrò solo materiale di Informatica). I filtri si possono
-  anche combinare tra di loro, sia selezionando più voci all'interno dello stesso box sia selezionando voci da box differenti.
-</p>
-
-<p>
-  Cliccando nel titolo di uno dei risultati si potrà accedere nella sua pagina personale che si presenta così:
-</p>
-
-<img class="guide-image-large" src="{{ url_for('static', filename='images/example_record_page.png') }}" alt="Record_page"/>
-
-<p>
-  In questa pagina saranno visibili tutte le informazioni del file selezionato. Sulla destra saranno visibili tutti i permessi e le limitazioni 
-  che fanno parte della licenza creative common con cui è stato caricato il file. 
-  Per saperne di più sulle licenze Creative Commons clicca
-        <a href="https://creativecommons.org/licenses/?lang=it">qui</a>
-        <i class="fa fa-external-link" aria-hidden="true"></i>
-  . Infine, per effettuare il download basta cliccare sul pulsante 
+  Selezionando il titolo di uno dei risultati si potranno visualizzare tutti i dettagli dell’argomento:
+  è indicata la classe di insegnamento, la disciplina, l’argomento, gli autori del materiale, sono indicate
+  le informazioni relative alla licenza Creative Commons con cui è stato caricato il file
+  (per maggiori informazioni sulle licenze Creative Commons cliccare
+  <a href="https://creativecommons.it/chapterIT/">qui</a> <i class="fa fa-external-link" aria-hidden="true"></i> ).
+  Infine, è possibile effettuare il download cliccando sul pulsante
   <button class="btn btn-primary">
     <i class="fa fa-download" aria-hidden="true"></i> Download
   </button>
 </p>
+
+<img class="guide-image-large" src="{{ url_for('static', filename='images/example_record_page.png') }}" alt="Record_page"/>
 
 </div>
 

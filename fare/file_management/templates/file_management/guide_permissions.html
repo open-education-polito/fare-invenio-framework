@@ -4,90 +4,124 @@
 
 <div class="container">
 
-<h1 class="text-center">Guida ai permessi utente su FARE</h1>
+  <h1 class="text-center">Guida ai permessi utente su FARE</h1>
 
-<p>
-  Su FARE ci sono quattro tipi di uenti:
-</p>
+  <p>
+    Su FARE ci sono cinque tipi di uenti:
+  </p>
 
-<ul>
-  <li><b>Utente anonimo</b> (chi visita il sito e non ha un account) </li>
-  <li><b>Utente iscritto</b> (chi ha un account ed effettua l'accesso) </li>
-  <li><b>Utente staff</b> (utente iscritto avente il ruolo <b>staff</b>) </li>
-  <li><b>Utente admin</b> (non trattato nella guida) </li>
-</ul>
+  <ul>
+    <li><b>Utente anonimo</b> può accedere ai contenuti del sito, scaricare i materiali </li>
+    <li><b>Utente iscritto</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali </li>
+    <li><b>Utente staff</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali, può avviare una videoconferenza, verifica e pubblica i materiali </li>
+    <li><b>Utente che crea una stanza virtuale</b> può accedere ai contenuti del sito, scaricare i materiali, può caricare i materiali, può avviare una videoconferenza </li>
+    <li><b>Utente admin</b> può effettuare tutte le operazioni sui materiali e sugli utenti e gestire i permessi </li>
+  </ul>
 
-<p>
-  <b>Utente anonimo</b>: un utente anonimo può navigare su FARE effettuando ricerche, può esplorare tutto il materiale
-  didattico caricato e può scaricare qualsiasi file pubblico tutte le volte che vuole
-  (<a href="{{ url_for('file_management.retrieve_guide_search') }}">Guida alla ricerca e al download</a>)
-</p>
+  <h3 class="text-center">Utente anonimo</h3>
 
-<p>
-  <b>Utente iscritto</b>: un utente iscritto a FARE può compiere tutte le azioni di un utente anonimo e in più può
-  caricare del materiale didattico nell'apposita sezione
-  (<a href="{{ url_for('file_management.retrieve_guide_upload') }}">Guida per caricare un file</a>).
-  <br>
-  I file caricati possono essere cancellati dall'utente che li ha caricati in qualsiasi momento visitando la pagina personale
-  del file e premendo il bottone
-  <button class="btn btn-danger">
-    <i class="fa fa-trash" aria-hidden="true"></i>
-    Rimuovi
-  </button>
-</p>
+  <p>
+    Un qualsiasi utente che naviga sul sito fare.polito.it, un utente anonimo può navigare sul portale
+    FARE effettuando ricerche, può esplorare tutto il materiale
+    didattico caricato e può scaricare qualsiasi file pubblico
+    (<a href="{{ url_for('file_management.retrieve_guide_search') }}">Guida alla ricerca e al download</a>)
+  </p>
 
-<p>
-  <b>Utente staff</b>: un utente staff può compiere tutte le azioni di un utente iscritto e in più ha il compito di revisionare
-  il materiare caricato dagli utenti. Per revisionare i files bisogna cliccare nel menù in alto a destra come mostrato sotto
-  per aprire la tendina con le opzioni
-</p>
+  <h3 class="text-center">Utente iscritto</h3>
 
-<img class="guide-image-small" src="{{ url_for('static', filename='images/staff_menu.png') }}" alt="Menu_staff"/>
+  <p>
+    Un utente che ha effettuato l’accesso al portale FARE, un utente iscritto può compiere tutte le azioni
+    di un utente anonimo e in più può caricare del materiale didattico nell'apposita sezione
+    (<a href="{{ url_for('file_management.retrieve_guide_upload') }}">Guida per caricare un file</a>).
+    <br>
+    I file caricati possono essere cancellati dall'utente che li ha caricati in qualsiasi momento visitando la pagina personale
+    del file e premendo il bottone
+    <button class="btn btn-danger">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      Rimuovi
+    </button>
+    oppure possono essere rimossi dagli utenti admin
+  </p>
 
-<p>
-  Successivamente bisogna cliccare alla voce <b>Revisione contenuti</b> con questo simbolo -> <i class="fa fa-eye fa-fw"></i>.
-  Fatto questo, se sono presenti files non ancora revisionati, comparirà una lista di files da revisionare come quello nell'immagine:
-</p>
+  <h3 class="text-center">Utente staff</h3>
 
-<img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_list.png') }}" alt="Revision_list"/>
+  <p>
+    Un utente staff può compiere tutte le azioni di un utente iscritto e in più ha il compito di revisionare
+    il materiare caricato dagli utenti. Per revisionare i files bisogna selezionare nel menù in alto a destra come mostrato sotto
+    per aprire la tendina con le opzioni e cliccare alla voce <b>Revisione contenuti</b> con questo simbolo -> <i class="fa fa-eye fa-fw"></i>.
+  </p>
 
-<p>
-  Se si clicca nel titolo, in questo caso <b>La storia dell'informatica</b>, si aprire la pagina personale del record:
-</p>
+  <img class="guide-image-small" src="{{ url_for('static', filename='images/staff_menu.png') }}" alt="Menu_staff"/>
 
-<img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_page.png') }}" alt="Revision_page"/>
+  <p>
+    Se sono presenti files non ancora revisionati, comparirà una lista di files da revisionare come nell'immagine seguente:
+  </p>
 
-<p>
-  In questa pagina è possibile scaricare il file cliccando il bottone
-  <button class="btn btn-primary">
-    <i class="fa fa-download" aria-hidden="true"></i> Download
-  </button>
-  per controllarne il contenuto. Se il materiale viene ritenuto idoneo
-  lo si può pubblicare cliccando il bottone
-  <button class="btn btn-success">
-    <i class="fa fa-check" aria-hidden="true"></i>
-    Pubblica
-  </button>
-  . In caso contrario si può cancellare il file cliccando il bottone
-  <button class="btn btn-danger">
-    <i class="fa fa-trash" aria-hidden="true"></i>
-    Rimuovi
-  </button>
-</p>
+  <img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_list.png') }}" alt="Revision_list"/>
 
-<p>
-  Ma non è tutto! Un utente <b>staff</b> può concedere a un altro utente iscritto a FARE il ruolo di <b>staff</b> così
-  da dare la possibilità di revisionare i file caricati nella piattaforma. Basta cliccare nel menù in alto a destra alla
-  voce <b>Concedi permessi</b> con il simbolo -> <i class="fa fa-users" aria-hidden="true"></i> ed accedere alla pagina
-  per la concessione dei permessi come riportato in figura: 
-</p>
+  <p>
+    Se si clicca nel titolo, in questo caso <b>La storia dell'informatica</b>, si accederà alle informazioni del contenuto selezionato
+  </p>
 
-<img class="guide-image-large" src="{{ url_for('static', filename='images/grant_staff.png') }}" alt="Grant_staff"/>
+  <img class="guide-image-medium" src="{{ url_for('static', filename='images/revision_record_page.png') }}" alt="Revision_page"/>
 
-<p>
-  Una volta qui devi solo inserire la mail dell'utente a cui vuoi dai i permessi di <b>staff</b> e cliccare il pulsante
-  <button class="btn btn-warning">Abilita</button>
-</p>
+  <p>
+    In questa pagina è possibile scaricare il file cliccando il bottone
+    <button class="btn btn-primary">
+      <i class="fa fa-download" aria-hidden="true"></i> Download
+    </button>
+    per controllarne il contenuto. Se il materiale viene ritenuto idoneo
+    lo si può pubblicare cliccando il bottone
+    <button class="btn btn-success">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      Pubblica
+    </button>
+    . In caso contrario si può cancellare il file cliccando il bottone
+    <button class="btn btn-danger">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      Rimuovi
+    </button>
+  </p>
+
+  <p>
+    Un utente <b>staff</b> può concedere a un altro utente iscritto al portale FARE il ruolo di <b>staff</b>.
+    Basta cliccare nel menù in alto a destra alla
+    voce <b>Concedi permessi</b> con il simbolo -> <i class="fa fa-users" aria-hidden="true"></i> ed accedere alla pagina
+    per la concessione dei permessi come riportato in figura:
+  </p>
+
+  <img class="guide-image-large" src="{{ url_for('static', filename='images/grant_staff.png') }}" alt="Grant_staff"/>
+
+  <p>
+    Bisogna inserire la mail dell'utente a cui si vuol dare il permesso di <b>staff</b> e cliccare il pulsante
+    <button class="btn btn-warning">Abilita</button>
+  </p>
+
+  <h3 class="text-center">Utente che crea una stanza virtuale</h3>
+
+  <p>
+    Gli utenti con questo permesso potranno creare una stanza virtuale. Per creare una stanza virtuale basta
+    cliccare nel menù in alto a destra come mostrato nella figura sotto per aprire la tendina con le opzioni
+  </p>
+
+  <img class="guide-image-small" src="{{ url_for('static', filename='images/create_virtual_room_menu.png') }}" alt="Menu_room_creator"/>
+
+  <p>
+    Successivamente bisogna cliccare alla voce <b>Crea stanza</b> con questo simbolo -> <i class="fa fa-video-camera fa-fw"></i>.
+    Così facendo comparirà la pagina per creare una stanza virtuale come quella mostrata nella figura sotto
+  </p>
+
+  <img class="guide-image-large" src="{{ url_for('static', filename='images/create_virtual_room.png') }}" alt="Create_virtual_room"/>
+
+  <p>
+    Per creare una stanza virtuale bisogna inserire negli appositi campi l'id della stanza, che deve essere univoco, la password e
+    il nome e cognome di chi crea la stanza. Una volta cliccato sul pulsante
+    <button class="btn btn-warning">
+      <i class="fa fa-video-camera" aria-hidden="true"></i>
+      Crea
+    </button>
+    si entrerà automaticamente nella stanza virtuale.
+  </p>
 
 </div>
 
