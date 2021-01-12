@@ -138,7 +138,7 @@ JSONSCHEMAS_HOST = 'fare.polito.it'
 #: It should be changed before deploying.
 SECRET_KEY = os.getenv('SECRET_KEY')
 #: Max upload size for form data via application/mulitpart-formdata.
-MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MiB
+MAX_CONTENT_LENGTH = 10 * 1024 * 1024 * 1024  # 10 GB
 #: Sets cookie with the secure flag by default
 SESSION_COOKIE_SECURE = True
 #: Since HAProxy and Nginx route all requests no matter the host header

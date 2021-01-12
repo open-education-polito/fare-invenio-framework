@@ -27,7 +27,7 @@
     <div class="row">
 
       <div class="col-md-12">
-        <h1 class="text-center">Crea una stanza virtuale</h1><br>
+        <h1 class="text-center">Crea una videoconferenza/videolezione</h1><br>
       </div>
 
       <div class="col-md-offset-3 col-md-6 well">
@@ -35,7 +35,7 @@
         <form action="{{ url_for('conference.create_room') }}" method="POST" enctype="multipart/form-data">
 
             <div class="form-group {{ 'has-error' if form.roomId.errors }}">
-              <label for="roomId">Id della stanza (deve essere univoco)</label>
+              <label for="roomId">Id della videoconferenza/videolezione (deve essere univoco)</label>
              <br>
               <small>esempio: materia-sezione-docente</small>
               {{ form.roomId(class_="form-control")|safe }}
@@ -43,13 +43,13 @@
             </div>
 
             <div class="form-group {{ 'has-error' if form.password.errors }}">
-              <label for="password">Password stanza</label>
+              <label for="password">Password videoconferenza/videolezione</label>
               {{ form.password(class_="form-control")|safe }}
               {{ errors(form.password) }}
             </div>
 
             <div class="form-group {{ 'has-error' if form.username.errors }}">
-              <label for="username">Nome e Cognome di chi crea la stanza</label>
+              <label for="username">Cognome e nome di chi crea la videoconferenza/videolezione</label>
               {{ form.username(class_="form-control")|safe }}
               {{ errors(form.username) }}
             </div>
