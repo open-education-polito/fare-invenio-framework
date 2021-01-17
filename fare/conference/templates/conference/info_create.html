@@ -6,18 +6,66 @@
   Crea una videoconferenza/videolezione
 </h1>
 
-<h3 class="text-center">
-  Soltanto gli utenti ai quali è stato conferito il
-  permesso potranno creare una videoconferenza/videolezione
-</h3>
+<br><br><br>
 
-<br><br>
+<div class="container">
 
-<div class="row text-center">
-  <a type="button" class="btn btn-default btn" href="{{ url_for('conference.create_room') }}" role="button">
-    <i class="fa fa-video-camera"></i> Crea
-  </a>
+  {% if current_user.is_authenticated %}
+
+    {% if not current_user.has_role('roomCreator') or not current_user.has_role('admin') %}
+
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <i class="fa fa-ban fa-5x aria-hidden='true' create-file-icon"></i>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row">
+
+        <div class="col-sm-3">
+        </div>
+
+        <div class="col-sm-6 text-center">
+          <div class="alert alert-danger" role="alert">
+            <h4>
+              Non hai il permesso per creare una videoconferenza/videolezione
+              clicca
+              <a href="https://openeducation.polito.it/it/contatti">
+                qui <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+              per contattarci e richiederlo
+            </h4>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+        </div>
+
+      </div>
+
+    {% endif %}
+
+  {% else %}
+
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <div class="alert alert-info" role="alert">
+        <h4>
+          Per poter visualizzare questa pagina accedi o registrati a FARE
+          tramite i pulsanti in alto a destra
+        </h4>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+
+  {% endif %}
+
 </div>
-
 
 {% endblock page_body %}
