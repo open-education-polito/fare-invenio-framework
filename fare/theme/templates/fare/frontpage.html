@@ -14,78 +14,108 @@
 
 <div class="container marketing frontpage-full-width">
 
-  <div class="row">
-    <h1 class="text-center">
-      <b>Benvenuto su FARE</b>
-      <br>
-      (Free Architecture for Remote Education)
-    </h1>
-    <h2 class="text-center">
-      FARE è un archivio di oggetti didattici o "learning objects"
-      (testi di lezioni o libri, videolezioni o videoconferenze) arricchiti di strumenti
-      di ausilio all'apprendimento. Inoltre, FARE ti consente di attivare una videolezione o
-      una videoconferenza, oppure, più semplicemente, di assistere a una videolezione o
-      partecipare a una videoconferenza attivate da altri soggetti
-    </h2>
-  </div>
+  <div class="col-sm-12">
 
-  <div class="row">
+    <div class="row">
+      <h1 class="text-center">
+        <b>Benvenuto su FARE</b>
+        <br>
+        (Free Architecture for Remote Education)
+      </h1>
+      <h2 class="text-center">
+        FARE è un archivio di oggetti didattici
+        (testi di lezioni o libri, videolezioni o videoconferenze) arricchiti di strumenti
+        di ausilio all'apprendimento. Inoltre, FARE ti consente di attivare o di assistere
+        a una videolezione o una videoconferenza
+      </h2>
+    </div>
 
-    <a href="{{ url_for('file_management.search_page') }}">
-      <div class="col-sm-6 welcome-row hover-search">
-        <div class="row text-center">
-          <i class="fa fa-search fa-5x aria-hidden='true' frontpage-icon"></i>
-        </div>
-        <div class="row">
-          <h3 class="text-center frontpage-explanation">
-            Ricerca di un oggetto didattico nell'archivio
-          </h3>
-        </div>
-      </div>
-    </a>
+    <div class="row">
 
-    <a href="{{ url_for('file_management.create') }}">
-      <div class="col-sm-6 explore-row hover-upload">
-        <div class="row text-center">
-          <i class="fa fa-desktop fa-5x aria-hidden='true' frontpage-icon"></i>
+      <a href="{{ url_for('file_management.search_page') }}">
+        <div class="col-sm-6 welcome-row hover-search">
+          <div class="row text-center">
+            <i class="fa fa-search fa-5x aria-hidden='true' frontpage-icon"></i>
+          </div>
+          <div class="row">
+            <h3 class="text-center frontpage-explanation">
+              Ricerca di un oggetto didattico nell'archivio
+            </h3>
+          </div>
         </div>
-        <div class="row">
-          <h3 class="text-center frontpage-explanation">
-            Aggiungi un oggetto didattico all'archivio
-          </h3>
-        </div>
-      </div>
-    </a>
+      </a>
 
-  </div>
+      {% if current_user.is_authenticated %}
 
-  <div class="row">
+        {% set uploadFileLink = url_for('file_management.create') %}
 
-    <a href="{{ url_for('conference.info_create') }}">
-      <div class="col-sm-6 collaborate-row hover-create-room">
-        <div class="row text-center">
-          <i class="fa fa-video-camera fa-5x aria-hidden='true' frontpage-icon"></i>
-        </div>
-        <div class="row">
-          <h3 class="text-center frontpage-explanation">
-            Attiva una videoconferenza o una videolezione
-          </h3>
-        </div>
-      </div>
-    </a>
+      {% else %}
 
-    <a href="{{ url_for('conference.join_room') }}">
-      <div class="col-sm-6 creative-commons-row hover-join-room">
-        <div class="row text-center">
-          <i class="fa fa-users fa-5x aria-hidden='true' frontpage-icon"></i>
+        {% set uploadFileLink = url_for('file_management.info_create') %}
+
+      {% endif %}
+
+      <a href="{{ uploadFileLink }}">
+        <div class="col-sm-6 explore-row hover-upload">
+          <div class="row text-center">
+            <i class="fa fa-desktop fa-5x aria-hidden='true' frontpage-icon"></i>
+          </div>
+          <div class="row">
+            <h3 class="text-center frontpage-explanation">
+              Aggiungi un oggetto didattico all'archivio
+            </h3>
+          </div>
         </div>
-        <div class="row">
-          <h3 class="text-center frontpage-explanation">
-            Partecipa ad una videoconferenza o ad una videolezione
-          </h3>
+      </a>
+
+    </div>
+
+    <div class="row">
+
+      {% if current_user.is_authenticated %}
+        {% if current_user.has_role('roomCreator') or current_user.has_role('admin') %}
+
+          {% set createRoomLink = url_for('conference.create_room')  %}
+
+        {% else %}
+
+          {% set createRoomLink = url_for('conference.info_create') %}
+
+        {% endif %}
+
+      {% else %}
+
+        {% set createRoomLink = url_for('conference.info_create') %}
+
+      {% endif %}
+
+      <a href="{{ createRoomLink }}">
+        <div class="col-sm-6 collaborate-row hover-create-room">
+          <div class="row text-center">
+            <i class="fa fa-video-camera fa-5x aria-hidden='true' frontpage-icon"></i>
+          </div>
+          <div class="row">
+            <h3 class="text-center frontpage-explanation">
+              Attiva una videoconferenza o una videolezione
+            </h3>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+
+      <a href="{{ url_for('conference.join_room') }}">
+        <div class="col-sm-6 creative-commons-row hover-join-room">
+          <div class="row text-center">
+            <i class="fa fa-users fa-5x aria-hidden='true' frontpage-icon"></i>
+          </div>
+          <div class="row">
+            <h3 class="text-center frontpage-explanation">
+              Partecipa ad una videoconferenza o ad una videolezione
+            </h3>
+          </div>
+        </div>
+      </a>
+
+    </div>
 
   </div>
 

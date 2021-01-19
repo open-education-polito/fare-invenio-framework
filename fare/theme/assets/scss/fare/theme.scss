@@ -64,18 +64,26 @@ body.cover-page{
 
 .hover-search:hover{
   background-image: url("../../../static/images/explore_books.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .hover-upload:hover{
   background-image: url("../../../static/images/collaborate.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .hover-create-room:hover{
   background-image: url("../../../static/images/classroom.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .hover-join-room:hover{
   background-image: url("../../../static/images/learning_group.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .create-file-icon{
