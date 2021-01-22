@@ -34,6 +34,7 @@ RATELIMIT_STORAGE_URL = 'redis://localhost:6379/3'
 # ====
 #: Default language
 BABEL_DEFAULT_LANGUAGE = 'it'
+BABEL_DEFAULT_LOCALE = 'it'
 #: Default time zone
 BABEL_DEFAULT_TIMEZONE = 'Europe/Rome'
 #: Other supported languages (do not include the default language in list).
