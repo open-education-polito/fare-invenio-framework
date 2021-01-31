@@ -51,11 +51,6 @@ def search_page():
     return render_template('file_management/search_page.html')
 
 
-@blueprint.route('/info_create', methods=('GET',))
-def info_create():
-    return render_template('file_management/info_create.html')
-
-
 @blueprint.route('/guide_search', methods=('GET',))
 def retrieve_guide_search():
     subjects = get_all_subjects()
@@ -74,7 +69,6 @@ def retrieve_guide_upload():
 
 
 @blueprint.route('/create', methods=('GET', 'POST'))
-@login_required
 @register_menu(blueprint, 'settings.createfile',
                _('%(icon)s Carica file',
                  icon='<i class="fa fa-file-text fa-fw"></i>'
@@ -83,6 +77,10 @@ def retrieve_guide_upload():
                )
 def create():
     """The create view."""
+
+    if not current_user.is_authenticated:
+        return render_template('file_management/info_create.html')
+
     form = RecordForm()
     # if the form is submitted and valid
     if form.validate_on_submit():

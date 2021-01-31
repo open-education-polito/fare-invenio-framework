@@ -36,14 +36,7 @@ blueprint = Blueprint(
 )
 
 
-@blueprint.route('/info_create', methods=('GET',))
-def info_create():
-    return render_template('conference/info_create.html')
-
-
 @blueprint.route('/create_room', methods=('GET', 'POST'))
-@login_required
-@roles_accepted('admin', 'roomCreator')
 @register_menu(blueprint, 'settings.createroom',
                _('%(icon)s Crea stanza',
                  icon='<i class="fa fa-video-camera fa-fw"></i>'
@@ -56,33 +49,39 @@ def info_create():
 def create_room():
     """View to let user create a virtual room"""
 
-    form = RoomForm()
+    if current_user.is_authenticated:
+        if ('admin' in current_user.roles) | ('roomCreator' in current_user.roles):
+            form = RoomForm()
 
-    # if the form is submitted and valid
-    if form.validate_on_submit():
-        roomId = form.roomId.data.strip()
-        password = form.password.data
-        username = form.username.data.strip().replace(" ", "_")
-        modPassword = secrets.token_urlsafe(64)
+            # if the form is submitted and valid
+            if form.validate_on_submit():
+                roomId = form.roomId.data.strip()
+                password = form.password.data
+                username = form.username.data.strip().replace(" ", "_")
+                modPassword = secrets.token_urlsafe(64)
 
-        b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
+                b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
-        # params
-        dict = {'name': username, 'attendeePW': password, 'moderatorPW': modPassword}
+                # params
+                dict = {'name': username, 'attendeePW': password, 'moderatorPW': modPassword}
 
-        try:
-            # use create meeting
-            b.create_meeting(roomId,params=dict)
-        except BBBException:
-            return render_template('conference/create_conference.html', form=form, existingId=True)
+                try:
+                    # use create meeting
+                    b.create_meeting(roomId,params=dict)
+                except BBBException:
+                    return render_template('conference/create_conference.html', form=form, existingId=True)
 
-        # get room url
-        room_url = b.get_join_meeting_url(username, roomId, modPassword)
+                # get room url
+                room_url = b.get_join_meeting_url(username, roomId, modPassword)
 
-        # redirect to the created room
-        return redirect(room_url)
+                # redirect to the created room
+                return redirect(room_url)
 
-    return render_template('conference/create_conference.html', form=form)
+            return render_template('conference/create_conference.html', form=form)
+        else:
+            return render_template('conference/info_create.html')
+    else:
+        return render_template('conference/info_create.html')
 
 
 @blueprint.route('/join_room', methods=('GET', 'POST'))
