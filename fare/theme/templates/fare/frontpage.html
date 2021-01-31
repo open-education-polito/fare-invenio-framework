@@ -45,17 +45,7 @@
         </div>
       </a>
 
-      {% if current_user.is_authenticated %}
-
-        {% set uploadFileLink = url_for('file_management.create') %}
-
-      {% else %}
-
-        {% set uploadFileLink = url_for('file_management.info_create') %}
-
-      {% endif %}
-
-      <a href="{{ uploadFileLink }}">
+      <a href="{{ url_for('file_management.create') }}">
         <div class="col-sm-6 explore-row hover-upload">
           <div class="row text-center">
             <i class="fa fa-desktop fa-5x aria-hidden='true' frontpage-icon"></i>
@@ -72,24 +62,7 @@
 
     <div class="row">
 
-      {% if current_user.is_authenticated %}
-        {% if current_user.has_role('roomCreator') or current_user.has_role('admin') %}
-
-          {% set createRoomLink = url_for('conference.create_room')  %}
-
-        {% else %}
-
-          {% set createRoomLink = url_for('conference.info_create') %}
-
-        {% endif %}
-
-      {% else %}
-
-        {% set createRoomLink = url_for('conference.info_create') %}
-
-      {% endif %}
-
-      <a href="{{ createRoomLink }}">
+      <a href="{{ url_for('conference.create_room') }}">
         <div class="col-sm-6 collaborate-row hover-create-room">
           <div class="row text-center">
             <i class="fa fa-video-camera fa-5x aria-hidden='true' frontpage-icon"></i>
