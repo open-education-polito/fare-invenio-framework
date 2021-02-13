@@ -50,12 +50,19 @@ To be able to develop and run out instance you will need the following installed
 * [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/)
 * [Pipenv](https://pipenv.readthedocs.io/en/latest/)
 
+## Setting environment variables and volumes
+
+**Important note:** Before run the application you need to:
+
+* Set the environment variables in a `.env` file, it must be created. You can see an example in the `.env.example` file provided.
+
+* Create the directories used as shared volumes to store the data used by the application executing the command:
+
+	```
+	$ pipenv run ./scripts/create-volumes
+	```
+
 ## Production environment
-
-### Setting environment variables
-
-Before run the application you need to set the variable in a .env file, it must be created.
-You can see an example in the .env.example file.
 
 ### Run
 

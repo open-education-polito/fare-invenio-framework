@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ -d "$FARE_DATA" ]
+then
+  echo "$FARE_DATA already exists"
+else
+  mkdir $FARE_DATA
+fi
+
+if [ -d "$FARE_DATA/$PG_DATA" ]
+then
+  echo "$FARE_DATA/$PG_DATA already exists"
+else
+  mkdir $FARE_DATA/$PG_DATA
+fi
+
+if [ -d "$FARE_DATA/$ES_DATA" ]
+then
+  echo "$FARE_DATA/$ES_DATA already exists"
+else
+  mkdir $FARE_DATA/$ES_DATA
+fi
+
+if [ -d "$FARE_DATA/$LO_DATA" ]
+then
+  echo "$FARE_DATA/$LO_DATA already exists"
+else
+  mkdir $FARE_DATA/$LO_DATA
+fi
