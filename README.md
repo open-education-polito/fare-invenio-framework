@@ -38,7 +38,7 @@ everyone!
 
 # How to contribute
 
-This project runs Invenio v3.2.1. 
+This project runs Invenio v3.4.0. 
 
 ## Prerequisites
 
@@ -121,6 +121,10 @@ You can now start the development web server and the background worker for your 
 * Debug mode: on
 * Running on https://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
+
+## Invenio documentation
+
+Further documentation, related to the framework used and the topics not covered in this guide, can be found [here](https://invenio.readthedocs.io/en/latest/).
 
 ## Code of conduct
 [Code of conduct](https://www.contributor-covenant.org/)
