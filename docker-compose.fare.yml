@@ -62,7 +62,7 @@ services:
       - "5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
-      - ${FARE_DATA}/${LO_DATA}:/opt/invenio/var/instance/data
+      - ${FARE_DATA_PATH}/fare-data/lo_data:/opt/invenio/var/instance/data
       - ui_log:/var/log/fare 
     links:
       - cache
@@ -116,7 +116,7 @@ services:
       service: db
     user: "${UID}:${GID}"
     volumes:
-      - ${FARE_DATA}/${PG_DATA}:/pgdata
+      - ${FARE_DATA_PATH}/fare-data/pg_data:/pgdata
       - pg_dump:/backup_fare_db
   # http://guest:guest@127.0.0.1:15672
   mq:
@@ -128,7 +128,7 @@ services:
       file: docker-services.yml
       service: es
     volumes:
-      - ${FARE_DATA}/${ES_DATA}:/usr/share/elasticsearch/data
+      - ${FARE_DATA_PATH}/fare-data/es_data:/usr/share/elasticsearch/data
 
 volumes:
   static_data:

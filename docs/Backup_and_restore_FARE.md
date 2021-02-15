@@ -5,18 +5,24 @@ The backup is composed of three parts:
 - Elasticsearch used to index the records and search them
 - Files stored in the container web-ui
 
+## Backup strategy
+
+There are two ways to backup data on FARE:
+- Copying the folder `$FARE_DATA_PATH/fare-data` where `$FARE_DATA_PATH` is the variable specified in the `.env`
+- Following the procedure described below. The steps described are automated by the scripts `backup` and `restore` as mentioned later.
+
 ## 1. Database
 The dump of the metadata and the users can be done with this command:
 ```
-docker exec fare-invenio_db_1 pg_dumpall -U $PG_USER > ~/fare_shared_data/fare_db/backup_fare_db.sql
+docker exec fare-invenio_db_1 pg_dumpall -U $PG_USER > $FARE_DUMP_PATH/fare_data_dump/fare_db/backup_fare_db.sql
 ```
 Where:
 - `fare-invenio_db_1` is the name of the container
 - `pg_dumpall` the command of postgres to dump all the database
-- `-U $PG_USER` the user specified in the .env file
-- `~/fare_shared_data/fare_db/backup_fare_db.sql` the path where to save the dump
+- `-U $PG_USER` the user specified in the `.env` file
+- `$FARE_DUMP_PATH/fare_data_dump/fare_db/backup_fare_db.sql` the path where to save the dump, $FARE_DUMP_PATH is specified in the `.env` file
 
-Doing so we will have the dump of the database in `/backup_fare_db` in the `fare-invenio_db_1` container and in the `~/fare_shared_data/fare_db/` path in the host.
+In this way we have the database dump both on the `fare-invenio_db_1` container, in the directory `/backup_fare_db`, and on the host, in the path `$FARE_DUMP_PATH/fare_data_dump/fare_db/`. 
 
 To restore the data we have to run this command:
 ```
@@ -26,11 +32,11 @@ docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U $PG_
 Where:
 - `fare-invenio_db_1` is the name of the container
 - `psql` the command of postgres to restore the data
-- `-f /backup_fare_db/backup_fare_db.sql` the file where there is the dump of the database
+- `-f /backup_fare_db/backup_fare_db.sql` the file where there is the database backup
 - `-U $PG_USER` the user
 
 ## 2. Elasticsearch
-First of all the path where to store the dump must be specified in the config file, it was done modifing the config file of elasticsearch in  `/docker/elasticsearch/elasticsearch.yml` adding the path of the repo `path.repo: ["<path_where_to_store_the_dump>"]`, doing so it's not needed to stop and restart the container.
+First of all the path where to store the dump must be specified in the config file, it was done modifing the config file of elasticsearch in  `/docker/elasticsearch/elasticsearch.yml` adding the path of the repo `path.repo: ["<path_where_to_store_the_dump>"]`, doing so there is no need to stop and restart the container.
 
 Inside the container of elasticsearch the config file is in `config/elasticsearch.yml` , **could be necessary to change the permissions of the specified path**.
 
@@ -48,7 +54,7 @@ wait_for_completion=true
 ```
 
 Now you have your backup, if you want to restore the data you need to follow this steps:
-- `curl -X POST http://localhost:9200/_snapshot/prova_backup/snapshot_1/_restore`
+- `curl -X POST http://localhost:9200/_snapshot/backup_fare_es/snapshot_1/_restore`
 - **There could be an error that says to close the .kibana index**, in that case do:
 `curl -X POST http://localhost:9200/.kibana/_close`
 
@@ -83,33 +89,33 @@ delete the index with the most recent `<timestamp>` with:
 - `curl -X DELETE "localhost:9200/records-record-v1.0.0-<timestamp>?pretty"` (where `<timestamp>` is the one of the index)
 
 ## 3. Files
-The files are saved in the container `fare-invenio_web-ui_1` in the directory `/opt/invenio/instance/data/` to make the backup of the files just run a `docker cp <src> <dest>` command, to copy the files from the container to the host.
+The files are saved on the container `fare-invenio_web-ui_1` in the directory `/opt/invenio//var/instance/data/`. To make the files backup just run a `docker cp <src> <dest>` command, to copy the files from the container to the host.
 
 ## 4. Scripts
 
-The procedure of backup and restore of the data described above was automated by two scripts.
+The backup and restore procedures described above are automated by two scripts.
 
-### 4.1 backup script
+### 4.1 Backup script
 
 The backup script can be run every time you want to save the current state of the platform. 
 The script:
-- Create the directory for store the backup if not present.
-- Make the dump of the metadata, overwriting the old one.
-- Check if the repo is yet registered or not, if not it creates the repo.
-- Save the snapshot of the indexes, with a progressive number.
-- Copy the backup of the indexes and the files in the host.
+- Creates the directory where to store the backup if not present.
+- Makes the dump of the metadata, overwriting the old one.
+- Checks if the repo is already registered or not, if not it creates the repo.
+- Saves the snapshot of the indexes, with a progressive number.
+- Copies the dump of the indexes and the files in the host.
 
-To execute the script run the command `pipenv run ./script_backup.sh`
+To execute the script run the command `pipenv run ./scripts/backup`
 
-### 4.2 restore script
+### 4.2 Restore script
 
 The restore script can be run when you need to restore your data from a backup.
 The script:
-- Copy the backup files from the host to the different containers.
-- Make the restore of the metadata.
-- Check if the repo is yet registered or not, if not it creates the repo.
-- Close the `.kibana` index if present.
-- Calculate the number of the snapshot to restore, taking the one more recent.
-- Retrieve all the elasticsearch indexes in the form of `records-record-v1.0.0-<timestamp>` and delete all the indexes with the `<timestamp>` most recent
+- Copies the dump files from the host to the different containers.
+- Makes the restore of the metadata.
+- Checks if the repo is already registered or not, if not it creates the repo.
+- Closes the `.kibana` index if present.
+- Calculates the number of the snapshot to restore, taking the more recent one.
+- Retrieves all the elasticsearch indexes in the form of `records-record-v1.0.0-<timestamp>` and delete all the indexes with the `<timestamp>` most recent
 
-To execute the script run the command `pipenv run ./script_restore.sh`
+To execute the script run the command `pipenv run ./scripts/restore`
