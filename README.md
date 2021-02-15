@@ -66,17 +66,15 @@ To be able to develop and run out instance you will need the following installed
 
 ### Run
 
-You can use a full production environment using the
-``docker-compose.fare.yml``. You can start it like this:
+You can use a full-stack production environment using the ``docker-compose.fare.yml`` setup, it allows you to run all components in containers. To bring it up you have to execute the following commands:
 
 ```
+# Build the application images first
 $ ./docker/build-images.sh
 $ docker-compose -f docker-compose.fare.yml up -d
-$ ./docker/wait-for-services.sh --full
 ```
 
-Remember to create database tables, search indexes and message queues if not
-already done:
+Remember to create database tables, search indexes and message queues if it has not already been done: 
 
 ```
 $ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
