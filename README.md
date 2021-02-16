@@ -38,7 +38,7 @@ everyone!
 
 # How to contribute
 
-This project runs Invenio v3.2.1. 
+This project runs Invenio v3.4.0. 
 
 ## Prerequisites
 
@@ -50,26 +50,31 @@ To be able to develop and run out instance you will need the following installed
 * [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/)
 * [Pipenv](https://pipenv.readthedocs.io/en/latest/)
 
+## Setting environment variables and volumes
+
+**Important note:** Before run the application you need to:
+
+* Set the environment variables in a `.env` file, it must be created. You can see an example in the `.env.example` file provided.
+
+* Create the directories used as shared volumes to store the data used by the application executing the command:
+
+	```
+	$ pipenv run ./scripts/create-volumes
+	```
+
 ## Production environment
-
-### Setting environment variables
-
-Before run the application you need to set the variable in a .env file, it must be created.
-You can see an example in the .env.example file.
 
 ### Run
 
-You can use a full production environment using the
-``docker-compose.fare.yml``. You can start it like this:
+You can use a full-stack production environment using the ``docker-compose.fare.yml`` setup, it allows you to run all components in containers. To bring it up you have to execute the following commands:
 
 ```
+# Build the application images first
 $ ./docker/build-images.sh
 $ docker-compose -f docker-compose.fare.yml up -d
-$ ./docker/wait-for-services.sh --full
 ```
 
-Remember to create database tables, search indexes and message queues if not
-already done:
+Remember to create database tables, search indexes and message queues if it has not already been done: 
 
 ```
 $ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
@@ -114,6 +119,10 @@ You can now start the development web server and the background worker for your 
 * Debug mode: on
 * Running on https://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
+
+## Invenio documentation
+
+Further documentation, related to the framework used and the topics not covered in this guide, can be found [here](https://invenio.readthedocs.io/en/latest/).
 
 ## Code of conduct
 [Code of conduct](https://www.contributor-covenant.org/)

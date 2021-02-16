@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ -d "$FARE_DATA_PATH/fare-data" ]
+then
+  echo "$FARE_DATA_PATH/fare-data already exists"
+else
+  mkdir $FARE_DATA_PATH/fare-data
+  echo "$FARE_DATA_PATH/fare-data created"
+fi
+
+if [ -d "$FARE_DATA_PATH/fare-data/pg_data" ]
+then
+  echo "$FARE_DATA_PATH/fare-data/pg_data already exists"
+else
+  mkdir $FARE_DATA_PATH/fare-data/pg_data
+  echo "$FARE_DATA_PATH/fare-data/pg_data created"
+fi
+
+if [ -d "$FARE_DATA_PATH/fare-data/es_data" ]
+then
+  echo "$FARE_DATA_PATH/fare-data/es_data already exists"
+else
+  mkdir $FARE_DATA_PATH/fare-data/es_data
+  echo "$FARE_DATA_PATH/fare-data/es_data created"
+fi
+
+if [ -d "$FARE_DATA_PATH/fare-data/lo_data" ]
+then
+  echo "$FARE_DATA_PATH/fare-data/lo_data already exists"
+else
+  mkdir $FARE_DATA_PATH/fare-data/lo_data
+  echo "$FARE_DATA_PATH/fare-data/lo_data created"
+fi

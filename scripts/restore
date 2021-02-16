@@ -2,15 +2,15 @@
 
 # copy dump of database metadata in the container
 echo "Copying metadata in fare-invenio_db_1 container..."
-docker cp ~/fare_shared_data/fare_db/backup_fare_db.sql fare-invenio_db_1:/backup_fare_db/
+docker cp $FARE_DUMP_PATH/fare_data_dump/fare_db/backup_fare_db.sql fare-invenio_db_1:/backup_fare_db/
 
 # copy elasticsearch dump in the container
 echo "Copying Elasticsearch data in fare-invenio_es_1 container..."
-docker cp ~/fare_shared_data/fare_es/. fare-invenio_es_1:/usr/share/elasticsearch/backup_fare_es/
+docker cp $FARE_DUMP_PATH/fare_data_dump/fare_es/. fare-invenio_es_1:/usr/share/elasticsearch/backup_fare_es/
 
 # copy files dump in the container
 echo "Copying files fare-invenio_web-ui_1 container..."
-docker cp ~/fare_shared_data/fare_files/. fare-invenio_web-ui_1:/opt/invenio/var/instance/data/
+docker cp $FARE_DUMP_PATH/fare_data_dump/fare_files/. fare-invenio_web-ui_1:/opt/invenio/var/instance/data/
 
 echo "Restoring all the metadata..."
 docker exec fare-invenio_db_1 psql -f /backup_fare_db/backup_fare_db.sql -U $PG_USER > /dev/null 2>&1
