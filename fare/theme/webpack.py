@@ -17,10 +17,12 @@ theme = WebpackBundle(
     entry={
         'fare-theme': './scss/fare/theme.scss',
         'fare-argument': './js/fare/argument.js',
+        'fare-file-upload': './js/fare/fileUpload.js',
         'status-files': './scss/fare/status-files.scss',
         'guide': './scss/fare/guide.scss',
     },
     dependencies={
         # add any additional npm dependencies here...
+        'angular': '~1.4.9',
     }
 )

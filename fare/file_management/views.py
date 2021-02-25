@@ -68,7 +68,7 @@ def retrieve_guide_upload():
     return render_template('file_management/guide_upload.html')
 
 
-@blueprint.route('/create', methods=('GET', 'POST'))
+@blueprint.route('/create', methods=('GET', 'PUT'))
 @register_menu(blueprint, 'settings.createfile',
                _('%(icon)s Carica file',
                  icon='<i class="fa fa-file-text fa-fw"></i>'
@@ -82,8 +82,14 @@ def create():
         return render_template('file_management/info_create.html')
 
     form = RecordForm()
+
+    if request.method == 'PUT' and 'file_content' in request.files.keys():
+        form = RecordForm(request.form)
+        form.file_content.data = request.files['file_content']
+
     # if the form is submitted and valid
-    if form.validate_on_submit():
+    if request.method == 'PUT' and form.validate():
+
         list_names = form.contributor_name.data.split(",")
         list_contributors = []
 
@@ -123,7 +129,7 @@ def create():
           content
         )
         # redirect to the success page
-        return redirect(url_for('file_management.success'))
+        return url_for('file_management.success')
     return render_template('file_management/create.html', form=form)
 
 

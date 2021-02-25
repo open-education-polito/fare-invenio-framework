@@ -93,7 +93,7 @@ FARE_LICENSES = {
     }
 }
 
-EDUCATION_LEVEL = {
+FARE_EDUCATION_LEVEL = {
   "educationLevel": [
                       "Divulgazione",
                       "Scuola Ospedaliera",
@@ -104,7 +104,7 @@ EDUCATION_LEVEL = {
   ]
 }
 
-SUBJECTS = {
+FARE_SUBJECTS = {
     "subject": [
         "Informatica",
         "Filosofia e psicologia",
@@ -150,7 +150,7 @@ SUBJECTS = {
     ]
 }
 
-ARGUMENTS = {
+FARE_ARGUMENTS = {
     "Informatica": [
         "Ricerca",
         "Cibernetica e discipline connesse",

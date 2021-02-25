@@ -1,4 +1,4 @@
-from ..records.config import EDUCATION_LEVEL, SUBJECTS, ARGUMENTS
+from ..records.config import FARE_EDUCATION_LEVEL, FARE_SUBJECTS, FARE_ARGUMENTS
 
 
 def read_menu_fields(key):
@@ -11,9 +11,9 @@ def read_menu_fields(key):
     data = ""
 
     if key == "educationLevel":
-        data = EDUCATION_LEVEL
+        data = FARE_EDUCATION_LEVEL
     if key == "subject":
-        data = SUBJECTS
+        data = FARE_SUBJECTS
 
     for element in data[key]:
         choices.append((element, element))
@@ -27,7 +27,7 @@ def get_all_arguments():
     Used to retrieve
     the arguments of each subject
     """
-    return ARGUMENTS
+    return FARE_ARGUMENTS
 
 
 def get_all_subjects():
@@ -35,7 +35,7 @@ def get_all_subjects():
     Used to retrieve
     all subjects
     """
-    return SUBJECTS
+    return FARE_SUBJECTS
 
 
 def get_all_education_levels():
@@ -43,7 +43,7 @@ def get_all_education_levels():
     Used to retrieve
     all education levels
     """
-    return EDUCATION_LEVEL
+    return FARE_EDUCATION_LEVEL
 
 
 def init_field_all():
@@ -53,8 +53,8 @@ def init_field_all():
     """
     arguments_list = []
 
-    for subject in ARGUMENTS.keys():
-        for argument in ARGUMENTS[subject]:
+    for subject in FARE_ARGUMENTS.keys():
+        for argument in FARE_ARGUMENTS[subject]:
             arguments_list.append((argument, argument))
 
     return arguments_list
