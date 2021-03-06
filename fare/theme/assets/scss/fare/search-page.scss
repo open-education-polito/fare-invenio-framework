@@ -1,0 +1,24 @@
+.navbar-default{
+  margin: 0px;
+}
+
+.body-image{
+  height: 750px;
+  background-color: transparent;
+  border-color: transparent;
+  background-image: url("../../../static/images/frontpage_library.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.frontpage-search{
+  padding-top: 15%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.search-block-background{
+  color: white;
+  background-color: rgba(22,35,42,.6);
+}

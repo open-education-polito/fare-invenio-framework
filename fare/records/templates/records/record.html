@@ -46,131 +46,155 @@
 <div class="container">
 
   <div class="row">
+
     <div class="col-sm-12">
-      <h1>{{record.title}}</h1>
-      <hr>
+      <div class="element-block">
+        <h1>{{record.title}}</h1>
+
+        <hr>
+
+        {% if current_user.has_role('admin') or current_user.id==record.owner %}
+            <form action="{{ url_for('file_management.delete') }}" method="POST" id="deleteform">
+                <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+                <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+            </form>
+            <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Rimuovi
+            </button>
+        {% endif %}
+
+
+        {% if current_user.has_role('admin') or current_user.has_role('staff') %}
+            {% if record.revisioned == False %}
+                <form action="{{ url_for('file_management.publish') }}" method="POST" id="publishform">
+                    <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+              <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+                </form>
+                <button type="submit" class="btn btn-success" form="publishform" value="Publish">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Pubblica
+                </button>
+            {% endif %}
+        {% endif %}
+
+
+        <form action="{{ url_for('file_management.download') }}" method="POST" id="downloadform">
+            <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
+            <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
+        </form>
+        <button type="submit" class="btn btn-primary" form="downloadform" value="Download">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            Download
+        </button>
+
+      </div>
     </div>
+
   </div>
 
+  <br>
+
   <div class="row">
-    <div class="col-sm-8">
-      <h4>
-        <span class="label label-primary">
-          {{ record.educationLevel }}
-        </span>
-        &nbsp;
-        <span class="label label-success">
-            {{ record.subject }}
-        </span>
-      </h4>
-      <br>
-      <h4><b>Argomento:</b> {{ record.coverage }} </h4>
-      <h4>
-        <b>Autori:</b>
-        {% for contributor in record.contributors %}
-          {{ contributor['name'] }}
-          {% if not loop.last %} , {% endif %}
-        {% endfor %}
-      </h4>
-      <br>
 
-      <div class="row">
-          <div class="col-sm-9">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <h3 class="panel-title">Descrizione</h3>
-                  </div>
-                  <div class="panel-body">
-                      {{ record.description }}
-                  </div>
-              </div>
+    <div class="col-sm-7">
+      <div class="element-block">
+        <div class="row">
+
+          <div class="col-sm-4 text-center">
+            <h1><i class="fa fa-file-text-o fa-5x record-file-icon" aria-hidden="true"></i></h1>
           </div>
+
+          <div class="col-sm-8">
+
+            <h2>Descrizione</h2>
+            <hr>
+            {{ record.description }}
+          </div>
+
+        </div>
       </div>
+    </div>
 
-      {% if current_user.has_role('admin') or current_user.id==record.owner %}
-          <form action="{{ url_for('file_management.delete') }}" method="POST" id="deleteform">
-              <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-              <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-          </form>
-          <button type="submit" class="btn btn-danger" form="deleteform" value="Delete">
-              <i class="fa fa-trash" aria-hidden="true"></i>
-              Rimuovi
-          </button>
-      {% endif %}
-
-
-      {% if current_user.has_role('admin') or current_user.has_role('staff') %}
-          {% if record.revisioned == False %}
-              <form action="{{ url_for('file_management.publish') }}" method="POST" id="publishform">
-                  <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-            <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-              </form>
-              <button type="submit" class="btn btn-success" form="publishform" value="Publish">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  Pubblica
-              </button>
-          {% endif %}
-      {% endif %}
-
-
-      <form action="{{ url_for('file_management.download') }}" method="POST" id="downloadform">
-          <input type="text" name="record_bucket" value={{ record._bucket }} readonly hidden/>
-          <input type="text" name="record_id" value={{ record.id }} readonly hidden/>
-      </form>
-      <button type="submit" class="btn btn-primary" form="downloadform" value="Download">
-          <i class="fa fa-download" aria-hidden="true"></i>
-          Download
-      </button>
-
+    <div class="col-sm-1">
+      &nbsp;
     </div>
 
     <div class="col-sm-4">
+      <div class="element-block">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                  Licenza associata a questo contenuto: <b>{{ record.license }}</b>
+                </h3>
+            </div>
+            <div class="panel-body">
 
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
+              <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Licenza associata a questo contenuto: {{ record.license }}</h3>
+                  <h3 class="panel-title">Permessi</h3>
                 </div>
                 <div class="panel-body">
-
-                  <div class="panel panel-success">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Permessi</h3>
-                    </div>
-                    <div class="panel-body">
-                      <ul>
-                        {% for i in config.FARE_LICENSES[record.license]['yes'] %}
-                          <li>
-                            {{ i }}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="panel panel-danger">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Limitazioni</h3>
-                    </div>
-                    <div class="panel-body">
-                      <ul>
-                        {% for i in config.FARE_LICENSES[record.license]['no'] %}
-                          <li>
-                            {{ i }}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-
+                  <ul>
+                    {% for i in config.FARE_LICENSES[record.license]['yes'] %}
+                      <li>
+                        {{ i }}
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </div>
+              </div>
+
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Limitazioni</h3>
+                </div>
+                <div class="panel-body">
+                  <ul>
+                    {% for i in config.FARE_LICENSES[record.license]['no'] %}
+                      <li>
+                        {{ i }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+
             </div>
         </div>
 
       <p class="text-center">Vuoi sapere di più sulle licenze Creative Commons? Clicca
-        <a href="https://creativecommons.org/licenses/?lang=it">qui <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <a href="https://creativecommons.org/licenses/?lang=it">
+          qui <i class="fa fa-external-link" aria-hidden="true"></i>
+        </a>
       </p>
 
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="element-block">
+        <h2>Dettagli</h2>
+
+        <hr>
+
+        <h4><b>Ordine di scuola:</b> {{ record.educationLevel }} </h4>
+        <h4><b>Materia:</b> {{ record.subject }} </h4>
+        <h4><b>Argomento:</b> {{ record.coverage }} </h4>
+        <h4>
+          <b>Autori:</b>
+          {% for contributor in record.contributors %}
+            {{ contributor['name'] }}
+            {% if not loop.last %} , {% endif %}
+          {% endfor %}
+        </h4>
+        <h4><b>Licenza:</b> {{ record.license }}</h4>
+      </div>
     </div>
   </div>
 

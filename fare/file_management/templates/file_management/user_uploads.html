@@ -13,45 +13,50 @@
 
     {% for record in records_list %}
 
-      <hr/>
+    <div class="element-block">
 
       <div class="row">
 
-      <div class="col-md-8">
-        <span class="label label-primary">{{ record['educationLevel'] }}</span>
-        <span class="label label-success">{{ record['subject'] }}</span>
+        <div class="col-md-8">
+          <span class="label label-primary">{{ record['educationLevel'] }}</span>
+          <span class="label label-success">{{ record['subject'] }}</span>
 
-        {% if record['revisioned'] %}
-          <h3><a href="/records/{{ record['id'] }}">{{ record['title'] }}</a></h3>
-        {% else %}
-          <h3>{{ record['title'] }}</h3>
-        {% endif %}
+          {% if record['revisioned'] %}
+            <h2><a href="/records/{{ record['id'] }}">{{ record['title'] }}</a></h2>
+          {% else %}
+            <h2>{{ record['title'] }}</h2>
+          {% endif %}
 
-        <h5><b>Argomento:</b> {{ record['coverage'] }}</h5>
-        <ul class="list-inline">
-            <b>Autore/i:</b>
-            {% for contributor in record['contributors'] %}
-            <li>
-              {{ contributor.name }};
-            </li>
-            {% endfor %}
-        </ul>
-        <h5><b>Licenza:</b> {{ record['license'] }}</h5>
+          <hr/>
+
+          <h5><b>Argomento:</b> {{ record['coverage'] }}</h5>
+          <ul class="list-inline">
+              <b>Autore/i:</b>
+              {% for contributor in record['contributors'] %}
+              <li>
+                {{ contributor.name }};
+              </li>
+              {% endfor %}
+          </ul>
+          <h5><b>Licenza:</b> {{ record['license'] }}</h5>
+        </div>
+
+
+        <div id="label-div" class="col-md-4 text-center">
+          <h3>
+          {% if record['revisioned'] %}
+            <span class="label label-info">pubblicato</span>
+          {% else %}
+            <span class="label label-danger">da revisionare</span>
+          {% endif %}
+          </h3>
+        </div>
+
       </div>
 
+    </div>
 
-      <div id="label-div" class="col-md-4">
-        <h3>
-        {% if record['revisioned'] %}
-          <span class="pull-right label label-info">pubblicato</span>
-        {% else %}
-          <span class="pull-right label label-danger">da revisionare</span>
-        {% endif %}
-        </h3>
-      </div>
-
-      </div>
-
+    <br>
     {% endfor %}
 
   </div>

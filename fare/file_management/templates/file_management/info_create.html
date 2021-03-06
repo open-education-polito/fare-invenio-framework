@@ -25,52 +25,65 @@
   {%- endblock navbar %}
 </header>
 
-<h1 class="text-center">
-  Carica il materiale
-</h1>
-
-<br><br><br><br>
-
 <div class="container">
+  <div class="element-block">
 
-  {% if not current_user.is_authenticated %}
+    <h1 class="text-center">
+      Carica il materiale
+    </h1>
 
-    <div class="col-sm-3">
-    </div>
+    <br>
 
-    <div class="col-sm-6 text-center">
-      <div class="row">
-        <div class="alert alert-info" role="alert">
-          <h4>
-            Per accedere ai servizi di FARE occorre in primo luogo "registrarsi" ossia trasmettere
-            a FARE il proprio indirizzo di posta elettronica e una proposta di password.
-            Questa registrazione si ottiene cliccando sul pulsante  chiamato "Registrati".
-            <br>
-            Se ti sei già registrato oggi o in qualunque altro momento, non serve una nuova registrazione.
-            <br>
-            Se sei già registrato puoi procedere all'installazione di un nuovo oggetto didattico premendo
-            il tasto chiamato "Accedi".
-            <br>
-            Il nuovo oggetto sarà sottoposto all'attenzione dell'amministrazione del sistema. Solo dopo
-            l'approvazione dell'amministrazione quell'oggetto sarà caricato nell'archivio di FARE
-          </h4>
+    {% if not current_user.is_authenticated %}
+
+    <div class="row">
+
+      <div class="col-sm-3">
+      </div>
+
+      <div class="col-sm-6 text-center">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-info" role="alert">
+              <h4>
+                Per accedere ai servizi di FARE occorre in primo luogo "registrarsi" ossia trasmettere
+                a FARE il proprio indirizzo di posta elettronica e una proposta di password.
+                Questa registrazione si ottiene cliccando sul pulsante  chiamato "Registrati".
+                <br>
+                Se ti sei già registrato oggi o in qualunque altro momento, non serve una nuova registrazione.
+                <br>
+                Se sei già registrato puoi procedere all'installazione di un nuovo oggetto didattico premendo
+                il tasto chiamato "Accedi".
+                <br>
+                Il nuovo oggetto sarà sottoposto all'attenzione dell'amministrazione del sistema. Solo dopo
+                l'approvazione dell'amministrazione quell'oggetto sarà caricato nell'archivio di FARE
+              </h4>
+            </div>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="{{url_for_security('login', next=request.path)}}" class="btn btn-default btn-lg">
+              <i class="fa fa-sign-in"></i> Accedi
+            </a>
+            <a href="{{url_for_security('register')}}" type="submit" class="btn btn-default btn-warning btn-lg">
+              <i class="fa fa-edit"></i> Registrati
+            </a>
+          </div>
+        </div>
+
       </div>
-      <div class="row">
-        <a href="{{url_for_security('login', next=request.path)}}" class="btn btn-default btn-lg">
-          <i class="fa fa-sign-in"></i> Accedi
-        </a>
-        <a href="{{url_for_security('register')}}" type="submit" class="btn btn-default btn-warning btn-lg">
-          <i class="fa fa-edit"></i> Registrati
-        </a>
+
+      <div class="col-sm-3">
       </div>
+
     </div>
 
-    <div class="col-sm-3">
-    </div>
+    {% endif %}
 
-  {% endif %}
-
+  </div>
 </div>
 
 {% endblock page_body %}

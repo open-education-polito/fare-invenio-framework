@@ -16,9 +16,12 @@ theme = WebpackBundle(
     'assets',
     entry={
         'fare-theme': './scss/fare/theme.scss',
-        'fare-argument': './js/fare/argument.js',
+        'fare-frontpage': './scss/fare/frontpage.scss',
+        'fare-footer': './scss/fare/footer.scss',
+        'fare-search-page': './scss/fare/search-page.scss',
         'status-files': './scss/fare/status-files.scss',
         'guide': './scss/fare/guide.scss',
+        'fare-argument': './js/fare/argument.js',
     },
     dependencies={
         # add any additional npm dependencies here...

@@ -1,8 +1,9 @@
 <footer id="footer">
+
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12"><hr /></div>
-    </div>
+
+    <br><br>
+
     <div class="row">
       <div>
         {%- if config.I18N_LANGUAGES %}
@@ -51,8 +52,11 @@
           Handcrafted @ <a href="https://www.polito.it">Politecnico di Torino</a>
         </p>
       </div>
+
     </div>
+
     <br>
+
     <div class="row">
       <p class="text-center">
         Copyright (C) 2020 - Politecnico di Torino
@@ -61,5 +65,9 @@
         {% trans link="http://inveniosoftware.org" %}Powered by <a href="{{link}}">Invenio</a>{% endtrans %}
       </p>
     </div>
+
   </div>
+
 </footer>
+
+{{ webpack['fare-footer.css'] }}

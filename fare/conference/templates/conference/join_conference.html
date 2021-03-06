@@ -14,62 +14,78 @@
 
 {% block page_body %}
   <div class="container">
+    <div class="element-block">
 
-    <div class="row">
-      {% if existingId is defined %}
-        <div class="alert alert-danger alert-dismissible text-center" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Non esiste una videoconferenza/videolezione con questo ID
+      <div class="row">
+        {% if existingId is defined %}
+          <div class="alert alert-danger alert-dismissible text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            Non esiste una videoconferenza/videolezione con questo ID
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="text-center">Partecipa a una videoconferenza/videolezione</h1><br>
+              <h3 class="text-center">
+                Per partecipare ad una videoconferenza/videolezione <br> bisogna conoscerne il nome e la password
+              </h3>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6 well">
+
+              <form action="{{ url_for('conference.join_room') }}" method="POST" enctype="multipart/form-data">
+
+                  <div class="form-group {{ 'has-error' if form.roomId.errors }}">
+                    <label for="roomId">Nome della videoconferenza/videolezione alla quale vuoi partecipare</label>
+                    {{ form.roomId(class_="form-control")|safe }}
+                    {{ errors(form.roomId) }}
+                  </div>
+
+                  <div class="form-group {{ 'has-error' if form.password.errors }}">
+                    <label for="password">Password della videoconferenza/videolezione</label>
+                    {{ form.password(class_="form-control")|safe }}
+                    {{ errors(form.password) }}
+                  </div>
+
+                  <div class="form-group {{ 'has-error' if form.username.errors }}">
+                    <label for="username">Cognome e nome con i quali partecipare alla videoconferenza/videolezione</label>
+                    {{ form.username(class_="form-control")|safe }}
+                    {{ errors(form.username) }}
+                  </div>
+
+                  {{ form.csrf_token }}
+                  {{ errors(form.csrf_token) }}
+                  <div class="text-center">
+                  <button type="submit" class="btn btn-warning">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                    Partecipa
+                  </button>
+                  </div>
+
+              </form>
+
+            </div>
+
+            <div class="col-md-3"></div>
+
+          </div>
+
         </div>
-      {% endif %}
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-12">
-        <h1 class="text-center">Partecipa a una videoconferenza/videolezione</h1><br>
-        <h3 class="text-center">
-          Per partecipare ad una videoconferenza/videolezione <br> bisogna conoscerne il nome e la password
-        </h3>
-      </div>
-
-      <div class="col-md-offset-3 col-md-6 well">
-
-        <form action="{{ url_for('conference.join_room') }}" method="POST" enctype="multipart/form-data">
-
-            <div class="form-group {{ 'has-error' if form.roomId.errors }}">
-              <label for="roomId">Nome della videoconferenza/videolezione alla quale vuoi partecipare</label>
-              {{ form.roomId(class_="form-control")|safe }}
-              {{ errors(form.roomId) }}
-            </div>
-
-            <div class="form-group {{ 'has-error' if form.password.errors }}">
-              <label for="password">Password della videoconferenza/videolezione</label>
-              {{ form.password(class_="form-control")|safe }}
-              {{ errors(form.password) }}
-            </div>
-
-            <div class="form-group {{ 'has-error' if form.username.errors }}">
-              <label for="username">Cognome e nome con i quali partecipare alla videoconferenza/videolezione</label>
-              {{ form.username(class_="form-control")|safe }}
-              {{ errors(form.username) }}
-            </div>
-
-            {{ form.csrf_token }}
-            {{ errors(form.csrf_token) }}
-            <div class="text-center">
-            <button type="submit" class="btn btn-warning">
-              <i class="fa fa-video-camera" aria-hidden="true"></i>
-              Partecipa
-            </button>
-            </div>
-
-        </form>
 
       </div>
 
     </div>
-
   </div>
 
 {% endblock page_body %}
