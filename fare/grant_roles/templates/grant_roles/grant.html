@@ -14,31 +14,43 @@
 
 {% block page_body %}
   <div class="container">
-    <div class="row">
+
+    <div class="element-block">
+
       <div class="row">
-        <h2 class="text-center">Fai diventare un membro <b>Staff</b></h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-2 text-center">
           <i class="fa fa-users fa-5x aria-hidden='true' create-file-icon"></i>
         </div>
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-8 text-center">
+
+          <h2>Fai diventare un membro <b>Staff</b></h2>
+
+          <br>
+
           <p>
             Dai la possibilità ad altri utenti di FARE di
             revisionare contenuti che aspettano di essere
             pubblicati sulla piattaforma, inserisci la mail
             nel box e premi il tasto <b>'Abilita'</b>
           </p>
+
         </div>
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-2 text-center">
           <i class="fa fa-users fa-5x aria-hidden='true' create-file-icon"></i>
         </div>
+
       </div>
 
-      <br><br><br><br>
+      <br><br>
 
       <div class="row">
-        <div class="col-md-offset-3 col-md-6 well">
+
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6 well">
           <form action="{{ url_for('grant_roles.grant_staff') }}" method="POST">
             <div class="form-group {{ 'has-error' if form.email.errors }}">
               <label for="email">{{ form.email.label }}</label>
@@ -50,39 +62,52 @@
             <button type="submit" class="btn btn-warning">Abilita</button>
           </form>
         </div>
+
+        <div class="col-sm-3"></div>
+
       </div>
 
     </div>
 
-<br><br><br><br>
+    <br><br>
 
-{% if current_user.has_role('admin')%}
+    {% if current_user.has_role('admin')%}
 
-<div class="row">
+    <div class="element-block">
+
       <div class="row">
-        <h2 class="text-center">Permesso per creare una stanza virtuale</h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-2 text-center">
           <i class="fa fa-video-camera fa-5x aria-hidden='true' create-file-icon"></i>
         </div>
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-8 text-center">
+          <h2>Permesso per creare una stanza virtuale</h2>
+
+          <br>
+
           <p>
             Dai la possibilità ad altri utenti di FARE di
             creare una stanza virtuale nella quale svolgere
-            le sue lezioni, inserisci la mail nel box e 
+            le sue lezioni, inserisci la mail nel box e
             premi il tasto <b>'Abilita'</b>
           </p>
+
         </div>
-        <div class="col-sm-4 text-center">
+
+        <div class="col-sm-2 text-center">
           <i class="fa fa-video-camera fa-5x aria-hidden='true' create-file-icon"></i>
         </div>
+
       </div>
 
-      <br><br><br><br>
+      <br><br>
 
       <div class="row">
-        <div class="col-md-offset-3 col-md-6 well">
+
+        <div class="col-sm-3"></div>
+
+        <div class="col-md-6 well">
           <form action="{{ url_for('grant_roles.grant_room_creator') }}" method="POST">
             <div class="form-group {{ 'has-error' if form.email.errors }}">
               <label for="email">{{ form.email.label }}</label>
@@ -94,11 +119,14 @@
             <button type="submit" class="btn btn-warning">Abilita</button>
           </form>
         </div>
+
+        <div class="col-sm-3"></div>
+
       </div>
 
     </div>
-         
-{% endif %}
+
+    {% endif %}
 
   </div>
 

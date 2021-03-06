@@ -38,7 +38,7 @@ blueprint = Blueprint(
 
 @blueprint.route('/create_room', methods=('GET', 'POST'))
 @register_menu(blueprint, 'settings.createroom',
-               _('%(icon)s Crea stanza',
+               _('%(icon)s Crea videoconferenza',
                  icon='<i class="fa fa-video-camera fa-fw"></i>'
                  ),
                order=7,

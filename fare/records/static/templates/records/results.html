@@ -5,20 +5,24 @@
   terms of the MIT License; see LICENSE file for more details.
 
 -->
+
 <div ng-repeat="record in vm.invenioSearchResults.hits.hits track by $index">
-  <h4>
-    <span class="label label-primary">{{ record.metadata.educationLevel }}</span>
-    <span class="label label-success">{{ record.metadata.subject }}</span>
-  </h4>
-  <h2><a target="_self" ng-href="/records/{{ record.id }}">{{ record.metadata.title }}</a></h2>
-  <b>Argomento:</b> {{ record.metadata.coverage }}
-  <ul class="list-inline">
-      <b>Autore/i:</b>
-      <li ng-repeat='contributor in record.metadata.contributors'>
-        {{ contributor.name }};
-      </li>
-  </ul>
-  <b>Licenza: </b> {{ record.metadata.license }}
-  <hr />
+  <div class="element-block">
+    <h4>
+      <span class="label label-primary">{{ record.metadata.educationLevel }}</span>
+      <span class="label label-success">{{ record.metadata.subject }}</span>
+    </h4>
+    <h2><a target="_self" ng-href="/records/{{ record.id }}">{{ record.metadata.title }}</a></h2>
+    <hr />
+    <b>Argomento:</b> {{ record.metadata.coverage }}
+    <ul class="list-inline">
+        <b>Autore/i:</b>
+        <li ng-repeat='contributor in record.metadata.contributors'>
+          {{ contributor.name }};
+        </li>
+    </ul>
+    <b>Licenza: </b> {{ record.metadata.license }}
+  </div>
+  <br>
 </div>
 

@@ -12,28 +12,41 @@
 
 {%- block page_body %}
 
-<div class="container marketing frontpage-full-width">
+<div class="container frontpage-full-width frontpage-image">
 
-  <div class="col-sm-12">
+  <div class="row">
 
-    <div class="row">
-      <h1 class="text-center">
-        <b>Benvenuto su FARE</b>
-        <br>
-        (Free Architecture for Remote Education)
-      </h1>
-      <h2 class="text-center">
-        FARE è un archivio di oggetti didattici
-        (testi di lezioni o libri, videolezioni o videoconferenze) arricchiti di strumenti
-        di ausilio all'apprendimento. Inoltre, FARE ti consente di attivare o di assistere
-        a una videolezione o una videoconferenza
-      </h2>
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-10">
+      <div class="frontpage-explanation">
+        <h1 class="text-center">
+          <b>Benvenuto su FARE</b>
+          <br>
+          (Free Architecture for Remote Education)
+        </h1>
+        <h2 class="text-center">
+          FARE è un archivio di oggetti didattici
+          (testi di lezioni o libri, videolezioni o videoconferenze) arricchiti di strumenti
+          di ausilio all'apprendimento. Inoltre, FARE ti consente di attivare o di assistere
+          a una videolezione o una videoconferenza
+        </h2>
+      </div>
     </div>
 
-    <div class="row">
+    <div class="col-sm-1"></div>
 
+  </div>
+
+  <br><br>
+
+  <div class="row">
+
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-4">
       <a href="{{ url_for('file_management.search_page') }}">
-        <div class="col-sm-6 welcome-row hover-search">
+        <div class="rounded-square welcome-row hover-search">
           <div class="row text-center">
             <i class="fa fa-search fa-5x aria-hidden='true' frontpage-icon"></i>
           </div>
@@ -44,9 +57,13 @@
           </div>
         </div>
       </a>
+    </div>
 
+    <div class="col-sm-2">&nbsp;</div>
+
+    <div class="col-sm-4">
       <a href="{{ url_for('file_management.create') }}">
-        <div class="col-sm-6 explore-row hover-upload">
+        <div class="rounded-square explore-row hover-upload">
           <div class="row text-center">
             <i class="fa fa-desktop fa-5x aria-hidden='true' frontpage-icon"></i>
           </div>
@@ -57,13 +74,21 @@
           </div>
         </div>
       </a>
-
     </div>
 
-    <div class="row">
+    <div class="col-sm-1"></div>
 
+  </div>
+
+  <br>
+
+  <div class="row">
+
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-4">
       <a href="{{ url_for('conference.create_room') }}">
-        <div class="col-sm-6 collaborate-row hover-create-room">
+        <div class="rounded-square collaborate-row hover-create-room">
           <div class="row text-center">
             <i class="fa fa-video-camera fa-5x aria-hidden='true' frontpage-icon"></i>
           </div>
@@ -74,9 +99,13 @@
           </div>
         </div>
       </a>
+    </div>
 
+    <div class="col-sm-2">&nbsp;</div>
+
+    <div class="col-sm-4">
       <a href="{{ url_for('conference.join_room') }}">
-        <div class="col-sm-6 creative-commons-row hover-join-room">
+        <div class="rounded-square creative-commons-row hover-join-room">
           <div class="row text-center">
             <i class="fa fa-users fa-5x aria-hidden='true' frontpage-icon"></i>
           </div>
@@ -87,16 +116,22 @@
           </div>
         </div>
       </a>
-
     </div>
 
-    <div class="row">
+    <div class="col-sm-1"></div>
 
-      <div class="col-sm-3">
-      </div>
+  </div>
 
+  <br>
+
+  <div class="row">
+
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6">
       <a href="https://fare.polito.it/python">
-        <div class="col-sm-6 learn-row hover-python-online">
+        <div class="rounded-square learn-row hover-python-online">
           <div class="row text-center">
             <i class="fa fa-code fa-5x aria-hidden='true' frontpage-icon"></i>
           </div>
@@ -107,14 +142,15 @@
           </div>
         </div>
       </a>
+    </div>
 
-      <div class="col-sm-3">
-      </div>
-
+    <div class="col-sm-3">
     </div>
 
   </div>
 
 </div>
+
+{{ webpack['fare-frontpage.css'] }}
 
 {%- endblock %}

@@ -2,12 +2,14 @@
 
 {% block page_body %}
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-danger">
-          <b>Utente non trovato.</b>
+    <div class="element-block">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <b>Utente non trovato.</b>
+          </div>
+          <a href="{{ url_for('grant_roles.grant') }}" class="btn btn-warning">Torna alla pagina dei permessi</a>
         </div>
-        <a href="{{ url_for('grant_roles.grant') }}" class="btn btn-warning">Torna alla pagina dei permessi</a>
       </div>
     </div>
   </div>

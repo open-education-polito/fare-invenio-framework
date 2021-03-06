@@ -25,84 +25,95 @@
   {%- endblock navbar %}
 </header>
 
-<h1 class="text-center">
-  Crea una videoconferenza/videolezione
-</h1>
-
-<br><br><br>
-
 <div class="container">
+  <div class="element-block">
 
-  {% if current_user.is_authenticated %}
+    <h1 class="text-center">
+      Crea una videoconferenza/videolezione
+    </h1>
 
-    {% if not current_user.has_role('roomCreator') or not current_user.has_role('admin') %}
+    <br>
 
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <i class="fa fa-ban fa-5x aria-hidden='true' create-file-icon"></i>
-        </div>
-      </div>
+    {% if current_user.is_authenticated %}
 
-      <br><br>
+      {% if not current_user.has_role('roomCreator') or not current_user.has_role('admin') %}
 
-      <div class="row">
-
-        <div class="col-sm-3">
-        </div>
-
-        <div class="col-sm-6 text-center">
-          <div class="alert alert-danger" role="alert">
-            <h4>
-              Non hai il permesso per creare una videoconferenza/videolezione
-              invia una mail all'indirizzo
-              <b>{{ config.SUPPORT_EMAIL }}</b>
-              per contattarci e richiederlo
-            </h4>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <i class="fa fa-ban fa-5x aria-hidden='true' create-file-icon"></i>
           </div>
         </div>
 
-        <div class="col-sm-3">
+        <br><br>
+
+        <div class="row">
+
+          <div class="col-sm-3">
+          </div>
+
+          <div class="col-sm-6 text-center">
+            <div class="alert alert-danger" role="alert">
+              <h4>
+                Non hai il permesso per creare una videoconferenza/videolezione
+                invia una mail all'indirizzo
+                <b>{{ config.SUPPORT_EMAIL }}</b>
+                per contattarci e richiederlo
+              </h4>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+          </div>
+
         </div>
+
+      {% endif %}
+
+    {% else %}
+
+      <div class="row">
+
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6 text-center">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="alert alert-info" role="alert">
+                <h4>
+                  Per accedere ai servizi di FARE occorre in primo luogo "registrarsi" ossia trasmettere
+                  a FARE il proprio indirizzo di posta elettronica e una proposta di password.
+                  Questa registrazione si ottiene cliccando sul pulsante  chiamato "Registrati".
+                  <br>
+                  Se ti sei già registrato oggi o in qualunque altro momento, non serve una nuova registrazione.
+                  <br>
+                  Se sei già registrato puoi procedere all'attivazione di una video lezione o videoconferenza
+                  premendo il pulsante chiamato "Accedi".
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <a href="{{url_for_security('login', next=request.path)}}" class="btn btn-default btn-lg">
+                <i class="fa fa-sign-in"></i> Accedi
+              </a>
+              <a href="{{url_for_security('register')}}" type="submit" class="btn btn-default btn-warning btn-lg">
+                <i class="fa fa-edit"></i> Registrati
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-3"></div>
 
       </div>
 
     {% endif %}
 
-  {% else %}
-
-    <div class="col-sm-3">
-    </div>
-
-    <div class="col-sm-6 text-center">
-      <div class="row">
-        <div class="alert alert-info" role="alert">
-          <h4>
-            Per accedere ai servizi di FARE occorre in primo luogo "registrarsi" ossia trasmettere
-            a FARE il proprio indirizzo di posta elettronica e una proposta di password.
-            Questa registrazione si ottiene cliccando sul pulsante  chiamato "Registrati".
-            <br>
-            Se ti sei già registrato oggi o in qualunque altro momento, non serve una nuova registrazione.
-            <br>
-            Se sei già registrato puoi procedere all'attivazione di una video lezione o videoconferenza
-            premendo il pulsante chiamato "Accedi".
-          </h4>
-        </div>
-      </div>
-      <div class="row">
-        <a href="{{url_for_security('login', next=request.path)}}" class="btn btn-default btn-lg">
-          <i class="fa fa-sign-in"></i> Accedi
-        </a>
-        <a href="{{url_for_security('register')}}" type="submit" class="btn btn-default btn-warning btn-lg">
-          <i class="fa fa-edit"></i> Registrati
-        </a>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-    </div>
-
-  {% endif %}
-
+  </div>
 </div>
 
 {% endblock page_body %}

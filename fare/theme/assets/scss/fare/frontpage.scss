@@ -1,0 +1,93 @@
+.navbar-default{
+  margin: 0px;
+}
+
+.rounded-square{
+  border: 5px solid white;
+  border-radius: 50px;
+}
+
+.frontpage-icon{
+  border-color: white;
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 100%;
+  padding: 3%;
+  color: white;
+}
+
+.hover-search:hover{
+  background-image: url("../../../static/images/explore_books.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hover-upload:hover{
+  background-image: url("../../../static/images/collaborate.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hover-create-room:hover{
+  background-image: url("../../../static/images/classroom.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hover-join-room:hover{
+  background-image: url("../../../static/images/learning_group.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hover-python-online:hover{
+  background-image: url("../../../static/images/code.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.welcome-row{
+  background-color: #005B96;
+  padding: 10%;
+}
+
+.explore-row{
+  background-color: #B3CDE0;
+  padding: 10%;
+}
+
+.creative-commons-row{
+  background-color: #03396C;
+  padding: 10%;
+}
+
+.collaborate-row{
+  background-color: #6497B1;
+  padding: 10%;
+}
+
+.learn-row{
+  background-color: #335B7E;
+  padding: 10%;
+}
+
+.frontpage-full-width{
+  width: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.frontpage-explanation{
+  padding: 3%;
+  color: white;
+  background-color: rgba(22,35,42,.8);
+  border-radius: 10px;
+}
+
+.frontpage-image{
+  background-image: url("../../../static/images/main_library.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+

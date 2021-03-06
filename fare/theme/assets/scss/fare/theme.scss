@@ -11,97 +11,34 @@
 @import "../invenio_theme/styles";
 
 
-.body-image{
-  height: 750px;
-  background-color: transparent;
-  border-color: transparent;
-  background-image: url("../../../static/images/frontpage_library.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.frontpage-search{
-  padding-top: 15%;
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.search-block-background{
-  color: white;
-  background-color: rgba(22,35,42,.6);
-}
-
 .navbar-default{
-  background-color: #335B7E;
-}
-
-.home-separator{
-  border: 2px solid white;
-  border-radius: 5px;
-  width: 50%;
-}
-
-.box-separator{
-  padding: 0px;
-  margin: 0px;
-  border: 2px solid white;
+  background-color: #005b96;
 }
 
 body.cover-page{
   background-image: url("../../../static/images/login_background.png");
-  background-size: 100%;
+  background-size: cover;
 }
 
-.frontpage-icon{
-  border-color: white;
-  border-style: solid;
-  border-width: 10px;
-  border-radius: 100%;
-  padding: 3%;
-  color: white;
+body{
+  background-color: #F0EDEE;
 }
 
-.hover-search:hover{
-  background-image: url("../../../static/images/explore_books.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
+.element-block{
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px -10px #999;
 }
 
-.hover-upload:hover{
-  background-image: url("../../../static/images/collaborate.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.hover-create-room:hover{
-  background-image: url("../../../static/images/classroom.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.hover-join-room:hover{
-  background-image: url("../../../static/images/learning_group.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.hover-python-online:hover{
-  background-image: url("../../../static/images/code.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
+.record-file-icon{
+  padding: 20px;
+  background-color: #F0EDEE;
+  border-radius: 10px;
 }
 
 .create-file-icon{
   color: black;
-}
-
-.logo-polito{
-  width:30%;
-  height:30%;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
 }
 
 #publishform, #downloadform, #deleteform{
@@ -109,8 +46,7 @@ body.cover-page{
 }
 
 footer {
-  margin-top: 10%;
-  background-color: #F0EDEE;
+  background-color: white;
 }
 
 .list-inline{
@@ -119,69 +55,6 @@ footer {
 
 .button-menu{
   margin-top: 13px;
-}
-
-.welcome-row{
-  background-color: #005B96;
-  padding: 3%;
-}
-
-.explore-row{
-  background-color: #B3CDE0;
-  padding: 3%;
-}
-
-.creative-commons-row{
-  background-color: #03396C;
-  padding: 3%;
-}
-
-.collaborate-row{
-  background-color: #6497B1;
-  padding: 3%;
-}
-
-.learn-row{
-  background-color: #335B7E;
-  padding: 3%;
-}
-
-.frontpage-full-width{
-  width: auto;
-  padding: 0px;
-}
-
-.frontpage-explanation{
-  padding: 3%;
-  color: white;
-  background-color: rgba(22,35,42,.6);
-}
-
-.tutorial-image{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  width: 30%;
-}
-
-.tutorial-row{
-  background-color: #005B96;
-  padding: 3%;
-}
-
-.frontpage-menu-item{
-  color: white;
-  font-size: large;
-}
-
-.frontpage-image{
-  width: 100%;
-}
-
-.frontpage-img-style{
-  padding: 0px;
 }
 
 .navbar-nav{
