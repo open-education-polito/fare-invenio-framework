@@ -8,7 +8,7 @@ from flask_login import login_required
 from flask_menu import register_menu
 from flask_security import current_user, roles_accepted
 
-from .api import grant_staff_permission, grant_room_creator_permission
+from .api import grant_room_creator_permission, grant_staff_permission
 from .forms import RolesForm
 
 # define a new Flask Blueprint that is register under

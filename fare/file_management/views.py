@@ -14,7 +14,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from .api import RecordFare
 from .forms import RecordForm
 from .search import StatusSearch
-from .utils import get_all_arguments, get_all_subjects, get_all_education_levels
+from .utils import get_all_arguments, get_all_education_levels, \
+    get_all_subjects
 
 # define a new Flask Blueprint that is register
 # under the url path /file_management
@@ -36,35 +37,43 @@ blueprint = Blueprint(
                order=6
                )
 def user_uploads():
-    """View to let user see the status (revisioned=true/false) of his files"""
+    """View to let user see the status (revisioned=true/false) of his files."""
     status = StatusSearch()
-    return render_template('file_management/user_uploads.html', records_list=status.execute().hits)
+    return render_template('file_management/user_uploads.html',
+                           records_list=status.execute().hits)
 
 
 @blueprint.route('/arguments', methods=('GET',))
 def retrieve_arguments():
+    """View to get all the arguments."""
     return get_all_arguments()
 
 
 @blueprint.route('/search_page', methods=('GET',))
 def search_page():
+    """View to display the search page."""
     return render_template('file_management/search_page.html')
 
 
 @blueprint.route('/guide_search', methods=('GET',))
 def retrieve_guide_search():
+    """View to display the guide to search records."""
     subjects = get_all_subjects()
     education_levels = get_all_education_levels()
-    return render_template('file_management/guide_search.html', subjects=subjects, education_levels=education_levels)
+    return render_template('file_management/guide_search.html',
+                           subjects=subjects,
+                           education_levels=education_levels)
 
 
 @blueprint.route('/guide_permissions', methods=('GET',))
 def retrieve_guide_permissions():
+    """View to display the guide that explains the user roles."""
     return render_template('file_management/guide_permissions.html')
 
 
 @blueprint.route('/guide_upload', methods=('GET',))
 def retrieve_guide_upload():
+    """View to display the guide to upload a record."""
     return render_template('file_management/guide_upload.html')
 
 
@@ -77,7 +86,6 @@ def retrieve_guide_upload():
                )
 def create():
     """The create view."""
-
     if not current_user.is_authenticated:
         return render_template('file_management/info_create.html')
 

@@ -4,7 +4,7 @@ from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from wtforms import StringField, PasswordField, validators
+from wtforms import PasswordField, StringField, validators
 
 
 class RoomForm(FlaskForm):
@@ -12,7 +12,8 @@ class RoomForm(FlaskForm):
 
     roomId = StringField(
         'Room id', [validators.DataRequired(),
-                    validators.Regexp(r'^[\w.@+-]+$', message="Il campo non può contenere spazi")]
+                    validators.Regexp(r'^[\w.@+-]+$',
+                    message="Il campo non può contenere spazi")]
     )
 
     password = PasswordField(
