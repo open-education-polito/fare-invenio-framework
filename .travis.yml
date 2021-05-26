@@ -49,6 +49,7 @@ before_install:
   - "sudo mkdir /var/log/fare && sudo chmod 777 /var/log/fare -R"
   # Create .env file from the example given
   - "cp .env.example .env"
+  - echo \"$DOCKER_PASSWORD\" | docker login -u \"$DOCKER_USERNAME\" --password-stdin
   # Start docker services
   - "docker-compose up -d"
   # Momentarily disable E2E tests
@@ -70,7 +71,7 @@ before_script:
   - "./docker/wait-for-services.sh"
 
 script:
-  - ./scripts/server &
+  #- ./scripts/server &
   - ./run-tests.sh # E2E tests are skipped if E2E env is set to 'no'
 
 after_success:
