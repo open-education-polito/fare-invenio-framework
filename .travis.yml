@@ -49,7 +49,7 @@ before_install:
   - "sudo mkdir /var/log/fare && sudo chmod 777 /var/log/fare -R"
   # Create .env file from the example given
   - "cp .env.example .env"
-  - echo \"$DOCKER_PASSWORD\" | docker login -u \"$DOCKER_USERNAME\" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Start docker services
   - "docker-compose up -d"
   # Momentarily disable E2E tests
