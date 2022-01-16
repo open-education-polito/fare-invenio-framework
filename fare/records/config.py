@@ -9,7 +9,6 @@
 
 from __future__ import absolute_import, print_function
 
-import invenio_logging.config
 import invenio_theme.config
 from invenio_indexer.api import RecordIndexer
 from invenio_records_rest.facets import terms_filter
@@ -20,14 +19,10 @@ from ..file_management.api import FILE_MNGT_PID_FETCHER, \
 from ..file_management.search import RevisionSearch
 from .search import RevisionedRecordsSearch
 
-
 def _(x):
     """Identity function for string extraction."""
     return x
 
-
-invenio_logging.config.LOGGING_FS_LOGFILE = "/var/log/fare/log_fare.txt"
-invenio_logging.config.LOGGING_FS_PYWARNINGS = True
 invenio_theme.config.THEME_FOOTER_TEMPLATE = "fare/footer.html"
 
 FARE_LICENSES = {

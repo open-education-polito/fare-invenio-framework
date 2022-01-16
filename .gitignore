@@ -75,3 +75,6 @@ docker/haproxy/official_certificates/*
 !docker/haproxy/official_certificates/.gitkeep
 docker/nginx/official_certificates/*
 !docker/nginx/official_certificates/.gitkeep
+
+# logs
+logs_fare/*
