@@ -24,15 +24,25 @@ services:
     extends:
       file: docker-services.yml
       service: cache
+    ports: 
+      - "6379:6379"
   db:
     extends:
       file: docker-services.yml
       service: db
+    ports:
+      - "5432:5432"
   mq:
     extends:
       file: docker-services.yml
       service: mq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
   es:
     extends:
       file: docker-services.yml
       service: es
+    ports:
+      - "9200:9200"
+      - "9300:9300"

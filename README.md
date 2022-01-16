@@ -80,7 +80,7 @@ Remember to create database tables, search indexes and message queues if it has 
 $ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
 ```
 
-## Developement environment
+## Development environment
 
 ### Installation
 
@@ -88,7 +88,7 @@ First, fire up the database, Elasticsearch, Redis and RabbitMQ:
 
 ```
 $ cd my-site/
-$ docker-compose up -d
+$ docker-compose -f docker-compose.dev.yml up -d
 Creating mysite_cache_1 ... done
 Creating mysite_db_1    ... done
 Creating mysite_es_1    ... done
