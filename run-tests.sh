@@ -10,6 +10,6 @@
 pipenv check && \
 pipenv run pydocstyle fare tests docs && \
 pipenv run isort -rc -c -df && \
-pipenv run check-manifest --ignore ".travis-*,docs/_build*" && \
+pipenv run check-manifest --ignore "docs/_build*" && \
 pipenv run sphinx-build -qnNW docs docs/_build/html && \
 pipenv run test
