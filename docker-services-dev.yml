@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2019 Open Education Polito.
+#
+# fare is free software; you can redistribute it and/or modify it under the
+# terms of the MIT License; see LICENSE file for more details.
+
+# This file is a docker-services.yml copy with some mods for local dev setup
+# e.g., 'ports' instead of 'expose' to let local server access the docker services
+version: '2.3'
+services:
+  app:
+    build:
+      context: ./
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+    image: fare
+    environment:
+      - "INVENIO_ACCOUNTS_SESSION_REDIS_URL=redis://cache:6379/1"
+      - "INVENIO_BROKER_URL=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/"
+      - "INVENIO_CACHE_REDIS_URL=redis://cache:6379/0"
+      - "INVENIO_CACHE_TYPE=redis"
+      - "INVENIO_CELERY_BROKER_URL=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/"
+      - "INVENIO_CELERY_RESULT_BACKEND=redis://cache:6379/2"
+      - "INVENIO_SEARCH_ELASTIC_HOSTS=['es:9200']"
+      - "INVENIO_SECRET_KEY=${SECRET_KEY}"
+      - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://${PG_USER}:${PG_PASSWORD}@db/${PG_DB}"
+      - "INVENIO_WSGI_PROXIES=2"
+      - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
+  lb:
+    build:
+      context: ./docker/haproxy/
+      args:
+        - HAPROXY_CERT=${HAPROXY_CERT}
+    image: fare-lb
+    restart: "always"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080"
+  frontend:
+    build:
+      context: ./docker/nginx/
+      args:
+        - NGINX_CERT=${NGINX_CERT}
+        - NGINX_KEY=${NGINX_KEY}
+    image: fare-frontend
+    restart: "always"
+    ports:
+      - "80:80"
+      - "443:443"
+  cache:
+    image: redis
+    restart: "always"
+    read_only: true
+    ports:
+      - "6379:6379"
+  db:
+    image: postgres:9.6
+    restart: "always"
+    environment:
+      - "POSTGRES_USER=${PG_USER}"
+      - "POSTGRES_PASSWORD=${PG_PASSWORD}"
+      - "POSTGRES_DB=${PG_DB}"
+      - "PGDATA=/pgdata"
+    ports:
+      - "5432:5432"
+  mq:
+    image: rabbitmq:3-management
+    restart: "always"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  es:
+    build: ./docker/elasticsearch/
+    restart: "always"
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.2.1
+    environment:
+      - "ELASTICSEARCH_HOSTS=http://es:9200"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    expose: 
+      - "5601"
+  flower:
+    image: mher/flower
+    command: --broker=amqp://${BROKER_USER}:${BROKER_PWD}@mq:5672/ --broker_api=http://${BROKER_USER}:${BROKER_PWD}@mq:15672/api/
+    expose:
+      - "5555"

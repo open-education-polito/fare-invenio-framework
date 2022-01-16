@@ -6,18 +6,42 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.7.0] - 2022-01-16  
+----------------------------
+
+
+Added
+~~~~~
+
+- Conference module using BBB APIs
+- New layout and color palette
+- Installation documentation
+- Restore documentation
+- Generale guides for functionalities in pages
+- Backup scripts
+
+
+Fixed
+~~~~~
+
+- Easier Docker deployment through envs
+- Improved certs loading from docker machines
+- Fixed dependencies bump
+
+
+
 [Release 0.6.0] - 2020-10-13  
 ----------------------------
 
 
 Added
-~~~~~~~
+~~~~~
 
 - New docker-compose file dedicated for this deployment 
 - New layout and color palette
 
 Fixed
------
+~~~~~
 
 - Fixed some bugs and typos 
 
@@ -27,13 +51,13 @@ Fixed
 
 
 Added
-~~~~~~~
+~~~~~
 
 - New UX/UI 
 - Added CC licenses list
 
 Fixed
------
+~~~~~
 
 - Fixed concurrency bugs
 - Fixed bugs on PIDStore
