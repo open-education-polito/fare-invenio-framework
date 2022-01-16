@@ -17,7 +17,7 @@ Elasticsearch 6, RabbitMQ and Redis):
 
 .. code-block:: console
 
-    $ docker-compose up -d
+    $ docker-compose -f docker-compose.dev.yml up -d
 
 .. note::
 

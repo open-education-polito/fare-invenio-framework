@@ -22,17 +22,17 @@ version: '2.3'
 services:
   cache:
     extends:
-      file: docker-services-local.yml
+      file: docker-services.dev.yml
       service: cache
   db:
     extends:
-      file: docker-services-local.yml
+      file: docker-services.dev.yml
       service: db
   mq:
     extends:
-      file: docker-services-local.yml
+      file: docker-services.dev.yml
       service: mq
   es:
     extends:
-      file: docker-services-local.yml
+      file: docker-services.dev.yml
       service: es
