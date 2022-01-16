@@ -16,6 +16,7 @@ from __future__ import absolute_import, print_function
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
+import invenio_logging.config
 
 
 def _(x):
@@ -24,6 +25,17 @@ def _(x):
 
 # Loading dotenv
 load_dotenv()
+
+
+# Logging 
+# =======
+#: Handling logging configurations
+# Exceptions are not catched, fail fast fail often
+
+LOGGING_PATH = os.getenv('LOGGING_PATH') or "/var/logs/fare/fare.log"
+os.makedirs(os.path.dirname(LOGGING_PATH), exist_ok=True)
+invenio_logging.config.LOGGING_FS_LOGFILE = LOGGING_PATH
+invenio_logging.config.LOGGING_FS_PYWARNINGS = True
 
 # Rate limiting
 # =============
