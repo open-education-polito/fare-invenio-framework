@@ -12,7 +12,7 @@
 # and includes Pip, Pipenv, Node.js, NPM and some few standard libraries
 # Invenio usually needs.
 
-FROM inveniosoftware/centos7-python:3.6
+FROM inveniosoftware/centos8-python:3.7
 COPY . ./
 RUN  mkdir /var/log/fare && \
      pipenv install --deploy --system
