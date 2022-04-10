@@ -6,6 +6,16 @@
 
 All notable changes to this project will be documented in this file.
 
+[Release 0.7.1] - 2022-04-10  
+----------------------------
+
+
+Fixed
+~~~~~
+
+- BBB meeting creation 
+
+
 [Release 0.7.0] - 2022-01-16  
 ----------------------------
 
