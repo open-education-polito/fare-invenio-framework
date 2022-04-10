@@ -58,7 +58,7 @@ def create_room():
                 roomId = form.roomId.data.strip()
                 password = form.password.data
                 username = form.username.data.strip().replace(" ", "_")
-                modPassword = secrets.token_urlsafe(64)
+                modPassword = secrets.token_hex(16)
 
                 b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
