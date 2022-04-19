@@ -18,6 +18,7 @@ wtforms = ">=2.3.1"
 invenio-assets = ">=1.2.7"
 
 [dev-packages]
+pytest-invenio ="==1.4.7"
 Sphinx = ">=3,<4"
 
 [requires]
