@@ -63,7 +63,12 @@ def create_room():
                 b = BigBlueButton(BBB_SERVER_URL, BBB_SERVER_SECRET)
 
                 # params
-                dict = {'name': username, 'attendeePW': password, 'moderatorPW': modPassword, 'record': True}
+                dict = {
+                    'name': username,
+                    'attendeePW': password,
+                    'moderatorPW': modPassword,
+                    'record': True
+                }
 
                 if os.getenv('CURRENT_HOST'):
                     dict['logoutURL'] = os.getenv('CURRENT_HOST')

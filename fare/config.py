@@ -16,8 +16,8 @@ from __future__ import absolute_import, print_function
 
 import os
 from datetime import timedelta
-import invenio_logging.config
 
+import invenio_logging.config
 from dotenv import load_dotenv
 
 
@@ -30,7 +30,7 @@ def _(x):
 load_dotenv()
 
 
-# Logging 
+# Logging
 # =======
 #: Handling logging configurations
 # Exceptions are not catched, fail fast fail often

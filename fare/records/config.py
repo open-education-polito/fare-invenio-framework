@@ -19,11 +19,14 @@ from ..file_management.api import FILE_MNGT_PID_FETCHER, \
 from ..file_management.search import RevisionSearch
 from .search import RevisionedRecordsSearch
 
+
 def _(x):
     """Identity function for string extraction."""
     return x
 
+
 invenio_theme.config.THEME_FOOTER_TEMPLATE = "fare/footer.html"
+
 
 FARE_LICENSES = {
     "CC BY": {

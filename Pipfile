@@ -22,7 +22,7 @@ pytest-invenio =">=1.4.7"
 Sphinx = ">=3,<4"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
 
 [scripts]
 test = "python setup.py test"
