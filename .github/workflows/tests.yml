@@ -73,4 +73,5 @@ jobs:
           docker-compose --version
       - name: Run tests
         run: |
+          pip install docker-services-cli
           ./run-tests.sh
