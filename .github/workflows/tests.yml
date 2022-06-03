@@ -32,15 +32,11 @@ jobs:
       matrix:
           python-version: [3.7]
           requirements-level: [pypi]
-          db-service: [postgresql10, postgresql13]
+          db-service: [postgresql10]
           search-service: [elasticsearch7]
           include:
           - db-service: postgresql10
             DB_EXTRAS: "postgresql"
-
-          - db-service: postgresql13
-            DB_EXTRAS: "postgresql"
-
           - search-service: elasticsearch7
             SEARCH_EXTRAS: "elasticsearch7"
     env:
@@ -58,6 +54,7 @@ jobs:
 
       - name: Generate dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install "setuptools<=58" wheel requirements-builder
           requirements-builder -e "$EXTRAS" --level=${{ matrix.requirements-level }} setup.py > .${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt
           cat .${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt
