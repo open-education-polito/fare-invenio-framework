@@ -1,7 +1,8 @@
+"""Classes to filter the search."""
+
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
 from flask_security import current_user
-
 from invenio_search.api import RecordsSearch
 
 

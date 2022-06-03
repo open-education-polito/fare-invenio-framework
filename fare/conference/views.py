@@ -2,8 +2,8 @@
 
 from __future__ import absolute_import, print_function
 
-import os
 import json
+import os
 import secrets
 
 from bigbluebutton_api_python import BigBlueButton
@@ -47,10 +47,10 @@ blueprint = Blueprint(
                                          ) is not False
                )
 def create_room():
-    """View to let user create a virtual room"""
-
+    """View to let user create a virtual room."""
     if current_user.is_authenticated:
-        if ('admin' in current_user.roles) | ('roomCreator' in current_user.roles):
+        if ('admin' in current_user.roles) or \
+           ('roomCreator' in current_user.roles):
             form = RoomForm()
 
             # if the form is submitted and valid
@@ -70,17 +70,22 @@ def create_room():
 
                 try:
                     # use create meeting
-                    b.create_meeting(roomId,params=dict)
+                    b.create_meeting(roomId, params=dict)
                 except BBBException:
-                    return render_template('conference/create_conference.html', form=form, existingId=True)
+                    return render_template(
+                        'conference/create_conference.html',
+                        form=form, existingId=True)
 
                 # get room url
-                room_url = b.get_join_meeting_url(username, roomId, modPassword)
+                room_url = b.get_join_meeting_url(username,
+                                                  roomId,
+                                                  modPassword)
 
                 # redirect to the created room
                 return redirect(room_url)
 
-            return render_template('conference/create_conference.html', form=form)
+            return render_template('conference/create_conference.html',
+                                   form=form)
         else:
             return render_template('conference/info_create.html')
     else:
@@ -89,8 +94,7 @@ def create_room():
 
 @blueprint.route('/join_room', methods=('GET', 'POST'))
 def join_room():
-    """View to let user join a virtual room"""
-
+    """View to let user join a virtual room."""
     form = RoomForm()
 
     # if the form is submitted and valid
@@ -107,7 +111,8 @@ def join_room():
 
         # check if the meeting exists
         if not active_room:
-            return render_template('conference/join_conference.html', form=form, existingId=True)
+            return render_template('conference/join_conference.html',
+                                   form=form, existingId=True)
         else:
             # get room url
             room_url = b.get_join_meeting_url(username, roomId, password)

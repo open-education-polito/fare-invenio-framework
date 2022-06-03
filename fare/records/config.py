@@ -183,7 +183,8 @@ ARGUMENTS = {
         "Filosofia. pubblicazioni in serie",
         "Filosofia. organizzazioni",
         "Filosofia. studio e insegnamento",
-        "Filosofia. trattamento del soggetto in riferimento a gruppi di persone",
+        "Filosofia. trattamento del soggetto \
+        in riferimento a gruppi di persone",
         "Filosofia. trattamento storico"
     ],
     "Metafisica (filosofia speculativa)": [
@@ -290,7 +291,8 @@ ARGUMENTS = {
         "Religione. pubblicazioni in serie",
         "Religione. organizzazioni e gestione",
         "Religione. studio e insegnamento",
-        "Religione. trattamento del soggetto in riferimento a gruppi di persone",
+        "Religione. trattamento del soggetto in \
+        riferimento a gruppi di persone",
         "Religione e pensiero religioso. trattamento storico e geografico"
     ],
     "Scienze sociali": [
@@ -336,7 +338,8 @@ ARGUMENTS = {
         "Scienza politica. pubblicazioni in serie",
         "Scienza politica. organizzazioni e gestione",
         "Scienza politica. studio e insegnamento",
-        "Scienza politica. trattamento del soggetto in riferimento a gruppi di persone",
+        "Scienza politica. trattamento del soggetto in\
+        riferimento a gruppi di persone",
         "Scienza politica. trattamento storico e geografico",
         "Biografia di pensatori politici",
         "Lo stato",
@@ -614,7 +617,8 @@ ARGUMENTS = {
         "Apparecchiature telefoniche terminali",
         "Trasmissione telefonica e apparecchiature non terminali",
         "Televisore",
-        "Sistemi di registrazione e riproduzione del suono e altri dispositivi",
+        "Sistemi di registrazione e riproduzione del \
+        suono e altri dispositivi",
         "Elaboratori",
         "Ingegneria termica e propulsione primaria",
         "Motori a combustione interna e tecniche di propulsione",
@@ -806,7 +810,8 @@ ARGUMENTS = {
         "Storia, descrizione, studi critici di piu letterature",
         "Letteratura americana in lingua inglese",
         "Letteratura inglese e anglosassone",
-        "Letterature nelle lingue germaniche (teutoniche)  letteratura tedesca",
+        "Letterature nelle lingue germaniche (teutoniche) \
+        letteratura tedesca",
         "Letterature nelle lingue romanze  letteratura francese",
         "Letterature italiana, romena, ladina",
         "Letteratura spagnola e portoghese",

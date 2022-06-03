@@ -38,6 +38,7 @@ file_management_pid_fetcher = partial(
 
 
 class RecordFare(Record):
+    """Class of FARE Learning Objects."""
 
     @classmethod
     def create_record(cls, data, file_content):

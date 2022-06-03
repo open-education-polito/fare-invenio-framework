@@ -1,11 +1,12 @@
-from ..records.config import EDUCATION_LEVEL, SUBJECTS, ARGUMENTS
+"""Utilities functions for file management."""
+
+from ..records.config import ARGUMENTS, EDUCATION_LEVEL, SUBJECTS
 
 
 def read_menu_fields(key):
-    """
-    Use the key passed to retrieve
-    the corresponding json element
-    and set the values in the field
+    """Set the values in the field.
+
+    :param key: Name of the dict from which chose the values.
     """
     choices = []
     data = ""
@@ -23,34 +24,22 @@ def read_menu_fields(key):
 
 
 def get_all_arguments():
-    """
-    Used to retrieve
-    the arguments of each subject
-    """
+    """Used to retrieve the arguments of each subject."""
     return ARGUMENTS
 
 
 def get_all_subjects():
-    """
-    Used to retrieve
-    all subjects
-    """
+    """Used to retrieve all subjects."""
     return SUBJECTS
 
 
 def get_all_education_levels():
-    """
-    Used to retrieve
-    all education levels
-    """
+    """Used to retrieve all education levels."""
     return EDUCATION_LEVEL
 
 
 def init_field_all():
-    """
-    Initialize the field coverage with
-    all the arguments
-    """
+    """Initialize the field coverage with all the arguments."""
     arguments_list = []
 
     for subject in ARGUMENTS.keys():

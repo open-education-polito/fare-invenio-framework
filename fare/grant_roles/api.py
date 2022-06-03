@@ -39,7 +39,7 @@ def grant_staff_permission(user_email):
 def grant_room_creator_permission(user_email):
     """Grant roomCreator permission to  a user.
 
-    param string user_email: the email of the user that obtain roomCreator permission
+    param string user_email: user email that obtaining roomCreator permission
     """
     role = "roomCreator"
 
