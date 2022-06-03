@@ -4,8 +4,10 @@ from __future__ import absolute_import, print_function
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from .utils import read_menu_fields, init_field_all, get_all_arguments
-from wtforms import IntegerField, StringField, TextAreaField, validators, SelectField
+from wtforms import IntegerField, SelectField, StringField, TextAreaField, \
+    validators
+
+from .utils import get_all_arguments, init_field_all, read_menu_fields
 
 
 class RecordForm(FlaskForm):
@@ -43,10 +45,8 @@ class RecordForm(FlaskForm):
     )
 
     def validate(self):
-        """
-        Validation that verify if the argument,
-        selected in the coverage field, belongs
-        to the subject selected
+        """Validate the match of coverage and subject values.
+
         :return: False if the argument does not belong to the subject
                  True otherwise
         """

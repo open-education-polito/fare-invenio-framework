@@ -21,6 +21,7 @@ include *.rst
 include *.sh
 include *.yml
 include babel.ini
+include docker/elasticsearch/Dockerfile
 include docker/haproxy/Dockerfile
 include docker/nginx/Dockerfile
 include docker/postgres/Dockerfile
@@ -34,6 +35,9 @@ include scripts/console
 include scripts/server
 include scripts/setup
 include scripts/update
+include scripts/backup
+include scripts/create-volumes
+include scripts/restore
 include *.md
 include *.lock
 include .adr-dir
@@ -55,3 +59,8 @@ recursive-include docs *.md
 
 # added by check_manifest.py
 recursive-include fare *.md
+
+# added by check-manifest
+include *.example
+recursive-include docker *.gitkeep
+recursive-include docker *.yml

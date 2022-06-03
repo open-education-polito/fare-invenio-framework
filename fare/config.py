@@ -13,21 +13,24 @@ You overwrite and set instance-specific configuration by either:
 - Environment variables: ``APP_<variable name>``
 """
 from __future__ import absolute_import, print_function
+
 import os
-from dotenv import load_dotenv
 from datetime import timedelta
+
 import invenio_logging.config
+from dotenv import load_dotenv
 
 
 def _(x):
     """Identity function used to trigger string extraction."""
     return x
 
+
 # Loading dotenv
 load_dotenv()
 
 
-# Logging 
+# Logging
 # =======
 #: Handling logging configurations
 # Exceptions are not catched, fail fast fail often
@@ -136,7 +139,8 @@ SQLALCHEMY_USER = os.getenv('PG_USER')
 SQLALCHEMY_PWD = os.getenv('PG_PASSWORD')
 PG_DB = os.getenv('PG_DB')
 SQLALCHEMY_DATABASE_URI = \
-        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + '@localhost/' + PG_DB
+        'postgresql+psycopg2://' + SQLALCHEMY_USER + ':' + SQLALCHEMY_PWD + \
+        '@localhost/' + PG_DB
 
 # JSONSchemas
 # ===========
@@ -161,7 +165,7 @@ SESSION_COOKIE_SECURE = True
 #: route correct hosts to the application.
 APP_ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if os.getenv('CURRENT_HOST') is not None:
-    APP_ALLOWED_HOSTS.insert(0,os.getenv('CURRENT_HOST'))
+    APP_ALLOWED_HOSTS.insert(0, os.getenv('CURRENT_HOST'))
 
 # OAI-PMH
 # =======

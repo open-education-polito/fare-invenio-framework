@@ -7,9 +7,21 @@
 # terms of the MIT License; see LICENSE file for more details.
 
 
-pipenv check && \
-pipenv run pydocstyle fare tests docs && \
-pipenv run isort -rc -c -df && \
-pipenv run check-manifest --ignore "docs/_build*" && \
-pipenv run sphinx-build -qnNW docs docs/_build/html && \
-pipenv run test
+# Quit on errors
+set -o errexit
+
+# Quit on unbound symbols
+set -o nounset
+
+# Always bring down services
+function cleanup {
+  eval "$(docker-services-cli down --env)"
+}
+trap cleanup EXIT
+
+python -m check_manifest --ignore ".*-requirements.txt"
+# python -m sphinx.cmd.build -qnNW docs docs/_build/html
+eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${SEARCH:-elasticsearch} --cache ${CACHE:-redis} --mq ${MQ:-rabbitmq} --env)"
+python -m pytest
+tests_exit_code=$?
+exit "$tests_exit_code"
