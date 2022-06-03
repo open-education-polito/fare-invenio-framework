@@ -54,11 +54,12 @@ jobs:
       - name: Generate dependencies
         run: |
           pip install pipenv
+          pipenv requirements --dev > requirements.txt
 
       - name: Install
         run: |
-          pipenv install
-          pipenv install docker-services-cli
+          pip install -r requirements.txt
+          pip install docker-services-cli
 
       - name: Run tests
         run: |
