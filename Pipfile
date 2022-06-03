@@ -28,3 +28,7 @@ python_version = "3.7"
 [scripts]
 test = "python setup.py test"
 build_sphinx = "python setup.py build_sphinx"
+
+# prereleases allowed because of this https://github.com/celery/pytest-celery/issues/4
+[pipenv]
+allow_prereleases = true
