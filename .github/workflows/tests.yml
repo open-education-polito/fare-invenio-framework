@@ -53,26 +53,17 @@ jobs:
 
       - name: Generate dependencies
         run: python -m pip install --upgrade pip
-      - name: Generate dependencies 2
-        run: pip install "setuptools<=58" wheel requirements-builder
-      - name: Generate dependencies 3
-        run: requirements-builder -e "$EXTRAS" --level=${{ matrix.requirements-level }} setup.py > .${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt
-      - name: Generate dependencies 4
-        run: cat .${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt
-      - name: Cache pip
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('.${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt') }}
-
-      - name: Install dependencies
+      - name: Install
         run: |
-          pip install -r .${{ matrix.requirements-level }}-${{ matrix.python-version }}-requirements.txt
-          pip install ".[$EXTRAS]"
-          pip freeze
+          pip install pipenv-to-requirements
+          pipenv_to_requirements
+          cat requirements.txt
+          pip install 
           docker --version
           docker-compose --version
       - name: Run tests
         run: |
           pip install docker-services-cli
+          pip install pytest
+          pip install pytest-invenio
           ./run-tests.sh
