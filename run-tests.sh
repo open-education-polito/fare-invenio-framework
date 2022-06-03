@@ -14,10 +14,10 @@ set -o errexit
 set -o nounset
 
 # Always bring down services
-function cleanup {
-  eval "$(docker-services-cli down --env)"
-}
-trap cleanup EXIT
+#function cleanup {
+#  eval "$(docker-services-cli down --env)"
+#}
+#trap cleanup EXIT
 
 python -m check_manifest --ignore ".*-requirements.txt"
 # python -m sphinx.cmd.build -qnNW docs docs/_build/html
