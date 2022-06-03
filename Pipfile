@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 lxml = ">=4.3.0,<5.0.0"
-invenio = {version = ">=3.4.0,<3.5.0",extras = ["base", "auth", "metadata", "files", "postgresql", "elasticsearch7" ]}
+invenio = {version = "3.5.0a4",extras = ["base", "auth", "metadata", "files", "postgresql", "elasticsearch7" ]}
 marshmallow = ">=3.0.0,<4.0.0"
 uwsgi = ">=2.0"
 uwsgi-tools = ">=1.1.1"
@@ -14,13 +14,11 @@ fare = {editable = true,path = "."}
 python-dotenv = ">=0.14.0"
 bigbluebutton-api-python = {editable = true,git = "https://github.com/101t/bigbluebutton-api-python"}
 # nbconvert and importlib-metadata added temporarily
-nbconvert = {extras = ["execute"],version = ">=4.1.0,<6.0.0"}
-importlib-metadata = "==1.7.0"
-wtforms = "==2.3.1"
-invenio-assets = "==1.2.7"
+wtforms = ">=2.3.1"
+invenio-assets = ">=1.2.7"
 
 [dev-packages]
-pytest-invenio = ">=1.4.1,<1.5.0"
+pytest-invenio =">=1.4.7"
 Sphinx = ">=3,<4"
 
 [requires]
