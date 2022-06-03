@@ -58,7 +58,7 @@ jobs:
           pip install pipenv-to-requirements
           pipenv_to_requirements
           cat requirements.txt
-          pip install 
+          pip install -r requirements.txt
           docker --version
           docker-compose --version
       - name: Run tests
