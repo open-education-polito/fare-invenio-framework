@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ed0d606bf023dc548805c35dd92cffab55dd7b26c0c58a7084a120ed47c91065"
+            "sha256": "ad26862d3cb1baf7da1e62a513b859905ae59ced7451e5a38d942f5f4e39be4f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -664,7 +664,7 @@
                 "sha256:5d26852efe48c0a32b0509ffbc583fda1a2266545a78d104a6f4aff3db17d700",
                 "sha256:c58c8eb8a762858f49e18436ff552e83914778e50e9d2f1660535ffb364552ec"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version < '3.10'",
             "version": "==4.11.4"
         },
         "importlib-resources": {
@@ -1679,6 +1679,10 @@
             ],
             "version": "==1.1.0"
         },
+        "sanitized-package": {
+            "editable": true,
+            "path": "."
+        },
         "setuptools": {
             "hashes": [
                 "sha256:68e45d17c9281ba25dc0104eadd2647172b3472d9e01f911efa57965e8d51a36",
@@ -1958,10 +1962,10 @@
         },
         "validators": {
             "hashes": [
-                "sha256:dec45f4381f042f1e705cfa74949505b77f1e27e8b05409096fee8152c839cbe"
+                "sha256:24148ce4e64100a2d5e267233e23e7afeb55316b47d30faae7eb6e7292bc226a"
             ],
             "markers": "python_version >= '3.4'",
-            "version": "==0.19.0"
+            "version": "==0.20.0"
         },
         "vine": {
             "hashes": [
@@ -2240,11 +2244,11 @@
         },
         "docutils": {
             "hashes": [
-                "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af",
-                "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"
+                "sha256:23010f129180089fbcd3bc08cfefccb3b890b0050e1ca00c867036e9d161b98c",
+                "sha256:679987caf361a7539d76e584cbeddc311e3aee937877c87346f31debc63e9d06"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
-            "version": "==0.16"
+            "version": "==0.18.1"
         },
         "flask": {
             "hashes": [
@@ -2275,7 +2279,7 @@
                 "sha256:5d26852efe48c0a32b0509ffbc583fda1a2266545a78d104a6f4aff3db17d700",
                 "sha256:c58c8eb8a762858f49e18436ff552e83914778e50e9d2f1660535ffb364552ec"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version < '3.10'",
             "version": "==4.11.4"
         },
         "importlib-resources": {
@@ -2519,11 +2523,11 @@
         },
         "sphinx": {
             "hashes": [
-                "sha256:19010b7b9fa0dc7756a6e105b2aacd3a80f798af3c25c273be64d7beeb482cb1",
-                "sha256:2320d4e994a191f4b4be27da514e46b3d6b420f2ff895d064f52415d342461e8"
+                "sha256:36aa2a3c2f6d5230be94585bc5d74badd5f9ed8f3388b8eedc1726fe45b1ad30",
+                "sha256:f4da1187785a5bc7312cc271b0e867a93946c319d106363e102936a3d9857306"
             ],
             "index": "pypi",
-            "version": "==3.5.4"
+            "version": "==5.0.1"
         },
         "sphinxcontrib-applehelp": {
             "hashes": [
