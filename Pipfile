@@ -19,7 +19,7 @@ invenio-assets = ">=1.2.7"
 
 [dev-packages]
 pytest-invenio =">=1.4.7"
-Sphinx = ">=3,<4"
+Sphinx = ">=3,<6"
 
 [requires]
 python_version = "3.7"
