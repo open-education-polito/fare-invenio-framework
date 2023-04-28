@@ -17,7 +17,7 @@ if [ ! -f $pipfile_lock_path ]; then
 fi
 
 # Extract Pipfile.lock hash to use as the docker image tag
-deps_ver=$(cat $pipfile_lock_path | python -c "import json,sys;print(json.load(sys.stdin)['_meta']['hash']['sha256'])")
+deps_ver=$(cat $pipfile_lock_path | python3 -c "import json,sys;print(json.load(sys.stdin)['_meta']['hash']['sha256'])")
 
 # Build dependencies image
 docker build -f Dockerfile.base -t fare-base:$deps_ver .
