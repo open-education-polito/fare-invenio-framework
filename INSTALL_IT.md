@@ -1,6 +1,6 @@
-# Installazione di test
+# Installazione della piattaforma
 
-Versione della guida semplificata in lingua italiana. 
+### Versione della guida semplificata in lingua italiana. 
 
 Il deploy è basato su immagini `docker` e usa `docker-compose`.
 
@@ -69,39 +69,47 @@ docker-compose -f docker-compose.fare.yml run --rm web-ui ./scripts/setup
    redirect `80 -> 443` e ci sarà una notice di certificati non trusted dal
    browser. Proseguire, siamo in fase di test quindi è OK.
 
-8. Per testare dei certificati reali è necessario effettuare le seguenti
-   operazioni. 
-
-I certificati vengono copiati in fase di startup dei container da due cartelle,
-una è `/docker/haproxy` e l'altra `/docker/nginx`. Quindi nel file `.env` non
-ci sono path hardcoded ma solo il nome dei file in quelle cartelle
-rispettivamente:
-
-```bash
-HAPROXY_CERT=haproxy_cert.pem
-NGINX_CERT=test.crt
-NGINX_KEY=test.key
-```
-
-Attenzione al fatto che per nginx ci sono key e crt mentre per haproxy c'è solo
-un pem: si può fare una concatenazione tipo:
-
-```bash
-cat test.crt test.key > haproxy_cert.pem 
-```
-in modo tale da appendere la chiave al certificato. Se non c'è la chiave ci
-sarà un problema in fase di startup del load balancer.
-
 I servizi sono configurati in modalità "restart always" il che non è il massimo
 in fase di debug ma comunque con un `docker logs nome_servizio` si possono
 consultare i log del singolo servizio.
+
+### Configurazione dei certificati reali
+I certificati reali possono essere creati gratuitamente con [let's encrypt](https://letsencrypt.org/getting-started/).
+
+Una volta creati, per configurare i certificati bisogna seguire la seguente procedura:
+
+* Copiare chiave e certificato in  `/docker/nginx/official_certificates`
+**NOTA:** se i certificati non vengono creati con let's encrypt è necessario sostituire ` /etc/letsencrypt/live/NOME_DOMINIO/` con il percorso in cui sono stati salvati i certificati
+
+ ```bash
+ sudo cp /etc/letsencrypt/live/NOME_DOMINIO/fullchain.pem ./docker/nginx/official_certificates/fullchain.crt
+ sudo cp /etc/letsencrypt/live/NOME_DOMINIO/privkey.pem ./docker/nginx/official_certificates/privkey.key
+   ```
+* Concatenare chiave e certificato in `/docker/haproxy/official_certificates`
+   ```bash
+   sudo cat ./docker/nginx/official_certificates/fullchain.crt ./docker/nginx/official_certificates/privkey.key > ./docker/haproxy/official_certificates/haproxy_cert.pem
+ ```
+ 
+* Aggiornare le seguenti voci nel file `.env` 
+ ```bash
+HAPROXY_CERT=./official_certificates/haproxy_cert.pem
+NGINX_CERT=./official_certificates/fullchain.crt
+NGINX_KEY=./official_certificates/privkey.key
+```
+
+* Fare la build dei servizi frontend e lb per caricare i nuovi certificati
+ ```bash
+sudo docker-compose -f docker-compose.fare.yml build --no-cache lb frontend
+docker-compose -f docker-compose.fare.yml up -d
+```
+
 
 ### Creazione utenti e ruoli
 
 * Entrare nel container e nell'environment 
 
 ```bash
-docker exec -it fare-invenio_web-ui_1 /bin/bash
+docker exec -it fare-platform_web-ui_1 /bin/bash
 ```
 
 * Creazione utente di prova 
