@@ -73,7 +73,7 @@ I servizi sono configurati in modalità "restart always" il che non è il massim
 in fase di debug ma comunque con un `docker logs nome_servizio` si possono
 consultare i log del singolo servizio.
 
-###Configurazione dei certificati reali
+### Configurazione dei certificati reali
 I certificati reali possono essere creati gratuitamente con [let's encrypt](https://letsencrypt.org/getting-started/).
 
 Una volta creati, per configurare i certificati bisogna seguire la seguente procedura:
