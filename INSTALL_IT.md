@@ -1,6 +1,6 @@
 # Installazione della piattaforma
 
-###Versione della guida semplificata in lingua italiana. 
+### Versione della guida semplificata in lingua italiana. 
 
 Il deploy è basato su immagini `docker` e usa `docker-compose`.
 
