@@ -78,7 +78,7 @@ I certificati reali possono essere creati gratuitamente con [let's encrypt](http
 
 Una volta creati, per configurare i certificati bisogna seguire la seguente procedura:
 
-* Copiare chiave e certificato in  `/docker/nginx/official_certificates `
+* Copiare chiave e certificato in  `/docker/nginx/official_certificates`
 **NOTA:** se i certificati non vengono creati con let's encrypt è necessario sostituire ` /etc/letsencrypt/live/NOME_DOMINIO/` con il percorso in cui sono stati salvati i certificati
 
  ```bash
