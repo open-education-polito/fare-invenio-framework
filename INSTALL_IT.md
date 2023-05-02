@@ -1,4 +1,4 @@
-# Installazione delle piattaforma
+# Installazione della piattaforma
 
 ###Versione della guida semplificata in lingua italiana. 
 
