@@ -35,10 +35,13 @@ load_dotenv()
 #: Handling logging configurations
 # Exceptions are not catched, fail fast fail often
 
-LOGGING_PATH = os.getenv('LOGGING_PATH') or "/var/logs/fare/fare.log"
-os.makedirs(os.path.dirname(LOGGING_PATH), exist_ok=True)
-invenio_logging.config.LOGGING_FS_LOGFILE = LOGGING_PATH
-invenio_logging.config.LOGGING_FS_PYWARNINGS = True
+LOGGING_PATH = os.getenv('LOGGING_PATH')
+try:
+    os.makedirs(os.path.dirname(LOGGING_PATH), exist_ok=True)
+    invenio_logging.config.LOGGING_FS_LOGFILE = LOGGING_PATH
+    invenio_logging.config.LOGGING_FS_PYWARNINGS = True
+except:
+    print('[INFO]: Logs dir not available, printing logs to console')
 
 # Rate limiting
 # =============
